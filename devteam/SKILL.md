@@ -1,9 +1,9 @@
----
-name: devtem
-description: Simulates a complete software development team workflow. Use when developing features end-to-end, from requirements to deployment, with autonomous 11-step process including Product Manager, Architect, Dev Lead, Engineers, QA, and CI/CD roles. Triggers include commands like /devtem, devtem, or requests for full development workflow simulation with team roles.
+﻿---
+name: devteam
+description: Simulates a complete software development team workflow. Use when developing features end-to-end, from requirements to deployment, with autonomous 11-step process including Product Manager, Architect, Dev Lead, Engineers, QA, and CI/CD roles. Triggers include commands like /devteam, devteam, or requests for full development workflow simulation with team roles.
 ---
 
-# DevTem - Development Team Simulation
+# devteam - Development Team Simulation
 
 Simulate a complete software development lifecycle with **autonomous continuous operation**. Execute 11 sequential steps from requirement gathering to deployment, with role-based execution and state persistence.
 
@@ -17,7 +17,7 @@ Simulate a complete software development lifecycle with **autonomous continuous 
 ## Quick Start
 
 ```
-/devtem "My Feature Name"
+/devteam "My Feature Name"
 ```
 
 ## ⚡ Autonomous Continuous Operation
@@ -37,7 +37,7 @@ This skill implements an **Autonomous Loop Protocol** that works across all IDEs
 
 ```
 📍 STEP COMPLETION CHECK (Mandatory Protocol)
-1. READ `docs/.devtem/status.json`
+1. READ `docs/.devteam/status.json`
 2. IF current_step <= 11 AND exit_signal == false:
    →INCREMENT current_step
    →SAVE state
@@ -73,10 +73,10 @@ For detailed step-by-step instructions, see [references/workflow.md](references/
 
 | File | Purpose |
 |------|---------|
-| `docs/.devtem/status.json` | Current step, role, tasks |
-| `docs/.devtem/circuit_breaker.json` | Stagnation protection |
-| `docs/.devtem/session_history.md` | Audit log |
-| `docs/.devtem/progress_tracker.md` | Detailed progress |
+| `docs/.devteam/status.json` | Current step, role, tasks |
+| `docs/.devteam/circuit_breaker.json` | Stagnation protection |
+| `docs/.devteam/session_history.md` | Audit log |
+| `docs/.devteam/progress_tracker.md` | Detailed progress |
 
 State templates available at [references/StateTemplate/](references/StateTemplate/).
 
@@ -87,29 +87,29 @@ State templates available at [references/StateTemplate/](references/StateTemplat
 3. **Strict Formatting**: Follow `references/FormatSample/` templates
 4. **UI/UX Standards**: Apply `ui-ux-pro-max` skill for frontend work
 5. **Pre-Commit Checks**: Build + Tests must pass before commit
-6. **Session Recovery**: Always check `docs/.devtem/status.json` on resume
+6. **Session Recovery**: Always check `docs/.devteam/status.json` on resume
 
 ## ✅ Completion Signal
 
 When all 11 steps complete and tests pass, output:
 
 ```
----DEVTEM_STATUS---
+---devteam_STATUS---
 STATUS: COMPLETE
 STEPS_COMPLETED: 11/11
 TASKS_REMAINING: 0
 TESTS_PASSING: 100%
 EXIT_SIGNAL: true
----END_DEVTEM_STATUS---
+---END_devteam_STATUS---
 ```
 
 ## 🔗 Quick Commands
 
 | Command | Action |
 |---------|--------|
-| `/devtem <feature>` | Start new simulation |
-| `/devtem-continue` | Resume from last state |
-| `/devtem-reset` | Clear state and restart |
+| `/devteam <feature>` | Start new simulation |
+| `/devteam-continue` | Resume from last state |
+| `/devteam-reset` | Clear state and restart |
 | `status` | Output current status |
 | `skip to step N` | Jump to step N |
 | `pause` | Save state and stop |

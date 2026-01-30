@@ -1,6 +1,6 @@
-{
-  "name": "devtem",
-  "displayName": "DevTem - Development Team Simulation",
+﻿{
+  "name": "devteam",
+  "displayName": "devteam - Development Team Simulation",
   "description": "Simulates complete development team workflow with 11-step process and continuous operation hooks",
   "version": "1.0.0",
   "hooks": [

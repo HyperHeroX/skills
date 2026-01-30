@@ -1,13 +1,13 @@
-# DevTem Quick Commands Reference
+﻿# devteam Quick Commands Reference
 
 ## 🔗 Quick Start Commands
 
 | User Command | AI Action |
 |--------------|-----------|
-| `/devtem <feature>` | Initialize simulation for feature |
-| `/devtem-continue` | Resume from last state (resets CB if OPEN) |
-| `/devtem-reset` | Clear state and start fresh |
-| `status` | Output current DEVTEM_STATUS |
+| `/devteam <feature>` | Initialize simulation for feature |
+| `/devteam-continue` | Resume from last state (resets CB if OPEN) |
+| `/devteam-reset` | Clear state and start fresh |
+| `status` | Output current devteam_STATUS |
 | `skip to step N` | Jump to step N (with warning) |
 | `pause` | Save state and stop |
 | `reset circuit breaker` | Reset CB to CLOSED, clear counters |
@@ -20,11 +20,11 @@
 
 ### Initialization Sequence
 ```
-1. READ docs/.devtem/status.json
+1. READ docs/.devteam/status.json
 2. IF exists AND exit_signal == false:
      RESUME from current_step with current_role
 3. ELSE:
-     CREATE docs/.devtem/ directory
+     CREATE docs/.devteam/ directory
      INITIALIZE status.json with step=1, role="Product Manager"
      BEGIN Step 1
 ```
@@ -35,7 +35,7 @@
 2. LOAD role reference file
 3. EXECUTE step actions
 4. CREATE/UPDATE output documents
-5. UPDATE docs/.devtem/status.json
+5. UPDATE docs/.devteam/status.json
 6. IF milestone OR blocker:
      REPORT via mcp_user-feedback_collect_feedback
 7. IF user responds "continue":
@@ -50,7 +50,7 @@
 2. VERIFY all tasks in docs/tasks marked done
 3. VERIFY all tests in docs/tests marked PASS
 4. VERIFY no BUG tasks remain
-5. OUTPUT DEVTEM_STATUS block with EXIT_SIGNAL: true
+5. OUTPUT devteam_STATUS block with EXIT_SIGNAL: true
 6. UPDATE status.json with exit_signal: true
 7. ARCHIVE via openspec archive
 8. FINAL REPORT via MCP
@@ -63,7 +63,7 @@
 At each milestone, output status in this format:
 
 ```
----DEVTEM_STATUS---
+---devteam_STATUS---
 STATUS: IN_PROGRESS | COMPLETE | BLOCKED
 CURRENT_STEP: <number>/11
 CURRENT_ROLE: <role name>
@@ -74,7 +74,7 @@ TESTS_STATUS: PASSING | FAILING | NOT_RUN
 EXIT_SIGNAL: false | true
 BLOCKED_REASON: <reason if blocked, else null>
 RECOMMENDATION: <one line summary>
----END_DEVTEM_STATUS---
+---END_devteam_STATUS---
 ```
 
 ---

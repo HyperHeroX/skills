@@ -1,8 +1,8 @@
-# DevTem Autonomous Operation System
+﻿# devteam Autonomous Operation System
 
 ## Overview
 
-This document defines the **Autonomous Operation System** for the DevTem skill, supporting two operating modes:
+This document defines the **Autonomous Operation System** for the devteam skill, supporting two operating modes:
 
 | Mode | Mechanism | IDE Support |
 |------|-----------|-------------|
@@ -54,8 +54,8 @@ Before every step, the AI MUST:
 
 ```markdown
 📍 PRE-STEP CHECKLIST (Execute silently)
-1. READ `docs/.devtem/status.json` → Get current_step, current_role
-2. READ `docs/.devtem/circuit_breaker.json` → Check state
+1. READ `docs/.devteam/status.json` → Get current_step, current_role
+2. READ `docs/.devteam/circuit_breaker.json` → Check state
 3. IF circuit_breaker.state == "OPEN":
    → HALT execution
    → REPORT via MCP: "🚫 Circuit breaker OPEN - {reason}"
@@ -74,15 +74,15 @@ After every step, the AI MUST:
    - Detect completion signals
    - Detect progress indicators
    - Detect stagnation patterns
-2. UPDATE `docs/.devtem/circuit_breaker.json`:
+2. UPDATE `docs/.devteam/circuit_breaker.json`:
    - IF progress detected → Reset no_progress counter
    - IF no progress → Increment counter
    - IF threshold breached → Transition state
-3. SAVE state to `docs/.devtem/status.json`:
+3. SAVE state to `docs/.devteam/status.json`:
    - Increment current_step (if progressing)
    - Update current_role (if changing)
    - Update tasks_completed
-4. APPEND to `docs/.devtem/session_history.md`
+4. APPEND to `docs/.devteam/session_history.md`
 5. CHECK continuation condition:
    - IF current_step <= 11 AND exit_signal == false:
      → IMMEDIATELY CONTINUE to next step (NO user prompt)
@@ -102,8 +102,8 @@ For Claude Code users, an optional Stop Hook provides **automated enforcement** 
 
 ### How It Works
 
-1. **Stop Hook Location**: `devtem/hooks/stop-hook.sh`
-2. **Registration**: `devtem/hooks/hooks.json`
+1. **Stop Hook Location**: `devteam/hooks/stop-hook.sh`
+2. **Registration**: `devteam/hooks/hooks.json`
 3. **Trigger**: When Claude attempts to exit/stop
 
 ### Stop Hook Logic
@@ -127,7 +127,7 @@ echo '{"decision": "block", "reason": "$PROMPT", "systemMessage": "..."}'
 
 ```json
 {
-  "name": "devtem",
+  "name": "devteam",
   "hooks": [
     {
       "type": "Stop",
@@ -142,7 +142,7 @@ echo '{"decision": "block", "reason": "$PROMPT", "systemMessage": "..."}'
 
 ## Hook Lifecycle Detail
 **Actions**:
-1. Update `docs/.devtem/status.json`
+1. Update `docs/.devteam/status.json`
 2. Append to `progress_tracker.md`
 3. Update `session_history.md`
 
@@ -162,7 +162,7 @@ echo '{"decision": "block", "reason": "$PROMPT", "systemMessage": "..."}'
 FUNCTION should_exit_gracefully():
     
     # Load exit signals
-    signals = READ docs/.devtem/exit_signals.json
+    signals = READ docs/.devteam/exit_signals.json
     
     # Count recent signals
     test_loops = COUNT(signals.test_only_loops)
@@ -186,7 +186,7 @@ FUNCTION should_exit_gracefully():
     # 4. Strong completion indicators WITH explicit EXIT_SIGNAL
     IF completion_indicators >= 2:
         # Read explicit EXIT_SIGNAL from status
-        status = READ docs/.devtem/status.json
+        status = READ docs/.devteam/status.json
         IF status.exit_signal == true:
             RETURN "project_complete"
         ELSE:
@@ -205,7 +205,7 @@ FUNCTION should_exit_gracefully():
 
 ### On Conversation Start
 ```
-1. CHECK docs/.devtem/status.json exists
+1. CHECK docs/.devteam/status.json exists
 2. IF exists AND exit_signal != true:
      a. LOAD state
      b. CHECK circuit breaker
@@ -216,8 +216,8 @@ FUNCTION should_exit_gracefully():
      b. ASK user: "Start new simulation?"
 4. ELSE:
      a. INITIALIZE new session
-     b. CREATE docs/.devtem/ directory
-     c. ANNOUNCE: "🆕 Starting new DevTem simulation"
+     b. CREATE docs/.devteam/ directory
+     c. ANNOUNCE: "🆕 Starting new devteam simulation"
 ```
 
 ### On User "continue" Command
@@ -250,7 +250,7 @@ The hooks are implicitly executed by following this protocol in SKILL.md:
 ### Before Each Step
 ```markdown
 **Pre-Step Protocol**:
-1. 📂 Load `docs/.devtem/status.json`
+1. 📂 Load `docs/.devteam/status.json`
 2. 🔌 Check circuit breaker state
 3. ✅ Validate prerequisites
 4. 🚫 If OPEN → Report via MCP and HALT
@@ -261,7 +261,7 @@ The hooks are implicitly executed by following this protocol in SKILL.md:
 **Post-Step Protocol**:
 1. 📊 Analyze step output (completion signals, progress)
 2. 🔄 Update circuit breaker counters
-3. 💾 Save state to `docs/.devtem/status.json`
+3. 💾 Save state to `docs/.devteam/status.json`
 4. 🚦 Check exit conditions
 5. 📢 If milestone → Report via MCP
 6. ➡️ If continue → Proceed to next step
@@ -269,7 +269,7 @@ The hooks are implicitly executed by following this protocol in SKILL.md:
 
 ## State Files Schema
 
-### docs/.devtem/exit_signals.json
+### docs/.devteam/exit_signals.json
 ```json
 {
   "test_only_loops": [],
@@ -283,7 +283,7 @@ The hooks are implicitly executed by following this protocol in SKILL.md:
 }
 ```
 
-### docs/.devtem/circuit_breaker.json
+### docs/.devteam/circuit_breaker.json
 ```json
 {
   "state": "CLOSED",

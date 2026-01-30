@@ -1,36 +1,36 @@
-# HyperHeroX Skills Repository
+﻿# HyperHeroX Skills Repository
 
 本倉庫包含可跨 IDE 使用的 Agent Skills，遵循 [Agent Skills](https://agentskills.io/) 開放標準。
 
 ## 📦 Skills
 
-### DevTem - Development Team Simulation
+### devteam - Development Team Simulation
 
 模擬完整軟體開發團隊的工作流程，包含 11 個步驟從需求收集到部署。
 
 | 特性 | 說明 |
 |------|------|
-| 位置 | `devtem/` |
-| 指令 | `/devtem`, `/devtem-continue`, `/devtem-reset` |
+| 位置 | `devteam/` |
+| 指令 | `/devteam`, `/devteam-continue`, `/devteam-reset` |
 | 模式 | Universal（所有 IDE）+ Advanced（Claude Code Plugin）|
 
 #### 快速開始
 
 ```bash
 # 啟動開發團隊模擬
-/devtem "我的功能名稱"
+/devteam "我的功能名稱"
 
 # 繼續中斷的模擬
-/devtem-continue
+/devteam-continue
 
 # 重置狀態
-/devtem-reset
+/devteam-reset
 ```
 
 #### 詳細文件
 
-- [SKILL.md](devtem/SKILL.md) - 主技能定義
-- [references/hooks.md](devtem/references/hooks.md) - 自主運作系統說明
+- [SKILL.md](devteam/SKILL.md) - 主技能定義
+- [references/hooks.md](devteam/references/hooks.md) - 自主運作系統說明
 
 ---
 
@@ -49,7 +49,7 @@
 
 ```
 skills/
-├── devtem/                 # DevTem 技能
+├── devteam/                 # devteam 技能
 │   ├── SKILL.md            # 主技能定義
 │   ├── references/         # 參考資料（含指令、工作流程）
 │   └── plugin/             # Claude Code 專屬
@@ -67,16 +67,16 @@ skills/
 
 ```bash
 # macOS/Linux
-cp -r devtem ~/.claude/skills/
+cp -r devteam ~/.claude/skills/
 
 # Windows
-xcopy /E /I devtem %USERPROFILE%\.claude\skills\devtem
+xcopy /E /I devteam %USERPROFILE%\.claude\skills\devteam
 ```
 
 ### Project Skills（專案級）
 
 ```bash
-cp -r devtem .claude/skills/
+cp -r devteam .claude/skills/
 ```
 
 ---

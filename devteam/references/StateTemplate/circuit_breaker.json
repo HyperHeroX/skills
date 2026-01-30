@@ -1,6 +1,6 @@
-{
+﻿{
   "schema_version": "1.0.0",
-  "description": "Circuit breaker state template for devtem skill - prevents runaway loops",
+  "description": "Circuit breaker state template for devteam skill - prevents runaway loops",
   
   "state": "CLOSED",
   "consecutive_no_progress": 0,

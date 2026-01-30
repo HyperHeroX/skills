@@ -1,6 +1,6 @@
-{
+﻿{
   "schema_version": "1.0.0",
-  "description": "Response Analyzer Schema for devtem skill - intelligent completion detection",
+  "description": "Response Analyzer Schema for devteam skill - intelligent completion detection",
 
   "analysis_fields": {
     "step_number": "Current step in workflow (1-11)",

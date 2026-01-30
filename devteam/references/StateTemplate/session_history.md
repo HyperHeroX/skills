@@ -1,6 +1,6 @@
-# Session History Log
+﻿# Session History Log
 
-此檔案記錄所有 devtem 工作階段的狀態轉換歷史。
+此檔案記錄所有 devteam 工作階段的狀態轉換歷史。
 
 ## 格式說明
 每筆記錄包含：
@@ -16,7 +16,7 @@
 - **Session ID**: example-uuid
 - **Initial Step**: 1
 - **Initial Role**: Product Manager
-- **Reason**: User initiated "start devtem"
+- **Reason**: User initiated "start devteam"
 
 ### [2026-01-31T10:30:00Z] STEP_CHANGE
 - **From Step**: 1 → **To Step**: 2
