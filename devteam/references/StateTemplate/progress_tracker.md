@@ -109,7 +109,7 @@
 - **Completed**: -
 - **Outputs**:
   - [ ] E2E tests passed
-  - [ ] `openspec archive` executed
+  - [ ] `/opsx:archive` executed
 - **Notes**: -
 
 ---

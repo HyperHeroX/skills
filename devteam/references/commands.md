@@ -52,7 +52,7 @@
 4. VERIFY no BUG tasks remain
 5. OUTPUT devteam_STATUS block with EXIT_SIGNAL: true
 6. UPDATE status.json with exit_signal: true
-7. ARCHIVE via openspec archive
+7. ARCHIVE via /opsx:archive
 8. FINAL REPORT via MCP
 ```
 
@@ -88,6 +88,6 @@ RECOMMENDATION: <one line summary>
 - [ ] No BUG tasks in `docs/tasks`
 - [ ] E2E tests passed on Stage
 - [ ] `docs/CHANGELOG.md` updated
-- [ ] `openspec archive` executed
+- [ ] `/opsx:archive` executed
 - [ ] Final MCP report sent
 - [ ] Circuit breaker state is CLOSED

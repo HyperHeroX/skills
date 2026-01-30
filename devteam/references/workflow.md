@@ -17,7 +17,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Goal**: Clarify product specifications and user needs.
 - **Action**: Discuss with user to gather requirements.
 - **Output**: Save requirement documents to `docs/plan`.
-- **OpenSpec**: `openspec new change "<change-name>"`
+- **OpenSpec**: `/opsx:new <change-name>` (creates `openspec/changes/<change-name>/` directory)
 - **State Update**: `current_step: 1, current_role: "Product Manager"`
 - **Reference**: `devteam/references/JobDescription/產品經理_職務說明.md`
 
@@ -27,7 +27,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
   1. Create system architecture document.
   2. **Generate `docs/env.md`** based on architecture and environment details.
 - **Output**: Save to `docs/plan` (architecture) and `docs` (env.md).
-- **OpenSpec**: Create `01-spec.md` artifact.
+- **OpenSpec**: `/opsx:continue` to create `proposal.md` artifact (or `/opsx:ff` to create all planning artifacts at once)
 - **Format**: `devteam/references/FormatSample/範例-系統分析.md`
 - **Reference**: `devteam/references/JobDescription/系統架構師_職務說明.md`
 
@@ -45,7 +45,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Review**: Product Manager must review SA Doc for alignment.
 - **Action**: Create high-level project plan.
 - **Output**: Save to `docs/plan`.
-- **OpenSpec**: Create `02-plan.md` artifact.
+- **OpenSpec**: `/opsx:continue` to create `specs/` and `design.md` artifacts (artifacts are created based on dependency graph)
 - **Format**: `devteam/references/FormatSample/範例-開發計劃概述.md`
 - **Reference**: `devteam/references/JobDescription/專案經理_職務說明.md`
 
@@ -92,7 +92,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
   1. **Generate Test Cases**: Save to `docs/tests`.
   2. **Execute Tests**: Use `chrome-devtools-mcp` (Browser Automation).
   3. **Record Results**: Annotate pass/fail in `docs/tests`.
-- **OpenSpec**: `openspec verify`
+- **OpenSpec**: `/opsx:verify` to validate implementation matches artifacts (checks Completeness, Correctness, Coherence)
 - **Checks**: UI screenshot, Visual verification, Console error check.
 - **Completion**: Mark task complete. If failed → create **BUG Tasks** in `docs/tasks`.
 - **Format**: `devteam/references/FormatSample/範例-測試案例.md`
@@ -109,7 +109,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Input**: Retrieve deployment tasks from `docs/tasks` or trigger on QA pass.
 - **Action**: Perform deployment tests and finalize.
 - **Completion**: Mark deployment tasks complete.
-- **OpenSpec**: `openspec archive`
+- **OpenSpec**: `/opsx:archive` (prompts to sync delta specs if needed, moves change to archive)
 - **Reference**: `devteam/references/JobDescription/CI_CD_工程師_職務說明.md`
 - **Procedure**:
   1. Wait 3 mins after commit.
@@ -158,3 +158,74 @@ project/
         ├── FormatSample/        # Document templates
         └── StateTemplate/       # State file templates
 ```
+
+---
+
+## 📘 OpenSpec OPSX Commands Reference
+
+The devteam skill integrates with OpenSpec's OPSX (artifact-guided) workflow.
+
+| Command | Description | When to Use |
+|---------|-------------|-------------|
+| `/opsx:explore` | Think through ideas, investigate | Before starting a change |
+| `/opsx:new <name>` | Start a new change | Step 1: Requirement Gathering |
+| `/opsx:continue` | Create next artifact by dependency | Steps 2-5: Incremental planning |
+| `/opsx:ff <name>` | Fast-forward all planning artifacts | When requirements are clear |
+| `/opsx:apply` | Implement tasks from the change | Steps 6-8: Implementation |
+| `/opsx:verify` | Validate implementation vs artifacts | Step 9: Testing |
+| `/opsx:sync` | Merge delta specs to main specs | Before archiving (optional) |
+| `/opsx:archive` | Archive completed change | Step 11: Deployment |
+
+### Artifact Dependency Graph (spec-driven schema)
+
+```
+          proposal (root)
+               |
+       +-------+-------+
+       |               |
+       v               v
+    specs           design
+       |               |
+       +-------+-------+
+               |
+               v
+            tasks
+               |
+               v
+         APPLY PHASE
+```
+
+### devteam Step ↔ OpenSpec Mapping
+
+| Phase | devteam Step | OpenSpec Command |
+|-------|--------------|------------------|
+| Planning | Step 1 | `/opsx:new` |
+| Planning | Step 2-5 | `/opsx:continue` or `/opsx:ff` |
+| Implementation | Step 6-8 | `/opsx:apply` |
+| Verification | Step 9 | `/opsx:verify` |
+| Deployment | Step 11 | `/opsx:archive` |
+
+### OpenSpec Directory Structure
+
+```
+openspec/
+├── changes/                     # Active changes
+│   └── <change-name>/           # Individual change folder
+│       ├── .openspec.yaml       # Change metadata
+│       ├── proposal.md          # Change proposal
+│       ├── specs/               # Delta specifications
+│       ├── design.md            # Technical design
+│       └── tasks.md             # Implementation tasks
+├── specs/                       # Main specifications
+└── config.yaml                  # Project config (optional)
+```
+
+### Command Syntax by AI Tool
+
+| AI Tool | Syntax |
+|---------|--------|
+| Claude Code | `/opsx:new`, `/opsx:apply` |
+| Cursor | `/opsx-new`, `/opsx-apply` |
+| Windsurf | `/opsx-new`, `/opsx-apply` |
+| Copilot | `/opsx-new`, `/opsx-apply` |
+| Trae | `/openspec-new-change`, `/openspec-apply-change` |
