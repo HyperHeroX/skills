@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Response Analyzer Schema for devtem skill - intelligent completion detection",
+
+  "analysis_fields": {
+    "step_number": "Current step in workflow (1-11)",
+    "role": "Current role being simulated",
+    "has_completion_signal": "Boolean - detected completion phrases",
+    "has_progress": "Boolean - files modified or tasks completed",
+    "is_test_only": "Boolean - only test execution without implementation",
+    "is_blocked": "Boolean - waiting on external input",
+    "exit_signal": "Boolean - explicit completion indicator",
+    "confidence_score": "0-100 - confidence in analysis",
+    "work_summary": "Brief description of work done"
+  },
+
+  "completion_patterns": [
+    "all tasks complete",
+    "all steps complete",
+    "project complete",
+    "simulation complete",
+    "deployment successful",
+    "ready for review",
+    "no remaining tasks",
+    "EXIT_SIGNAL: true"
+  ],
+
+  "progress_indicators": [
+    "created file",
+    "updated file",
+    "marked task complete",
+    "test passed",
+    "deployed successfully",
+    "docs/ modified",
+    "step N complete"
+  ],
+
+  "stagnation_indicators": [
+    "no files modified",
+    "same error repeated",
+    "waiting for input",
+    "blocked on",
+    "cannot proceed"
+  ],
+
+  "analysis_output_template": {
+    "step_number": 0,
+    "role": "",
+    "timestamp": "ISO-8601",
+    "analysis": {
+      "has_completion_signal": false,
+      "has_progress": false,
+      "is_test_only": false,
+      "is_blocked": false,
+      "exit_signal": false,
+      "confidence_score": 0,
+      "files_modified": 0,
+      "tasks_completed": 0,
+      "work_summary": ""
+    }
+  },
+
+  "exit_signal_rules": {
+    "rule_1": "exit_signal=true requires BOTH completion_indicators >= 2 AND explicit EXIT_SIGNAL",
+    "rule_2": "High confidence alone does NOT trigger exit if EXIT_SIGNAL=false",
+    "rule_3": "Blocked status prevents exit regardless of other signals",
+    "rule_4": "User 'continue' command overrides exit signals"
+  }
+}

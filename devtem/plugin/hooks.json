@@ -1,0 +1,19 @@
+{
+  "name": "devtem",
+  "displayName": "DevTem - Development Team Simulation",
+  "description": "Simulates complete development team workflow with 11-step process and continuous operation hooks",
+  "version": "1.0.0",
+  "hooks": [
+    {
+      "type": "Stop",
+      "matcher": ".*",
+      "hookPath": "./stop-hook.sh"
+    }
+  ],
+  "features": {
+    "autonomous_workflow": true,
+    "circuit_breaker": true,
+    "mcp_communication": true,
+    "state_persistence": true
+  }
+}

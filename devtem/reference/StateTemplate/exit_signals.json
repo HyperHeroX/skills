@@ -1,0 +1,40 @@
+{
+  "schema_version": "2.0.0",
+  "description": "Exit signals tracking for devtem skill - implements dual-condition exit gate",
+  
+  "test_only_loops": [],
+  "done_signals": [],
+  "completion_indicators": [],
+  
+  "last_analysis": {
+    "step": 0,
+    "role": "",
+    "timestamp": null,
+    "has_progress": false,
+    "has_completion_signal": false,
+    "exit_signal": false,
+    "confidence_score": 0,
+    "work_summary": ""
+  },
+  
+  "exit_conditions": {
+    "all_steps_complete": false,
+    "all_tasks_done": false,
+    "all_tests_pass": false,
+    "no_bug_tasks": false,
+    "deployment_verified": false
+  },
+  
+  "thresholds": {
+    "completion_indicators_required": 2,
+    "done_signals_required": 2,
+    "max_test_only_loops": 3
+  },
+  
+  "notes": {
+    "exit_rule": "Exit requires BOTH completion_indicators >= 2 AND explicit exit_signal == true",
+    "test_saturation": "Exit if test_only_loops array length >= 3 consecutive loops",
+    "completion_signals": "Exit if done_signals array length >= 2",
+    "rolling_window": "Arrays maintain last 5 entries only (rolling window)"
+  }
+}

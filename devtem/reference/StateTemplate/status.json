@@ -1,0 +1,45 @@
+{
+  "schema_version": "2.0.0",
+  "description": "Session state template for devtem skill - tracks workflow progress",
+  
+  "session_id": "example-uuid-v4-format",
+  "current_step": 1,
+  "current_role": "Product Manager",
+  "current_phase": "Planning & Design",
+  "started_at": "2026-01-31T10:00:00Z",
+  "last_updated": "2026-01-31T10:00:00Z",
+  
+  "tasks_completed": [],
+  "pending_tasks": ["Step 1: Requirement Gathering"],
+  "files_modified_this_session": 0,
+  
+  "exit_signal": false,
+  "blocked": false,
+  "blocker_reason": null,
+  
+  "hook_data": {
+    "last_pre_step_hook": null,
+    "last_post_step_hook": null,
+    "total_hooks_executed": 0
+  },
+  
+  "steps_status": {
+    "step_1": "in_progress",
+    "step_2": "not_started",
+    "step_3": "not_started",
+    "step_4": "not_started",
+    "step_5": "not_started",
+    "step_6": "not_started",
+    "step_7": "not_started",
+    "step_8": "not_started",
+    "step_9": "not_started",
+    "step_10": "not_started",
+    "step_11": "not_started"
+  },
+  
+  "phase_mapping": {
+    "1-5": "Planning & Design",
+    "6-8": "Implementation & Iteration",
+    "9-11": "Verification & Deployment"
+  }
+}

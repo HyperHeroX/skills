@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Circuit Breaker State Schema for devtem skill - prevents runaway loops",
+  
+  "state_machine": {
+    "states": ["CLOSED", "HALF_OPEN", "OPEN"],
+    "transitions": {
+      "CLOSED_to_HALF_OPEN": {
+        "trigger": "consecutive_no_progress >= 2",
+        "action": "Monitor closely for recovery"
+      },
+      "HALF_OPEN_to_CLOSED": {
+        "trigger": "progress_detected",
+        "action": "Reset counters, resume normal operation"
+      },
+      "HALF_OPEN_to_OPEN": {
+        "trigger": "no_progress_detected",
+        "action": "Halt execution, require user intervention"
+      },
+      "CLOSED_to_OPEN": {
+        "trigger": "consecutive_no_progress >= 3 OR consecutive_same_error >= 5",
+        "action": "Emergency halt"
+      },
+      "OPEN_to_CLOSED": {
+        "trigger": "manual_reset OR user_continue",
+        "action": "Clear counters, resume from checkpoint"
+      }
+    }
+  },
+
+  "thresholds": {
+    "no_progress_threshold": 3,
+    "same_error_threshold": 5,
+    "test_saturation_threshold": 3,
+    "done_signal_threshold": 2,
+    "completion_indicator_threshold": 2
+  },
+
+  "state_file_template": {
+    "state": "CLOSED",
+    "consecutive_no_progress": 0,
+    "consecutive_same_error": 0,
+    "last_error_hash": null,
+    "last_progress_step": 0,
+    "total_opens": 0,
+    "last_transition_at": null,
+    "last_transition_reason": null
+  },
+
+  "usage_in_skill": {
+    "check_before_step": "Read circuit_breaker.json, if state=OPEN, halt and report via MCP",
+    "record_after_step": "Update counters based on step outcome (progress/no-progress/error)",
+    "reset_on_user_continue": "If user explicitly says 'continue', reset to CLOSED"
+  }
+}
