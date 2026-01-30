@@ -91,8 +91,7 @@ Claude will:
 - Act as System Analyst → analyze system
 - Act as Project Manager → plan project
 - Act as Dev Lead → break down tasks
-- Act as Database Architect → design database
-- Act as Backend Engineer → implement APIs
+- Act as Backend Engineer → design database and implement APIs
 - Act as Frontend Engineer → implement UI
 - Act as QA Engineer → test and verify
 - Iterate on bugs if found
