@@ -1,6 +1,24 @@
 ﻿---
 name: devteam
-description: Simulates a complete software development team workflow. Use when developing features end-to-end, from requirements to deployment, with autonomous 11-step process including Product Manager, Architect, Dev Lead, Engineers, QA, and CI/CD roles. Triggers include commands like /devteam, devteam, or requests for full development workflow simulation with team roles.
+description: |
+  Development Team Simulation Skill - Automatically simulates a complete software development team with 11-step autonomous workflow.
+
+  **USE THIS SKILL WHEN:**
+  - User asks to "develop a feature", "implement a feature", "build a new feature"
+  - User mentions "development team", "team simulation", "dev team"
+  - User wants end-to-end development from requirements to deployment
+  - User mentions roles like "Product Manager", "Architect", "Dev Lead", "Engineer", "QA", "CI/CD"
+  - User says "/devteam", "devteam", or variations like "dev team simulation"
+  - User wants structured development workflow with planning, implementation, and verification phases
+  - User asks for "systematic development", "professional development process", "enterprise-grade development"
+  - User requests feature development with documentation, testing, and deployment
+
+  **WHAT IT DOES:**
+  - Executes 11 sequential steps: Requirements → Architecture → Analysis → Planning → Task Breakdown → Database → Backend → Frontend → Testing → Iteration → Deployment
+  - Manages state via docs/.devteam/ for session continuity
+  - Applies role-based execution (PM, Architect, Dev Lead, Engineers, QA, CI/CD)
+  - Enforces code quality standards and pre-commit checks
+  - Integrates with MCP tools (Serena, user-feedback, browser automation)
 ---
 
 # devteam - Development Team Simulation
