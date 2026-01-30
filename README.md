@@ -30,8 +30,7 @@
 #### 詳細文件
 
 - [SKILL.md](devtem/SKILL.md) - 主技能定義
-- [lib/hooks.md](devtem/lib/hooks.md) - 自主運作系統說明
-- [plugin/README.md](devtem/plugin/README.md) - Claude Code 進階模式
+- [references/hooks.md](devtem/references/hooks.md) - 自主運作系統說明
 
 ---
 
@@ -52,10 +51,8 @@
 skills/
 ├── devtem/                 # DevTem 技能
 │   ├── SKILL.md            # 主技能定義
-│   ├── commands/           # 斜線指令
-│   ├── lib/                # 支援文件
-│   ├── plugin/             # Claude Code 專屬
-│   └── reference/          # 參考資料
+│   ├── references/         # 參考資料（含指令、工作流程）
+│   └── plugin/             # Claude Code 專屬
 ├── .github/                # GitHub 設定與 Copilot 指令
 ├── docs/                   # 專案文件
 ├── openspec/               # OpenSpec 規範

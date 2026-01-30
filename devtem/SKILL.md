@@ -1,8 +1,6 @@
 ---
 name: devtem
-description: Simulates a complete software development team workflow. Use when developing features end-to-end, from requirements to deployment, with autonomous 11-step process including Product Manager, Architect, Dev Lead, Engineers, QA, and CI/CD roles.
-argument-hint: <feature-name>
-disable-model-invocation: true
+description: Simulates a complete software development team workflow. Use when developing features end-to-end, from requirements to deployment, with autonomous 11-step process including Product Manager, Architect, Dev Lead, Engineers, QA, and CI/CD roles. Triggers include commands like /devtem, devtem, or requests for full development workflow simulation with team roles.
 ---
 
 # DevTem - Development Team Simulation
@@ -23,7 +21,7 @@ Simulate a complete software development lifecycle with **autonomous continuous 
 | **Implementation** | 6-8 | DB Architect → Backend → Frontend |
 | **Verification** | 9-11 | QA → Iteration Check → CI/CD |
 
-For detailed step instructions, see [lib/workflow.md](lib/workflow.md).
+For detailed step instructions, see [references/workflow.md](references/workflow.md).
 
 ## Autonomous Loop Protocol
 
@@ -46,7 +44,7 @@ After each step completion, the AI MUST:
 
 1. **Serena MCP First**: Use `mcp_oraios_serena_*` for code exploration
 2. **MCP-Only Communication**: Report via `mcp_user-feedback_collect_feedback`
-3. **Strict Formatting**: Follow `reference/FormatSample` templates
+3. **Strict Formatting**: Follow `references/FormatSample` templates
 4. **UI/UX Standards**: Apply `ui-ux-pro-max` skill for frontend work
 5. **Pre-Commit Checks**: Build + Tests must pass before commit
 
@@ -64,10 +62,10 @@ EXIT_SIGNAL: true
 
 ## Additional Resources
 
-- Detailed workflow: [lib/workflow.md](lib/workflow.md)
-- Commands reference: [lib/commands.md](lib/commands.md)
-- Hook system: [lib/hooks.md](lib/hooks.md)
-- Circuit breaker: [lib/circuit_breaker.json](lib/circuit_breaker.json)
-- Role definitions: [reference/JobDescription/](reference/JobDescription/)
-- Document templates: [reference/FormatSample/](reference/FormatSample/)
-- State templates: [reference/StateTemplate/](reference/StateTemplate/)
+- Detailed workflow: [references/workflow.md](references/workflow.md)
+- Commands reference: [references/commands.md](references/commands.md)
+- Hook system: [references/hooks.md](references/hooks.md)
+- Circuit breaker: [references/circuit_breaker.json](references/circuit_breaker.json)
+- Role definitions: [references/JobDescription/](references/JobDescription/)
+- Document templates: [references/FormatSample/](references/FormatSample/)
+- State templates: [references/StateTemplate/](references/StateTemplate/)
