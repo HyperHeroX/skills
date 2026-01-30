@@ -59,7 +59,7 @@
 
 ## Phase 2: Implementation & Iteration
 
-### Step 6: Database Design (Backend Engineer)
+### Step 6: Database Design (Database Architect)
 - **Status**: ⬜ Not Started
 - **Started**: -
 - **Completed**: -
@@ -67,7 +67,7 @@
   - [ ] `docs/plan/06-database-design.md`
   - [ ] `docs/tasks/phase{n}/db-t*.md` (marked complete)
   - [ ] OpenSpec changes: `openspec/changes/<task-id>-<brief-description>/`
-- **Notes**: Backend Engineer handles database design using `/opsx:new <task-id>-<brief-description>` pattern
+- **Notes**: Database Architect designs schema; Backend Engineer implements migrations in Step 7
 
 ### Step 7: Backend Development (Backend Engineer)
 - **Status**: ⬜ Not Started

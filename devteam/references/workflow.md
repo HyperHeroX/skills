@@ -73,33 +73,34 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 
 ### Phase 2: Implementation & Iteration
 
-#### Step 6: Database Design (Backend Engineer)
-- **Goal**: Design database schema and implement database layer.
+#### Step 6: Database Design (Database Architect)
+- **Goal**: Design database architecture, tables, and column structures.
 - **Input**: Read documents `01-requirements.md` through `05-task-breakdown.md` from `docs/plan` and retrieve DB tasks from `docs/tasks/phase{n}/`.
 - **Action**:
   1. Create database design document: Save `06-database-design.md` to `docs/plan`.
   2. **領取任務時介入 OpenSpec**:
      - 執行 `/opsx:new <task-id>-<brief-description>`
      - 例如：`/opsx:new db-t001-user-authentication-schema`
-  3. Execute database implementation based on task files and OpenSpec artifacts.
+  3. Design database tables, relationships, indexes, foreign key constraints, etc.
 - **Output**: Database design document in `docs/plan`.
-- **Completion**: Mark DB tasks complete in `docs/tasks/phase{n}/db-t{nnn}.md` with execution notes.
+- **Completion**: Mark DB tasks complete in `docs/tasks/phase{n}/db-t{nnn}.md` with design notes.
 - **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/<task-id>-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-資料庫設計.md`
-- **Reference**: `devteam/references/JobDescription/資深後端工程師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/系統架構師_職務說明.md`
 
 #### Step 7: Backend Development (Backend Engineer)
-- **Goal**: Implement backend APIs and business logic.
+- **Goal**: Implement database migrations and backend APIs.
 - **Input**:
-  1. Read all planning documents `01-06` from `docs/plan`.
+  1. Read all planning documents `01-06` from `docs/plan` (including database design).
   2. Read backend task files from `docs/tasks/phase{n}/be-t{nnn}.md` (and sub-tasks if exists).
 - **Action**:
   1. **領取任務時介入 OpenSpec**:
      - 執行 `/opsx:new <task-id>-<brief-description>`
      - 例如：`/opsx:new be-t001-user-registration-api`
      - 若有子任務，為每個子任務建立 OpenSpec change
-  2. Write backend code/docs based on task specifications and OpenSpec artifacts.
-  3. Use Serena MCP for code exploration.
+  2. **根據 `docs/plan/06-database-design.md` 執行資料庫遷移或產生作業** (ORM migrations, SQL scripts, etc.)
+  3. Write backend code/docs based on task specifications and OpenSpec artifacts.
+  4. Use Serena MCP for code exploration.
 - **Completion**: Mark backend tasks complete in task files with execution notes and problem-solving details.
 - **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/<task-id>-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-後端開發計劃.md`, `devteam/references/FormatSample/範例-be-t001.md`
@@ -168,12 +169,13 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 
 | Role | Reference File | Notes |
 |------|----------------|-------|
-| Product Manager | `devteam/references/JobDescription/產品經理_職務說明.md` | Handles Steps 1 |
-| System Architect | `devteam/references/JobDescription/系統架構師_職務說明.md` | Handles Steps 2 |
-| System Analyst | `devteam/references/JobDescription/系統分析師_職務說明.md` | Handles Steps 3 |
-| Project Manager | `devteam/references/JobDescription/專案經理_職務說明.md` | Handles Steps 4 |
+| Product Manager | `devteam/references/JobDescription/產品經理_職務說明.md` | Handles Steps 1 (requirements) |
+| System Architect | `devteam/references/JobDescription/系統架構師_職務說明.md` | Handles Steps 2 (system architecture) |
+| System Analyst | `devteam/references/JobDescription/系統分析師_職務說明.md` | Handles Steps 3 (system analysis) |
+| Project Manager | `devteam/references/JobDescription/專案經理_職務說明.md` | Handles Steps 4 (project plan) |
 | Dev Lead | `devteam/references/JobDescription/系統分析師_職務說明.md` | Handles Steps 5 (task breakdown) |
-| Backend Engineer | `devteam/references/JobDescription/資深後端工程師_職務說明.md` | Handles Steps 6 (database design), 7 (backend development), 10 (bug fixes) |
+| Database Architect | `devteam/references/JobDescription/系統架構師_職務說明.md` | Handles Steps 6 (database architecture & schema design) |
+| Backend Engineer | `devteam/references/JobDescription/資深後端工程師_職務說明.md` | Handles Steps 7 (database migration & API development), 10 (bug fixes) |
 | Frontend Engineer | `devteam/references/JobDescription/資深前端工程師_職務說明.md` | Handles Steps 8 (frontend development), 10 (bug fixes) |
 | QA Engineer | `devteam/references/JobDescription/資深測試工程師_職務說明.md` | Handles Steps 9 (testing), creates test cases |
 | CI/CD Engineer | `devteam/references/JobDescription/CI_CD_工程師_職務說明.md` | Handles Steps 11 (deployment verification) |
