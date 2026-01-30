@@ -223,31 +223,34 @@
 
 ### 12.1 優先級矩陣 (Priority Matrix)
 
-| Priority | Category | Impact | Domain |
-|----------|----------|--------|--------|
-| 1 | Accessibility | CRITICAL | `ux` |
-| 2 | Touch & Interaction | CRITICAL | `ux` |
-| 3 | Performance | HIGH | `ux` |
-| 4 | Layout & Responsive | HIGH | `ux` |
-| 5 | Typography & Color | MEDIUM | `typography`, `color` |
-| 6 | Animation | MEDIUM | `ux` |
-| 7 | Style Selection | MEDIUM | `style`, `product` |
-| 8 | Charts & Data | LOW | `chart` |
+| Priority | Category            | Impact   | Domain                |
+| -------- | ------------------- | -------- | --------------------- |
+| 1        | Accessibility       | CRITICAL | `ux`                  |
+| 2        | Touch & Interaction | CRITICAL | `ux`                  |
+| 3        | Performance         | HIGH     | `ux`                  |
+| 4        | Layout & Responsive | HIGH     | `ux`                  |
+| 5        | Typography & Color  | MEDIUM   | `typography`, `color` |
+| 6        | Animation           | MEDIUM   | `ux`                  |
+| 7        | Style Selection     | MEDIUM   | `style`, `product`    |
+| 8        | Charts & Data       | LOW      | `chart`               |
 
 ### 12.2 快速檢查清單 (Quick Reference)
 
 **1. Accessibility (CRITICAL)**
+
 - **Contrast**: 一般文字對比度需至少 4.5:1。
 - **Focus**: 互動元件需有可見的焦點狀態環 (Focus rings)。
 - **Alt Text**: 所有具意義圖片需有替代文字。
 - **Labels**: Icon-only 按鈕需有 `aria-label`。
 
 **2. Touch & Interaction (CRITICAL)**
+
 - **Target Size**: 觸控目標至少 44x44px。
 - **Feedback**: 非同步操作需有 Loading 狀態；錯誤需有明確回饋。
 - **Cursor**: 可點擊元素需有 `cursor-pointer`。
 
 **3. Performance & Layout (HIGH)**
+
 - **Images**: 使用 WebP、Lazy loading、`srcset`。
 - **Responsive**: `width=device-width`, 字體在手機上至少 16px。
 - **No Horizontal Scroll**: 確保內容適配視口寬度。
@@ -257,7 +260,9 @@
 本專案採用嚴格的開發流程模擬規範 (OpenSpec)，所有功能開發必須遵循以下標準。
 
 ### 13.1 開發流程模擬 (Dev Team Simulation)
+
 執行功能開發時，必須依據 `dev-team-simulation` Skill 定義的角色與流程進行：
+
 1. **Product Manager**: 需求訪談與確認。
 2. **System Architect**: 產出系統分析文件 (`docs/FormatSample/範例-系統分析.md`)。
 3. **Project Manager**: 制定開發計畫與里程碑。
@@ -266,7 +271,9 @@
 6. **Backend/Frontend/QA**: 依據職務說明書進行開發與測試。
 
 ### 13.2 文件與格式規範
+
 所有產出文件必須嚴格遵守 `docs/FormatSample` 下的 Markdown 格式，確保資訊結構一致性。
 
 ### 13.3 角色扮演與職責
+
 在執行任務時，Agent 必須明確切換並宣告當前扮演的角色，參考 `docs/JobDescription` 中的定義。
