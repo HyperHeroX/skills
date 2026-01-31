@@ -66,49 +66,49 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 ### Phase 2: Implementation & Iteration
 
 #### Step 6: Task Breakdown (Dev Lead)
-- **Role Profile**: 資深全端工程師，25年開發經驗，具 CISSP 資安證照，參與過多個大型專案的技術主管。
-- **Goal**: 將專案計畫與資料庫設計拆解成**最小粒度**的可執行任務，確保每個 phase 的任務完成後系統即可交付。
-- **Input**: 必須完整閱讀並分析以下所有文件：
-  1. `docs/plan/01-requirements.md`（需求文件）
-  2. `docs/plan/02-system-architecture.md`（系統架構）
-  3. `docs/plan/03-system-analysis.md`（系統分析）
-  4. `docs/plan/04-project-plan.md`（專案計畫）
-  5. `docs/plan/05-database-design.md`（資料庫設計）
+- **Role Profile**: Senior Full-Stack Engineer with 25 years of experience, CISSP certification, and extensive large-scale project leadership. Must have served as System Analyst, System Architect, CI/CD Engineer, and QA Engineer.
+- **Goal**: Decompose project plan and database design into **finest-grained** executable tasks, ensuring system delivery upon phase completion.
+- **Input**: Must thoroughly read and analyze ALL planning documents:
+  1. `docs/plan/01-requirements.md` (Requirements Document)
+  2. `docs/plan/02-system-architecture.md` (System Architecture)
+  3. `docs/plan/03-system-analysis.md` (System Analysis)
+  4. `docs/plan/04-project-plan.md` (Project Plan)
+  5. `docs/plan/05-database-design.md` (Database Design)
 - **Critical Requirements**:
-  - **必須將步驟 4-5 的所有內容拆解成最小工作單元**
-  - **不得只產生「前端一個、後端一個」這種粗粒度任務**
-  - **每個任務必須是獨立可測試、可驗證、可交付的最小單位**
-  - **目標：完成每個 phase 的所有任務 = 系統該階段功能完整可用**
+  - **MUST decompose ALL content from Steps 4-5 into atomic work units**
+  - **FORBIDDEN: Coarse-grained tasks like "one frontend, one backend"**
+  - **Each task MUST be independently testable, verifiable, and deliverable**
+  - **Goal: Complete all phase tasks = System functionality ready for that phase**
 - **Action**:
-  1. 深度分析步驟 1-5 的所有需求、架構、設計細節。
-  2. 識別所有功能模組、API 端點、UI 畫面、資料表操作、測試場景。
-  3. 將每個功能拆解為前端、後端、資料庫、測試、CI/CD 的最小任務單元。
-  4. 創建任務總覽文件：儲存 `06-task-breakdown.md` 至 `docs/plan`。
-  5. 為每個 phase 生成詳細任務文件至 `docs/tasks/phase{n}/`：
-     - **後端任務**：`be-t{nnn}.md`（主任務），`be-t{nnn}-st{nnn}.md`（子任務）
-       - 範例：be-t001（用戶註冊 API），be-t001-st001（輸入驗證），be-t001-st002（密碼雜湊），be-t001-st003（Email 驗證）
-     - **前端任務**：`fe-t{nnn}.md`（主任務），`fe-t{nnn}-st{nnn}.md`（子任務）
-       - 範例：fe-t001（登入頁面），fe-t001-st001（表單驗證），fe-t001-st002（錯誤處理），fe-t001-st003（RWD 適配）
-     - **資料庫任務**：`db-t{nnn}.md`（migration 腳本、索引優化、資料初始化等）
-     - **測試任務**：`test-t{nnn}.md`（單元測試、整合測試、E2E 測試場景）
-     - **CI/CD 任務**：`cicd-t{nnn}.md`（部署腳本、環境設定、監控配置）
-  6. 確保任務之間的依賴關係清晰標註。
-  7. 為每個任務標註優先級、預估工時、驗收標準。
+  1. Deep analysis of all requirements, architecture, and design details from Steps 1-5.
+  2. Identify ALL functional modules, API endpoints, UI screens, database operations, test scenarios.
+  3. Decompose each feature into frontend, backend, database, test, and CI/CD atomic tasks.
+  4. Create task overview document: Save `06-task-breakdown.md` to `docs/plan`.
+  5. Generate detailed task files for each phase in `docs/tasks/phase{n}/`:
+     - **Backend Tasks**: `be-t{nnn}.md` (main task), `be-t{nnn}-st{nnn}.md` (sub-tasks)
+       - Example: be-t001 (User Registration API), be-t001-st001 (Input Validation), be-t001-st002 (Password Hashing), be-t001-st003 (Email Verification)
+     - **Frontend Tasks**: `fe-t{nnn}.md` (main task), `fe-t{nnn}-st{nnn}.md` (sub-tasks)
+       - Example: fe-t001 (Login Page), fe-t001-st001 (Form Validation), fe-t001-st002 (Error Handling), fe-t001-st003 (Responsive Design)
+     - **Database Tasks**: `db-t{nnn}.md` (migration scripts, index optimization, data initialization)
+     - **Test Tasks**: `test-t{nnn}.md` (unit tests, integration tests, E2E test scenarios)
+     - **CI/CD Tasks**: `cicd-t{nnn}.md` (deployment scripts, environment setup, monitoring configuration)
+  6. Ensure clear dependency relationships between tasks.
+  7. Mark each task with priority level, estimated effort, and acceptance criteria.
 - **Output**:
-  - `docs/plan/06-task-breakdown.md`（任務總覽，含 phase 劃分、依賴圖、里程碑）
-  - `docs/tasks/phase{n}/*.md`（所有詳細任務文件，每個文件對應一個可獨立執行的最小任務）
+  - `docs/plan/06-task-breakdown.md` (Task overview with phase division, dependency graph, milestones)
+  - `docs/tasks/phase{n}/*.md` (All detailed task files, each file = one independently executable atomic task)
 - **Quality Criteria**:
-  - 任務粒度：單一任務工作量不超過 1-2 天
-  - 可測試性：每個任務必須有明確的驗收標準
-  - 完整性：涵蓋步驟 4-5 中所有功能點，無遺漏
-  - 安全性：所有涉及認證、授權、資料保護的任務必須明確標註資安要求（CISSP 視角）
+  - **Task Granularity**: Single task ≤ 1-2 days work
+  - **Testability**: Each task must have clear acceptance criteria
+  - **Completeness**: Cover ALL features from Steps 4-5, no omissions
+  - **Security**: Authentication/authorization/data protection tasks must include CISSP-based security requirements
 - **Format**:
-  - 總覽：`devteam/references/FormatSample/範例-模組開發計劃.md`
-  - 後端任務：`devteam/references/FormatSample/範例-be-t001.md`
-  - 後端子任務：`devteam/references/FormatSample/範例-be-t001-st001.md`
-  - 前端任務：`devteam/references/FormatSample/範例-fe-t001.md`
-  - 前端子任務：`devteam/references/FormatSample/範例-fe-t001-st004.md`
-- **Reference**: `devteam/references/JobDescription/系統分析師_職務說明.md`（應新增資深全端工程師職務說明）
+  - Overview: `devteam/references/FormatSample/範例-模組開發計劃.md`
+  - Backend Task: `devteam/references/FormatSample/範例-be-t001.md`
+  - Backend Sub-task: `devteam/references/FormatSample/範例-be-t001-st001.md`
+  - Frontend Task: `devteam/references/FormatSample/範例-fe-t001.md`
+  - Frontend Sub-task: `devteam/references/FormatSample/範例-fe-t001-st004.md`
+- **Reference**: `devteam/references/JobDescription/Dev_Lead_Job_Description.md`
 
 #### Step 7: Backend Development (Backend Engineer)
 - **Goal**: Implement database migrations and backend APIs.
