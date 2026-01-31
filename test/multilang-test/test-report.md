@@ -14,6 +14,7 @@
 - ✅ **System Analyst** - 繁體中文環境
 - ✅ **Dev Lead** - 繁體中文環境（skill-creator 優化後首次驗證）
 - ✅ **QA Engineer** - 繁體中文環境
+- ✅ **Backend Engineer** - 繁體中文環境（Security Review 驗證）
 
 ### 測試場景
 **情境**：待辦事項應用程式開發
@@ -204,8 +205,8 @@
 1. **System Analyst** - ✅ **已完成**（chinese-analyst-test.md）
 2. **Dev Lead** - ✅ **已完成**（chinese-devlead-test.md，優化後 JD 首次驗證）
 3. **QA Engineer** - ✅ **已完成**（chinese-qa-test.md）
-4. **Project Manager** - 專案計畫
-5. **Backend Engineer** - 後端實作
+4. **Backend Engineer** - ✅ **已完成**（chinese-backend-test.md，Security Review 驗證）
+5. **Project Manager** - 專案計畫
 6. **Frontend Engineer** - 前端實作
 7. **CI/CD Engineer** - 部署驗證報告
 
@@ -330,6 +331,101 @@
 
 ---
 
+## 🚀 Test 6: Backend Engineer (繁體中文) - Security Review 驗證
+
+**檔案**：`test/multilang-test/chinese-backend-test.md`
+
+**測試目標**：
+驗證 Backend Engineer JD 是否能引導 AI 生成符合規範的後端實作文件，包含完整安全性審查環節。
+
+**測試指標**：
+| 項目 | 結果 | 備註 |
+|------|------|------|
+| 語言偵測 | ✅ 通過 | 文件為繁體中文 |
+| Security-first 思維 | ✅ 通過 | 每個實作包含「安全性考量」章節 + OWASP Top 10 |
+| 資料庫交易完整性 | ✅ 通過 | BEGIN/COMMIT/ROLLBACK + 錯誤回滾 + 連線洩漏防護 |
+| 安全性審查（Security Review） | ✅ 通過 | 12 項審查內容（密碼雜湊 6 項 + 資料庫交易 6 項） |
+| Forbidden Patterns 遵守 | ✅ 通過 | 無 SQL injection, 完整錯誤處理, 參數化查詢 |
+| Persona 模擬 | ✅ 通過 | Security-first, Error handling, Performance aware |
+
+**生成範例片段**：
+```markdown
+## 🔒 安全性審查（Security Review）
+
+### 審查清單
+
+#### 1. 密碼雜湊演算法
+- ✅ 使用 bcrypt（非 MD5, SHA256）
+- ✅ Cost Factor 12（符合 OWASP 建議）
+**風險評估**：✅ 低風險
+
+#### 2. 交易完整性
+- ✅ BEGIN/COMMIT/ROLLBACK 正確使用
+- ✅ 錯誤回滾機制完整
+**風險評估**：✅ 低風險
+
+#### 3. 競態條件（Race Condition）
+- ⚠️ 並行註冊相同 Email
+- ✅ UNIQUE 約束確保資料庫層級保護
+**風險評估**：✅ 低風險（UNIQUE 約束保護）
+
+### 審查結論
+**整體風險等級**：✅ 低風險（可上線）
+**必須修復（Blocker）**：無
+**建議修復（High）**：確認資料庫備份加密
+```
+
+**OWASP Top 10 防護驗證**：
+- ✅ **A02:2021 - Cryptographic Failures**：bcrypt + Cost Factor 12 + Salt 隨機性
+- ✅ **A03:2021 - Injection**：參數化查詢（$1, $2 placeholder）
+- ✅ **A04:2021 - Insecure Design**：交易完整性 + 錯誤處理
+- ✅ **A07:2021 - Identification and Authentication Failures**：密碼強度驗證 + Rate Limiting
+
+**資料庫交易完整性驗證**：
+```typescript
+try {
+  await client.query('BEGIN');
+  // ... 業務邏輯
+  await client.query('COMMIT');
+} catch (error) {
+  await client.query('ROLLBACK'); // 錯誤回滾
+  throw error;
+} finally {
+  client.release(); // 連線洩漏防護
+}
+```
+
+**安全性審查環節驗證**：
+- **be-t001-st002（密碼雜湊）**：6 項審查
+  1. 密碼雜湊演算法（bcrypt, Cost Factor）
+  2. Salt 管理（自動產生隨機 salt）
+  3. 明文密碼處理（不儲存、不記錄、不回傳）
+  4. 資料庫安全（備份加密檢查）
+  5. HTTPS 強制（開發環境建議）
+  6. Timing Attack 防護（bcrypt 恆定時間比較）
+
+- **be-t001-st004（資料庫交易）**：6 項審查
+  1. SQL Injection 防護（參數化查詢）
+  2. 交易完整性（BEGIN/COMMIT/ROLLBACK）
+  3. 競態條件（UNIQUE 約束保護）
+  4. 連線洩漏（finally 區塊）
+  5. 資訊洩漏（500 錯誤不洩漏資料庫訊息）
+  6. 驗證信發送失敗（非阻塞處理）
+
+**測試覆蓋度**：
+- **單元測試**：8 個（密碼雜湊 6 個 + 密碼驗證 2 個）
+- **整合測試**：6 個（註冊流程 2 個 + 交易處理 4 個）
+- **邊界情況**：相同密碼不同 hash、特殊字元、大小寫敏感、重複 Email 回滾、資料庫錯誤回滾、連線洩漏防護
+
+**Persona 模擬驗證**：
+- 「Security-first」→ OWASP Top 10 完整防護、12 項安全性審查
+- 「Error handling」→ try/catch/finally + ROLLBACK + 完整日誌
+- 「Performance aware」→ 預期延遲分析（Hash 150-300ms, 交易 < 300ms）
+- 「Data integrity」→ 交易完整性、競態條件防護、UNIQUE 約束
+
+
+---
+
 ### 選項 C：壓力測試
 測試極端情境：
 1. **長文本**：1000+ 行的 Task Breakdown 文件
@@ -340,13 +436,18 @@
 
 ## 📝 結論
 
-**測試結果**：✅ **全部通過**（5/5 測試）
+**測試結果**：✅ **全部通過**（6/6 測試）
 
 devteam 的多語言支援功能運作正常，語言動態偵測準確率 100%，生成的文件品質在不同語言間保持一致。
 
 **關鍵成就**：
 - ✅ 移除硬編碼語言配置（繁體中文）
 - ✅ 實現真正的多語言支援
+- ✅ 文化適配（人名、語氣）符合預期
+- ✅ 專業術語翻譯準確
+- ✅ **skill-creator 優化驗證成功**：Dev Lead JD 優化後（238→150 lines），生成文件品質提升
+- ✅ **chrome-devtools-mcp 整合驗證**：QA Engineer 測試完整涵蓋瀏覽器自動化需求
+- ✅ **Security Review 環節驗證**：Backend Engineer 測試包含 12 項安全性審查
 - ✅ 文化適配（人名、語氣）符合預期
 - ✅ 專業術語翻譯準確
 - ✅ **skill-creator 優化驗證成功**：Dev Lead JD 優化後（238→150 lines），生成文件品質提升

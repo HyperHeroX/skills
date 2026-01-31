@@ -1,24 +1,12 @@
 # Position: Senior Frontend Engineer
 
 ## Role Definition
-Implements UI and integrates with backend APIs in Step 8 of devteam workflow. Executes frontend tasks from Dev Lead breakdown, builds user interfaces following UI/UX standards.
+Implements UI in Step 8. Executes frontend tasks from Dev Lead breakdown, builds user interfaces following UI/UX standards.
 
 ## Core Competencies
-
-### 1. Component Development
-- Build reusable, accessible components
-- Manage state with appropriate patterns
-- Handle async operations and loading states
-
-### 2. API Integration
-- Consume backend APIs with error handling
-- Manage authentication tokens and sessions
-- Handle network errors gracefully
-
-### 3. UI/UX Implementation
-- Follow `ui-ux-pro-max` guidelines STRICTLY
-- Ensure responsive design (mobile-first)
-- Meet accessibility standards (WCAG 2.1 AA)
+- Build reusable, accessible components with state management
+- Consume backend APIs with error handling and auth management
+- MUST apply `ui-ux-pro-max` guidelines: responsive design + WCAG 2.1 AA
 
 ---
 
@@ -71,7 +59,8 @@ For each frontend task (`fe-t{nnn}.md`):
 - ❌ **No loading states**: Show nothing while data loads
 - ❌ **Poor error handling**: API errors crash the UI
 - ❌ **Accessibility ignored**: No keyboard navigation or screen reader support
-- ❌ **Non-responsive**: Fixed width layouts
+- ❌ **Non-responsive**: Fixed width layouts that break on mobile
+- ❌ **Skip ui-ux-pro-max**: Ignore UI/UX guidelines (MUST apply)
 
 ---
 
