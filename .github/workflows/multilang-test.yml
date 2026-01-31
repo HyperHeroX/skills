@@ -1,0 +1,389 @@
+name: Multilang Test & JD Optimization Verification
+
+on:
+  push:
+    branches: [main, stage, hiro/addnewfeature]
+    paths:
+      - 'devteam/references/JobDescription/**'
+      - 'test/multilang-test/**'
+      - '.github/workflows/multilang-test.yml'
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday at 00:00 UTC
+  workflow_dispatch:      # Allow manual trigger
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Stage 1 - File Existence Verification
+        run: |
+          echo "📂 Verifying test files..."
+          test_files=(
+            "test/multilang-test/english-test.md"
+            "test/multilang-test/chinese-test.md"
+            "test/multilang-test/english-architect-test.md"
+            "test/multilang-test/chinese-analyst-test.md"
+            "test/multilang-test/chinese-devlead-test.md"
+            "test/multilang-test/chinese-qa-test.md"
+            "test/multilang-test/chinese-backend-test.md"
+            "test/multilang-test/chinese-frontend-test.md"
+            "test/multilang-test/chinese-pm-test.md"
+            "test/multilang-test/test-report.md"
+          )
+          
+          missing_files=0
+          for file in "${test_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing: $file"
+              missing_files=$((missing_files + 1))
+            else
+              echo "✅ Found: $file"
+            fi
+          done
+          
+          if [ $missing_files -gt 0 ]; then
+            echo "❌ Failed: $missing_files file(s) missing"
+            exit 1
+          fi
+          echo "✅ All test files exist"
+      
+      - name: Stage 2 - Content Integrity Verification
+        run: |
+          echo "📝 Verifying test content..."
+          required_sections=(
+            "## 測試場景"
+            "## 角色輸出"
+            "## 驗證結果"
+          )
+          
+          failed_checks=0
+          for file in test/multilang-test/chinese-*.md; do
+            echo "Checking $file..."
+            for section in "${required_sections[@]}"; do
+              if ! grep -q "$section" "$file"; then
+                echo "❌ $file missing: $section"
+                failed_checks=$((failed_checks + 1))
+              fi
+            done
+          done
+          
+          if [ $failed_checks -gt 0 ]; then
+            echo "❌ Failed: $failed_checks section(s) missing"
+            exit 1
+          fi
+          echo "✅ All test files have required sections"
+      
+      - name: Stage 3 - JD Optimization Verification
+        run: |
+          echo "📏 Verifying JD file sizes..."
+          declare -A jd_targets=(
+            ["devteam/references/JobDescription/Dev_Lead.md"]=150
+            ["devteam/references/JobDescription/Product_Manager.md"]=150
+            ["devteam/references/JobDescription/System_Architect.md"]=150
+            ["devteam/references/JobDescription/CI_CD_Engineer.md"]=150
+            ["devteam/references/JobDescription/Senior_Backend_Engineer.md"]=150
+            ["devteam/references/JobDescription/Senior_Frontend_Engineer.md"]=150
+            ["devteam/references/JobDescription/System_Analyst.md"]=150
+            ["devteam/references/JobDescription/Senior_QA_Engineer.md"]=150
+          )
+          
+          failed_checks=0
+          for file in "${!jd_targets[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing JD file: $file"
+              failed_checks=$((failed_checks + 1))
+              continue
+            fi
+            
+            max_lines=${jd_targets[$file]}
+            actual_lines=$(wc -l < "$file")
+            
+            if [ "$actual_lines" -gt "$max_lines" ]; then
+              echo "❌ $file: $actual_lines lines > $max_lines max"
+              failed_checks=$((failed_checks + 1))
+            else
+              echo "✅ $file: $actual_lines lines ≤ $max_lines max"
+            fi
+          done
+          
+          if [ $failed_checks -gt 0 ]; then
+            echo "❌ Failed: $failed_checks JD file(s) exceed max lines"
+            exit 1
+          fi
+          echo "✅ All JD files meet line count requirements"
+      
+      - name: Stage 4 - Test File Metrics
+        run: |
+          echo "📊 Calculating test file metrics..."
+          
+          total_lines=0
+          total_files=0
+          
+          echo "| Test File | Lines | Size |"
+          echo "|-----------|-------|------|"
+          
+          for file in test/multilang-test/*.md; do
+            if [ -f "$file" ]; then
+              lines=$(wc -l < "$file")
+              size=$(du -h "$file" | cut -f1)
+              total_lines=$((total_lines + lines))
+              total_files=$((total_files + 1))
+              echo "| $(basename "$file") | $lines | $size |"
+            fi
+          done
+          
+          echo ""
+          echo "📊 Summary:"
+          echo "Total files: $total_files"
+          echo "Total lines: $total_lines"
+          echo "Average lines per file: $((total_lines / total_files))"
+      
+      - name: Stage 5 - Generate HTML Test Report
+        run: |
+          echo "📊 Generating HTML test report..."
+          cat > test-results.html <<'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Multilang Test Results</title>
+            <meta charset="UTF-8">
+            <style>
+              body { 
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                margin: 20px; 
+                background-color: #f5f5f5;
+              }
+              .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                background-color: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+              }
+              h1 { 
+                color: #2c3e50; 
+                border-bottom: 3px solid #4CAF50;
+                padding-bottom: 10px;
+              }
+              h2 { 
+                color: #34495e; 
+                margin-top: 30px;
+              }
+              .pass { 
+                color: #4CAF50; 
+                font-weight: bold;
+              }
+              .metric {
+                background-color: #e8f5e9;
+                padding: 15px;
+                border-radius: 5px;
+                margin: 10px 0;
+              }
+              table { 
+                border-collapse: collapse; 
+                width: 100%; 
+                margin: 20px 0;
+              }
+              th, td { 
+                border: 1px solid #ddd; 
+                padding: 12px 8px; 
+                text-align: left; 
+              }
+              th { 
+                background-color: #4CAF50; 
+                color: white;
+                font-weight: bold;
+              }
+              tr:nth-child(even) {
+                background-color: #f2f2f2;
+              }
+              .footer {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid #ddd;
+                color: #666;
+                font-size: 14px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h1>✅ Multilang Test Results</h1>
+              
+              <div class="metric">
+                <h3>Test Execution Summary</h3>
+                <p><strong>Status:</strong> <span class="pass">All Tests Passed</span></p>
+                <p><strong>Workflow:</strong> ${{ github.workflow }}</p>
+                <p><strong>Run ID:</strong> ${{ github.run_id }}</p>
+                <p><strong>Commit:</strong> ${{ github.sha }}</p>
+                <p><strong>Branch:</strong> ${{ github.ref_name }}</p>
+                <p><strong>Triggered by:</strong> ${{ github.event_name }}</p>
+              </div>
+              
+              <h2>Test Files</h2>
+              <table>
+                <tr>
+                  <th>Test File</th>
+                  <th>Status</th>
+                  <th>Lines</th>
+                  <th>Role</th>
+                  <th>Language</th>
+                </tr>
+          EOF
+          
+          # Add test files to table
+          for file in test/multilang-test/*.md; do
+            if [ -f "$file" ]; then
+              lines=$(wc -l < "$file")
+              filename=$(basename "$file")
+              
+              # Determine role and language
+              if [[ "$filename" == *"english"* ]]; then
+                lang="EN"
+              elif [[ "$filename" == *"chinese"* ]]; then
+                lang="ZH"
+              else
+                lang="N/A"
+              fi
+              
+              if [[ "$filename" == *"pm"* ]]; then
+                role="Project Manager"
+              elif [[ "$filename" == *"devlead"* ]]; then
+                role="Dev Lead"
+              elif [[ "$filename" == *"backend"* ]]; then
+                role="Backend Engineer"
+              elif [[ "$filename" == *"frontend"* ]]; then
+                role="Frontend Engineer"
+              elif [[ "$filename" == *"qa"* ]]; then
+                role="QA Engineer"
+              elif [[ "$filename" == *"analyst"* ]]; then
+                role="System Analyst"
+              elif [[ "$filename" == *"architect"* ]]; then
+                role="System Architect"
+              elif [[ "$filename" == *"report"* ]]; then
+                role="Test Report"
+              else
+                role="Product Manager"
+              fi
+              
+              echo "    <tr><td>$filename</td><td class='pass'>✅ Pass</td><td>$lines</td><td>$role</td><td>$lang</td></tr>" >> test-results.html
+            fi
+          done
+          
+          cat >> test-results.html <<'EOF'
+              </table>
+              
+              <h2>JD Optimization Results</h2>
+              <table>
+                <tr>
+                  <th>JD File</th>
+                  <th>Lines</th>
+                  <th>Max Lines</th>
+                  <th>Status</th>
+                </tr>
+          EOF
+          
+          # Add JD files to table
+          declare -A jd_targets=(
+            ["devteam/references/JobDescription/Dev_Lead.md"]=150
+            ["devteam/references/JobDescription/Product_Manager.md"]=150
+            ["devteam/references/JobDescription/System_Architect.md"]=150
+            ["devteam/references/JobDescription/CI_CD_Engineer.md"]=150
+            ["devteam/references/JobDescription/Senior_Backend_Engineer.md"]=150
+            ["devteam/references/JobDescription/Senior_Frontend_Engineer.md"]=150
+            ["devteam/references/JobDescription/System_Analyst.md"]=150
+            ["devteam/references/JobDescription/Senior_QA_Engineer.md"]=150
+          )
+          
+          for file in "${!jd_targets[@]}"; do
+            if [ -f "$file" ]; then
+              actual_lines=$(wc -l < "$file")
+              max_lines=${jd_targets[$file]}
+              filename=$(basename "$file")
+              echo "    <tr><td>$filename</td><td>$actual_lines</td><td>$max_lines</td><td class='pass'>✅ Pass</td></tr>" >> test-results.html
+            fi
+          done
+          
+          cat >> test-results.html <<EOF
+              </table>
+              
+              <div class="footer">
+                <p>Generated at: $(date)</p>
+                <p>GitHub Actions Workflow: multilang-test.yml</p>
+              </div>
+            </div>
+          </body>
+          </html>
+          EOF
+          
+          echo "✅ HTML report generated: test-results.html"
+      
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results.html
+          retention-days: 30
+      
+      - name: Create Issue on Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🔴 Multilang Test Failed',
+              body: `
+                ## Test Failure Report
+                
+                **Workflow**: ${context.workflow}
+                **Run ID**: ${context.runId}
+                **Commit**: ${context.sha}
+                **Branch**: ${context.ref.replace('refs/heads/', '')}
+                **Triggered by**: ${context.eventName}
+                **Actor**: ${context.actor}
+                
+                **Failed at**: ${new Date().toISOString()}
+                
+                Please check the [workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) for details.
+                
+                ### Debugging Steps
+                1. Check the workflow logs for specific error messages
+                2. Verify all test files exist in \`test/multilang-test/\`
+                3. Verify all JD files meet line count requirements
+                4. Check if any recent commits modified test files or JD files
+                
+                ### Related Files
+                - Test files: \`test/multilang-test/*.md\`
+                - JD files: \`devteam/references/JobDescription/*.md\`
+                - Workflow: \`.github/workflows/multilang-test.yml\`
+              `,
+              labels: ['bug', 'ci-failure', 'multilang-test']
+            });
+      
+      - name: Summary
+        if: success()
+        run: |
+          echo "## ✅ All Tests Passed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Coverage" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ File existence verification" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Content integrity verification" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ JD optimization verification" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Metrics" >> $GITHUB_STEP_SUMMARY
+          total_test_files=$(find test/multilang-test -name "*.md" -type f | wc -l)
+          total_jd_files=$(find devteam/references/JobDescription -name "*.md" -type f | wc -l)
+          echo "- Test files: $total_test_files" >> $GITHUB_STEP_SUMMARY
+          echo "- JD files: $total_jd_files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 [Download HTML Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
