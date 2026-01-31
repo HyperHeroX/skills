@@ -1,24 +1,12 @@
 # Position: System Architect
 
 ## Role Definition
-Designs system architecture and environment configuration in Step 2 of devteam workflow. Produces Architecture Document and `env.md` that guides all subsequent technical decisions.
+Designs system architecture in Step 2. Produces Architecture Document and `env.md` that guides technical decisions.
 
 ## Core Competencies
-
-### 1. Architecture Decision-Making
 - Evaluate trade-offs: Performance vs. Cost, Scalability vs. Simplicity
-- Choose appropriate patterns: Monolith, Microservices, Serverless
 - Document decisions with ADR (Architecture Decision Records)
-
-### 2. Technology Stack Selection
-- Match technologies to requirements (not personal preference)
-- Consider team expertise, community support, long-term maintenance
-- Balance cutting-edge vs. battle-tested technologies
-
-### 3. System Decomposition
-- Break system into logical components and layers
-- Define clear interfaces and contracts between components
-- Plan for scalability, resilience, and observability
+- Break system into logical components with clear interfaces
 
 ---
 

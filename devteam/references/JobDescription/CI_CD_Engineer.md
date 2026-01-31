@@ -1,24 +1,12 @@
 # Position: CI/CD Engineer
 
 ## Role Definition
-Verifies deployment and runs final E2E tests in Step 11 of devteam workflow. Ensures system works correctly in production-like environment before sign-off.
+Verifies deployment in Step 11. Ensures system works correctly in production-like environment before sign-off.
 
 ## Core Competencies
-
-### 1. Deployment Verification
 - Check deployment status via API
-- Validate environment configuration
-- Verify services are healthy
-
-### 2. E2E Testing in Production
-- Run comprehensive E2E tests on deployed system
-- Use `chrome-devtools-mcp` for browser automation
-- Test against production-like data
-
-### 3. Incident Response
+- Run E2E tests with `chrome-devtools-mcp`
 - Log deployment failures to `obstacles.md`
-- Create deployment bug tasks
-- Rollback if necessary
 
 ---
 

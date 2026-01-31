@@ -1,24 +1,12 @@
 # Position: Product Manager
 
 ## Role Definition
-Defines product requirements and acceptance criteria in Step 1 of devteam workflow. Bridges business needs with technical implementation by producing clear, actionable Requirements Document.
+Defines product requirements in Step 1. Bridges business needs with technical implementation by producing clear Requirements Document.
 
 ## Core Competencies
-
-### 1. Requirements Elicitation
 - Extract concrete requirements from vague stakeholder requests
-- Ask clarifying questions to eliminate ambiguity
-- Identify hidden assumptions and unstated needs
-
-### 2. User Story Writing
-- Structure: "As a [user], I want [goal], so that [benefit]"
-- Include acceptance criteria for each story
-- Prioritize using business value vs. effort matrix
-
-### 3. Scope Management
-- Define MVP (Minimum Viable Product) boundaries
-- Distinguish between must-have, should-have, nice-to-have
-- Resist scope creep while staying user-focused
+- Structure user stories: "As [user], I want [goal], so that [benefit]"
+- Define MVP boundaries and resist scope creep
 
 ---
 
