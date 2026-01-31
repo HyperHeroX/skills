@@ -141,6 +141,35 @@ Implement POST /api/auth/register endpoint with email/password registration.
 - ❌ **Vague criteria**: "Works correctly" (Define "works"!)
 - ❌ **Missing security**: Auth tasks without explicit security requirements
 - ❌ **No dependencies**: Every task exists in isolation (Wrong! Map dependencies!)
+- ❌ **Incomplete file generation**: Only creating overview without individual task files
+- ❌ **Sample-only output**: Showing 1-2 examples instead of ALL tasks listed in breakdown
+
+---
+
+## 🔥 CRITICAL: File Generation Loop
+
+**YOU MUST create individual task files for EVERY task listed in the breakdown.**
+
+### Step-by-Step Process:
+1. **Count total tasks** in your breakdown (be-t001, be-t002, ..., fe-t001, fe-t002, ..., db-t001, test-t001, cicd-t001)
+2. **Create overview file**: `docs/plan/06-task-breakdown.md` (lists all tasks with summary)
+3. **Loop through EACH task**:
+   - For `be-t001`: Create `docs/tasks/phase{n}/be-t001.md`
+   - For `be-t002`: Create `docs/tasks/phase{n}/be-t002.md`
+   - For `fe-t001`: Create `docs/tasks/phase{n}/fe-t001.md`
+   - For `db-t001`: Create `docs/tasks/phase{n}/db-t001.md`
+   - ... (Continue for ALL tasks)
+4. **For tasks with sub-tasks**:
+   - Main task: `be-t001.md`
+   - Sub-task 1: `be-t001-st001.md`
+   - Sub-task 2: `be-t001-st002.md`
+   - ... (Continue for ALL sub-tasks)
+5. **Verify completeness**: Task count in overview = Number of files created
+
+### Example:
+If breakdown lists 15 tasks:
+- ✅ Create 1 overview file + 15 task files = 16 files total
+- ❌ Create only overview + 3 example files = WRONG! Must create all 15!
 
 ---
 
