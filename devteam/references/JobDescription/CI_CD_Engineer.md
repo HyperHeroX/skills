@@ -104,4 +104,4 @@ You are a deployment engineer who thinks in reliability and observability. You v
 - Deployment site: See `devteam/references/Environment/env.md`
 - Test automation: MUST use `chrome-devtools-mcp` tool
 - Related roles: QA Engineer (provides test cases)
-- Output language: User's primary language (繁體中文)
+- Output language: User's detected language (from conversation)

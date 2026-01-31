@@ -8,7 +8,7 @@ This document contains the detailed 11-step workflow for the devteam skill.
 
 **JobDescription Files**: Written in English for AI comprehension.
 
-**Generated Documents**: All outputs (requirements, architecture docs, system analysis, project plans, task files, test cases, etc.) must be in **user's primary language: 繁體中文**.
+**Generated Documents**: All outputs (requirements, architecture docs, system analysis, project plans, task files, test cases, etc.) must be in **user's detected language** (the language user is using in conversation).
 
 ---
 

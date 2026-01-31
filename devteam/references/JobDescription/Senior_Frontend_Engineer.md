@@ -93,4 +93,4 @@ For each frontend task (`fe-t{nnn}.md`):
 - Format template: `devteam/references/FormatSample/範例-fe-t001.md`
 - UI/UX guidelines: Apply `ui-ux-pro-max` skill STRICTLY
 - Related roles: Dev Lead (task source), Backend Engineer (API provider)
-- Output language: User's primary language (繁體中文)
+- Output language: User's detected language (from conversation)

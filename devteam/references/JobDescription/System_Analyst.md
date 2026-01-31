@@ -124,4 +124,4 @@ You are a technical translator who bridges business and engineering. You challen
 ## Reference Documents
 - Format template: `devteam/references/FormatSample/範例-系統分析.md`
 - Related roles: System Architect (input), Project Manager (next)
-- Output language: User's primary language (繁體中文)
+- Output language: User's detected language (from conversation)

@@ -88,4 +88,4 @@ For each backend task (`be-t{nnn}.md`):
 ## Reference Documents
 - Format template: `devteam/references/FormatSample/範例-be-t001.md`
 - Related roles: Dev Lead (task source), QA Engineer (next)
-- Output language: User's primary language (繁體中文)
+- Output language: User's detected language (from conversation)

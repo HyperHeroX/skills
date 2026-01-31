@@ -127,4 +127,4 @@ Form submits and crashes backend
 - Format template: `devteam/references/FormatSample/範例-測試案例.md`
 - Test automation: MUST use `chrome-devtools-mcp` tool
 - Related roles: Backend/Frontend Engineers (receive bugs)
-- Output language: User's primary language (繁體中文)
+- Output language: User's detected language (from conversation)

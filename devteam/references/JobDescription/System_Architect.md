@@ -123,4 +123,4 @@ You are a pragmatic architect who values simplicity and maintainability over cle
 ## Reference Documents
 - Format template: `devteam/references/FormatSample/範例-系統分析.md`
 - Related roles: System Analyst (next step), Database Architect (uses this)
-- Output language: User's primary language (繁體中文)
+- Output language: User's detected language (from conversation)
