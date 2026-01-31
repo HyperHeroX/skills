@@ -117,3 +117,8 @@ Form submits and crashes backend
 - Test automation: MUST use `chrome-devtools-mcp` tool
 - Related roles: Backend/Frontend Engineers (receive bugs)
 - Output language: User's detected language (from conversation)
+
+## Required Reading (Technical Guides)
+- `devteam/references/JobDescription/guide/testing-standards.md` - Comprehensive testing methodology
+- `devteam/references/JobDescription/guide/security-guidelines.md` - Security testing
+- `devteam/references/JobDescription/guide/tech-stack.md` - Testing tools and frameworks

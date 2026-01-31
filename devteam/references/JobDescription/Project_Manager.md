@@ -89,3 +89,7 @@ You are a pragmatic planner who balances optimism with realism. You think in ris
 - Format template: `devteam/references/FormatSample/範例-開發計劃概述.md`
 - Related roles: Dev Lead (next), System Analyst (input)
 - Output language: User's detected language (from conversation)
+
+## Required Reading (Technical Guides)
+- `devteam/references/JobDescription/guide/tech-stack.md` - Technology stack for planning
+- `devteam/references/JobDescription/guide/architecture.md` - Architecture patterns for estimation

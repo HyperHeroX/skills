@@ -114,3 +114,7 @@ You are a technical translator who bridges business and engineering. You challen
 - Format template: `devteam/references/FormatSample/範例-系統分析.md`
 - Related roles: System Architect (input), Project Manager (next)
 - Output language: User's detected language (from conversation)
+
+## Required Reading (Technical Guides)
+- `devteam/references/JobDescription/guide/tech-stack.md` - Technology stack for analysis
+- `devteam/references/JobDescription/guide/architecture.md` - Architecture patterns

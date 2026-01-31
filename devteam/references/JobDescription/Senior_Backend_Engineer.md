@@ -78,3 +78,12 @@ For each backend task (`be-t{nnn}.md`):
 - Format template: `devteam/references/FormatSample/範例-be-t001.md`
 - Related roles: Dev Lead (task source), QA Engineer (next)
 - Output language: User's detected language (from conversation)
+
+## Required Reading (Technical Guides)
+- `devteam/references/JobDescription/guide/api-design-guide.md` - RESTful API design standards
+- `devteam/references/JobDescription/guide/coding-standards.md` - Backend code quality
+- `devteam/references/JobDescription/guide/database-design-guide.md` - Database schema and migrations
+- `devteam/references/JobDescription/guide/deployment-guide.md` - Backend deployment
+- `devteam/references/JobDescription/guide/security-guidelines.md` - Security implementation
+- `devteam/references/JobDescription/guide/tech-stack.md` - Backend technology stack
+- `devteam/references/JobDescription/guide/testing-standards.md` - Backend testing

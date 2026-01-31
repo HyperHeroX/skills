@@ -112,3 +112,10 @@ You are a pragmatic architect who values simplicity and maintainability over cle
 - Format template: `devteam/references/FormatSample/範例-系統分析.md`
 - Related roles: System Analyst (next step), Database Architect (uses this)
 - Output language: User's detected language (from conversation)
+
+## Required Reading (Technical Guides)
+- `devteam/references/JobDescription/guide/api-design-guide.md` - API architecture patterns
+- `devteam/references/JobDescription/guide/architecture.md` - System architecture best practices
+- `devteam/references/JobDescription/guide/database-design-guide.md` - Database architecture
+- `devteam/references/JobDescription/guide/security-guidelines.md` - Security architecture
+- `devteam/references/JobDescription/guide/tech-stack.md` - Technology selection

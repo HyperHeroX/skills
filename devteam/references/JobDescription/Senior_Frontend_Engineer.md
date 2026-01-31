@@ -83,3 +83,9 @@ For each frontend task (`fe-t{nnn}.md`):
 - UI/UX guidelines: Apply `ui-ux-pro-max` skill STRICTLY
 - Related roles: Dev Lead (task source), Backend Engineer (API provider)
 - Output language: User's detected language (from conversation)
+
+## Required Reading (Technical Guides)
+- `devteam/references/JobDescription/guide/coding-standards.md` - Frontend code quality
+- `devteam/references/JobDescription/guide/security-guidelines.md` - Frontend security (XSS, CSRF, CSP)
+- `devteam/references/JobDescription/guide/tech-stack.md` - Frontend technology stack
+- `devteam/references/JobDescription/guide/testing-standards.md` - Frontend testing

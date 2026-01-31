@@ -181,3 +181,10 @@ Implement POST /api/auth/register endpoint with email/password registration.
 - Frontend sub-task format: `devteam/references/FormatSample/範例-fe-t001-st004.md`
 - Source documents: `docs/plan/01-requirements.md` through `05-database-design.md`
 - Output language: User's detected language (from conversation)
+
+## Required Reading (Technical Guides)
+- `devteam/references/JobDescription/guide/architecture.md` - System architecture patterns
+- `devteam/references/JobDescription/guide/coding-standards.md` - Code quality standards
+- `devteam/references/JobDescription/guide/security-guidelines.md` - Security requirements (CISSP)
+- `devteam/references/JobDescription/guide/tech-stack.md` - Technology constraints
+- `devteam/references/JobDescription/guide/testing-standards.md` - Testing strategy
