@@ -4,7 +4,15 @@ This document contains the detailed 11-step workflow for the devteam skill.
 
 ---
 
-## 🔁 Workflow Process
+## � Language Configuration
+
+**JobDescription Files**: Written in English for AI comprehension.
+
+**Generated Documents**: All outputs (requirements, architecture docs, system analysis, project plans, task files, test cases, etc.) must be in **user's primary language: 繁體中文**.
+
+---
+
+## �🔁 Workflow Process
 
 The AI drives this process **sequentially and autonomously**. Use `mcp_user-feedback_collect_feedback` only at:
 - Major milestones (phase completion)
@@ -19,7 +27,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Output**: Save requirement documents to `docs/plan`.
 - **OpenSpec**: `/opsx:new <change-name>` (creates `openspec/changes/<change-name>/` directory)
 - **State Update**: `current_step: 1, current_role: "Product Manager"`
-- **Reference**: `devteam/references/JobDescription/產品經理_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/Product_Manager.md`
 
 #### Step 2: System Architecture (System Architect)
 - **Goal**: Establish system architecture based on specs.
@@ -29,7 +37,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Output**: Save to `docs/plan` (architecture) and `docs` (env.md).
 - **OpenSpec**: `/opsx:continue` to create `proposal.md` artifact (or `/opsx:ff` to create all planning artifacts at once)
 - **Format**: `devteam/references/FormatSample/範例-系統分析.md`
-- **Reference**: `devteam/references/JobDescription/系統架構師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/System_Architect.md`
 
 #### Step 3: System Analysis (System Analyst)
 - **Goal**: Produce detailed system analysis from specs and architecture.
@@ -37,7 +45,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Output**: Save to `docs/plan`.
 - **Constraint**: Must derive from Step 1 (specs) and Step 2 (architecture).
 - **Format**: `devteam/references/FormatSample/範例-系統分析.md`
-- **Reference**: `devteam/references/JobDescription/系統分析師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/System_Analyst.md`
 
 #### Step 4: Project Planning (Project Manager)
 - **Goal**: Define development schedule and milestones.
@@ -47,7 +55,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Output**: Save to `docs/plan`.
 - **OpenSpec**: `/opsx:continue` to create `specs/` and `design.md` artifacts (artifacts are created based on dependency graph)
 - **Format**: `devteam/references/FormatSample/範例-開發計劃概述.md`
-- **Reference**: `devteam/references/JobDescription/專案經理_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/Project_Manager.md`
 
 #### Step 5: Database Design (Database Architect)
 - **Goal**: Design database architecture, tables, and column structures.
@@ -61,7 +69,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Output**: Database design document in `docs/plan/05-database-design.md`.
 - **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/db-design-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-資料庫設計.md`
-- **Reference**: `devteam/references/JobDescription/系統架構師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/System_Architect.md`
 
 ### Phase 2: Implementation & Iteration
 
@@ -126,7 +134,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Completion**: Mark backend tasks complete in task files with execution notes and problem-solving details.
 - **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/<task-id>-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-後端開發計劃.md`, `devteam/references/FormatSample/範例-be-t001.md`
-- **Reference**: `devteam/references/JobDescription/資深後端工程師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/Senior_Backend_Engineer.md`
 
 #### Step 8: Frontend Development (Frontend Engineer)
 - **Goal**: Implement UI and integrate with backend APIs.
@@ -143,7 +151,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Completion**: Mark frontend tasks complete in task files with execution notes and problem-solving details.
 - **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/<task-id>-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-前端開發計劃.md`, `devteam/references/FormatSample/範例-fe-t001.md`
-- **Reference**: `devteam/references/JobDescription/資深前端工程師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/Senior_Frontend_Engineer.md`
 
 ### Phase 3: Verification & Deployment
 
@@ -162,7 +170,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
   - Mark test tasks complete in `docs/tasks/phase{n}/test-t{nnn}.md`.
   - If failed → create **BUG Tasks** in appropriate `docs/tasks/phase{n}/` directory (e.g., `be-bug-{nnn}.md`, `fe-bug-{nnn}.md`).
 - **Format**: `devteam/references/FormatSample/範例-測試案例.md`
-- **Reference**: `devteam/references/JobDescription/資深測試工程師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/Senior_QA_Engineer.md`
 
 #### Step 10: Iteration (Process Check)
 - **Action**: Scan all phase directories in `docs/tasks/phase{n}/` for BUG tasks (`*-bug-{nnn}.md`).
@@ -178,7 +186,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Action**: Perform deployment tests and finalize.
 - **Completion**: Mark CI/CD tasks complete in task files.
 - **OpenSpec**: `/opsx:archive` (prompts to sync delta specs if needed, moves change to archive)
-- **Reference**: `devteam/references/JobDescription/CI_CD_工程師_職務說明.md`
+- **Reference**: `devteam/references/JobDescription/CI_CD_Engineer.md`
 - **Procedure**:
   1. Wait 3 mins after commit.
   2. Check deployment status via API.
@@ -191,16 +199,16 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 
 | Role | Reference File | Notes |
 |------|----------------|-------|
-| Product Manager | `devteam/references/JobDescription/產品經理_職務說明.md` | Handles Step 1 (requirements gathering) |
-| System Architect | `devteam/references/JobDescription/系統架構師_職務說明.md` | Handles Step 2 (system architecture design) |
-| System Analyst | `devteam/references/JobDescription/系統分析師_職務說明.md` | Handles Step 3 (system analysis) |
-| Project Manager | `devteam/references/JobDescription/專案經理_職務說明.md` | Handles Step 4 (project planning) |
-| Database Architect | `devteam/references/JobDescription/系統架構師_職務說明.md` | Handles Step 5 (database architecture & schema design) |
-| Dev Lead | `devteam/references/JobDescription/系統分析師_職務說明.md` | Handles Step 6 (fine-grained task breakdown) - 資深全端工程師, 25年經驗, CISSP證照 |
-| Backend Engineer | `devteam/references/JobDescription/資深後端工程師_職務說明.md` | Handles Step 7 (database migration & API development), 10 (bug fixes) |
-| Frontend Engineer | `devteam/references/JobDescription/資深前端工程師_職務說明.md` | Handles Steps 8 (frontend development), 10 (bug fixes) |
-| QA Engineer | `devteam/references/JobDescription/資深測試工程師_職務說明.md` | Handles Steps 9 (testing), creates test cases |
-| CI/CD Engineer | `devteam/references/JobDescription/CI_CD_工程師_職務說明.md` | Handles Steps 11 (deployment verification) |
+| Product Manager | `devteam/references/JobDescription/Product_Manager.md` | Handles Step 1 (requirements gathering) |
+| System Architect | `devteam/references/JobDescription/System_Architect.md` | Handles Step 2 (system architecture design) |
+| System Analyst | `devteam/references/JobDescription/System_Analyst.md` | Handles Step 3 (system analysis) |
+| Project Manager | `devteam/references/JobDescription/Project_Manager.md` | Handles Step 4 (project planning) |
+| Database Architect | `devteam/references/JobDescription/System_Architect.md` | Handles Step 5 (database architecture & schema design) |
+| Dev Lead | `devteam/references/JobDescription/Dev_Lead_Job_Description.md` | Handles Step 6 (fine-grained task breakdown) - 資深全端工程師, 25年經驗, CISSP證照 |
+| Backend Engineer | `devteam/references/JobDescription/Senior_Backend_Engineer.md` | Handles Step 7 (database migration & API development), 10 (bug fixes) |
+| Frontend Engineer | `devteam/references/JobDescription/Senior_Frontend_Engineer.md` | Handles Steps 8 (frontend development), 10 (bug fixes) |
+| QA Engineer | `devteam/references/JobDescription/Senior_QA_Engineer.md` | Handles Steps 9 (testing), creates test cases |
+| CI/CD Engineer | `devteam/references/JobDescription/CI_CD_Engineer.md` | Handles Steps 11 (deployment verification) |
 
 ---
 

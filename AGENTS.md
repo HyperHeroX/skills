@@ -304,4 +304,4 @@
 所有產出文件必須嚴格遵守 `docs/FormatSample` 下的 Markdown 格式，確保資訊結構一致性。
 
 ### 13.3 角色扮演與職責
-在執行任務時，Agent 必須明確切換並宣告當前扮演的角色，參考 `docs/JobDescription` 中的定義。
+在執行任務時，Agent 必須明確切換並宣告當前扮演的角色，參考 `devteam/references/JobDescription` 中的定義。
