@@ -10,7 +10,6 @@
 .kilocode/
 .vscode/
 data/
-openspec/
 
 # 忽略 docs（保留格式範例在 devtem/reference 中）
 docs/
