@@ -47,29 +47,30 @@
   - [ ] `docs/plan/project-plan.md`
 - **Notes**: -
 
-### Step 5: Task Breakdown (Dev Lead)
+### Step 5: Database Design (Database Architect)
 - **Status**: ⬜ Not Started
 - **Started**: -
 - **Completed**: -
 - **Outputs**:
-  - [ ] `docs/tasks/*.md`
-- **Notes**: -
+  - [ ] `docs/plan/05-database-design.md`
+  - [ ] OpenSpec changes: `openspec/changes/db-design-<brief-description>/`
+- **Notes**: Designs database architecture, tables, columns, relationships, indexes, constraints
 
 ---
 
 ## Phase 2: Implementation & Iteration
 
-### Step 6: Database Design (Database Architect)
+### Step 6: Task Breakdown (Dev Lead)
 - **Status**: ⬜ Not Started
 - **Started**: -
 - **Completed**: -
+- **Role**: 資深全端工程師 (25年經驗, CISSP 證照, 大型專案經驗)
 - **Outputs**:
-  - [ ] `docs/plan/06-database-design.md`
-  - [ ] `docs/tasks/phase{n}/db-t*.md` (marked complete)
-  - [ ] OpenSpec changes: `openspec/changes/<task-id>-<brief-description>/`
-- **Notes**: Database Architect designs schema; Backend Engineer implements migrations in Step 7
+  - [ ] `docs/plan/06-task-breakdown.md` (任務總覽)
+  - [ ] `docs/tasks/phase{n}/*.md` (所有最小粒度任務文件)
+- **Notes**: 必須將步驟 4-5 的所有內容拆解成最小可執行單位，不得只有粗粒度任務
 
-### Step 7: Backend Development (Backend Engineer)
+### Step 7: Database Implementation (Backend Engineer)
 - **Status**: ⬜ Not Started
 - **Started**: -
 - **Completed**: -

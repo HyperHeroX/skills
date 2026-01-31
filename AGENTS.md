@@ -296,8 +296,8 @@
 2. **System Architect**: 產出系統架構文件與 `env.md` (`docs/FormatSample/範例-系統分析.md`)。
 3. **System Analyst**: 產出系統分析文件。
 4. **Project Manager**: 制定開發計畫與里程碑。
-5. **Dev Lead**: 拆解詳細任務 (`docs/FormatSample/範例-模組開發計劃.md`)。
-6. **Database Architect**: 資料庫設計 (`docs/FormatSample/範例-資料庫設計.md`)。
+5. **Database Architect**: 資料庫設計 (`docs/FormatSample/範例-資料庫設計.md`)。
+6. **Dev Lead**: 拆解詳細任務 (`docs/FormatSample/範例-模組開發計劃.md`) - 資深全端工程師，25年經驗，CISSP證照，必須將所有功能拆解至最小粒度。
 7. **Backend/Frontend/QA/CI-CD**: 依據職務說明書進行開發、測試與部署。
 
 ### 13.2 文件與格式規範

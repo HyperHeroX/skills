@@ -87,11 +87,11 @@ EXIT_SIGNAL: true
 
 Claude will:
 - Act as Product Manager → gather requirements
-- Act as System Architect → design system
+- Act as System Architect → design system architecture
 - Act as System Analyst → analyze system
 - Act as Project Manager → plan project
-- Act as Dev Lead → break down tasks
 - Act as Database Architect → design database schema
+- Act as Dev Lead (資深全端工程師, 25年經驗, CISSP) → break down all tasks to finest granularity
 - Act as Backend Engineer → implement database migrations and APIs
 - Act as Frontend Engineer → implement UI
 - Act as QA Engineer → test and verify
