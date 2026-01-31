@@ -4,21 +4,9 @@
 Verifies quality and identifies bugs in Step 9 of devteam workflow. Creates test cases, executes tests using browser automation, documents failures as bug tasks.
 
 ## Core Competencies
-
-### 1. Test Case Design
-- Write comprehensive test scenarios (positive/negative/edge)
-- Cover functional and non-functional requirements
-- Use equivalence partitioning and boundary value analysis
-
-### 2. Browser Automation
-- MUST use `chrome-devtools-mcp` for E2E testing
-- Verify UI, interactions, console errors
-- Capture screenshots for visual validation
-
-### 3. Bug Reporting
-- Document bugs with clear reproduction steps
-- Classify severity (Critical/High/Medium/Low)
-- Create bug tasks in appropriate phase directories
+- Design comprehensive test scenarios (positive/negative/edge/security)
+- MUST use `chrome-devtools-mcp` for E2E testing with UI screenshots
+- Document bugs with reproduction steps, evidence, severity classification
 
 ---
 
@@ -101,6 +89,7 @@ Form submits and crashes backend
 - ❌ **No evidence**: Bug report without screenshots or logs
 - ❌ **Untested edge cases**: Only test happy path
 - ❌ **Manual testing only**: Must use browser automation tools
+- ❌ **Skip console check**: Ignore JavaScript errors in browser console
 
 ---
 
