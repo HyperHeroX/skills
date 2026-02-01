@@ -498,148 +498,22 @@ function createOrder(order: Order, currentTotal: number): { order: Order; newTot
 <body>
 
 <footer>
-```
-
-### Commit Types
-| Type | 用途 | 範例 |
-|------|------|------|
-| `feat` | 新功能 | `feat(user): add user registration` |
-| `fix` | Bug 修復 | `fix(order): fix order total calculation` |
-| `docs` | 文檔變更 | `docs(readme): update installation guide` |
-| `style` | 程式碼格式 | `style(user): format user service` |
-| `refactor` | 重構 | `refactor(payment): extract payment gateway` |
-| `test` | 測試 | `test(order): add order service unit tests` |
-| `chore` | 雜項 | `chore(deps): upgrade dependencies` |
-| `ci` | CI/CD | `ci(github): add GitHub Actions workflow` |
-
-### Commit Message 範例
-```bash
-# Good Commit Message
-feat(user): add user registration with email verification
-
-- Implement user registration endpoint
-- Add email verification logic
-- Add bcrypt password hashing (cost 12)
-- Add unit tests (coverage 85%)
-
-Closes #123
-```
 
 ---
 
-## 🛠️ Linter & Formatter 設定 (Linter & Formatter Configuration)
+## 📖 進階編碼主題
 
-### ESLint (.eslintrc.js)
-```javascript
-module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: 'tsconfig.json',
-    sourceType: 'module',
-  },
-  plugins: ['@typescript-eslint/eslint-plugin'],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
-  root: true,
-  env: {
-    node: true,
-    jest: true,
-  },
-  rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'warn',
-    '@typescript-eslint/explicit-module-boundary-types': 'warn',
-    '@typescript-eslint/no-explicit-any': 'error',  // 禁止 any
-    'max-lines-per-function': ['warn', { max: 50 }],  // 函數最多 50 行
-    'complexity': ['warn', 10],  // 複雜度最多 10
-  },
-};
-```
+以下進階主題已拆分至獨立文件：
 
-### Prettier (.prettierrc)
-```json
-{
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 100,
-  "tabWidth": 2,
-  "semi": true,
-  "arrowParens": "always"
-}
-```
-
-### Python Ruff (ruff.toml)
-```toml
-[tool.ruff]
-line-length = 100
-select = [
-    "E",   # pycodestyle errors
-    "W",   # pycodestyle warnings
-    "F",   # pyflakes
-    "I",   # isort
-    "B",   # flake8-bugbear
-    "C4",  # flake8-comprehensions
-]
-
-[tool.ruff.per-file-ignores]
-"__init__.py" = ["F401"]  # Ignore unused imports in __init__.py
-```
+- **Code Review 檢查清單**: [coding-advanced-guide.md](./coding-advanced-guide.md#-code-review-檢查清單)
+- **Git Commit 規範**: [coding-advanced-guide.md](./coding-advanced-guide.md#-git-commit-規範)
+- **Linter & Formatter**: [coding-advanced-guide.md](./coding-advanced-guide.md#️-linter--formatter)
+- **效能最佳化**: [coding-advanced-guide.md](./coding-advanced-guide.md#-效能最佳化)
 
 ---
 
-## 📊 效能最佳化 (Performance Optimization)
+## 📚 參考資料
 
-### 資料庫查詢優化
-```typescript
-// ❌ BAD - N+1 Query Problem
-const orders = await orderRepository.findAll();
-for (const order of orders) {
-  order.user = await userRepository.findById(order.userId);  // N 次查詢
-}
-
-// ✅ GOOD - 使用 JOIN 或 Eager Loading
-const orders = await orderRepository.find({
-  relations: ['user'],  // TypeORM Eager Loading
-});
-```
-
-### 快取策略
-```typescript
-// ✅ CORRECT - Redis 快取
-async function getProductById(id: string): Promise<Product> {
-  const cacheKey = `product:${id}`;
-  
-  // 1. 嘗試從 Redis 取得
-  const cached = await redis.get(cacheKey);
-  if (cached) {
-    return JSON.parse(cached);
-  }
-  
-  // 2. 從資料庫取得
-  const product = await productRepository.findById(id);
-  
-  // 3. 寫入 Redis (TTL 1 hour)
-  await redis.set(cacheKey, JSON.stringify(product), 'EX', 3600);
-  
-  return product;
-}
-```
-
----
-
-## 🎓 參考資料 (References)
-
-- **AGENTS.md**: Section 5 (品質控管與程式碼規範), Section 6 (安全防護規範)
-- **tech-stack.md**: 技術棧規範 (Tool Priority, Forbidden Technologies)
-- **Clean Code** by Robert C. Martin
-- **OWASP Top 10**: https://owasp.org/www-project-top-ten/
-- **TypeScript Style Guide**: https://google.github.io/styleguide/tsguide.html
-- **Python PEP 8**: https://peps.python.org/pep-0008/
-- **Go Code Review Comments**: https://go.dev/wiki/CodeReviewComments
-
----
-
-**版本歷史 (Version History)**
-- **v1.0** (2026-01-31): 初版發布，涵蓋 TypeScript, Python, Go 程式碼規範
+- [coding-advanced-guide.md](./coding-advanced-guide.md) - 進階編碼主題
+- [Conventional Commits](https://www.conventionalcommits.org/)
+- [Google Style Guide](https://google.github.io/styleguide/)

@@ -498,96 +498,11 @@ export const userFixture = {
   invalidEmail: {
     name: 'Jane Doe',
     email: 'invalid-email',  // Invalid email format
-    password: 'SecurePass123!',
-  },
-  weakPassword: {
-    name: 'Bob Smith',
-    email: 'bob@example.com',
-    password: '123',  // Too short
-  },
-};
-```
-
-### Test Database Seeding
-```typescript
-// seed-test-db.ts
-async function seedTestDatabase() {
-  await db.user.createMany({
-    data: [
-      { name: 'Alice', email: 'alice@example.com', role: 'admin' },
-      { name: 'Bob', email: 'bob@example.com', role: 'user' },
-      { name: 'Charlie', email: 'charlie@example.com', role: 'vendor' },
-    ],
-  });
-
-  await db.product.createMany({
-    data: [
-      { name: 'Product A', price: 100, stock: 50 },
-      { name: 'Product B', price: 200, stock: 30 },
-    ],
-  });
-}
-```
 
 ---
 
-## 🧹 測試清理 (Test Cleanup)
+## 📚 參考資料
 
-### Database Cleanup
-```typescript
-// afterEach Hook
-afterEach(async () => {
-  // 清理測試資料
-  await db.order.deleteMany();
-  await db.user.deleteMany();
-  await db.product.deleteMany();
-});
-```
-
-### File Cleanup
-```typescript
-// afterAll Hook
-afterAll(async () => {
-  // 清理測試產生的檔案
-  const testFiles = await fs.readdir('./test-uploads');
-  for (const file of testFiles) {
-    await fs.unlink(`./test-uploads/${file}`);
-  }
-});
-```
-
----
-
-## 📈 測試指標與監控 (Test Metrics & Monitoring)
-
-### 測試指標 (Test Metrics)
-| 指標 | 目標值 | 監控工具 |
-|------|-------|---------|
-| **Unit Test Coverage** | ≥ 80% | Jest/Vitest Coverage Report |
-| **E2E Test Pass Rate** | 100% | chrome-devtools-mcp, Playwright |
-| **Test Execution Time** | < 5 min (Unit), < 15 min (E2E) | CI/CD Pipeline |
-| **Flaky Test Rate** | < 5% | CI/CD Historical Data |
-| **Bug Escape Rate** | < 5% | Sentry, Production Logs |
-
-### CI/CD Dashboard
-- **GitHub Actions**: 查看 CI/CD Pipeline 執行狀態
-- **Codecov**: 查看測試覆蓋率趨勢
-- **SonarQube**: 查看程式碼品質與測試覆蓋率
-
----
-
-## 🎓 參考資料 (References)
-
-- **AGENTS.md**: Section 3.3 (測試工具與瀏覽器自動化), Section 5.1 (Pre-Commit Checks)
-- **tech-stack.md**: Testing Tools, CI/CD Pipeline
-- **Testing Best Practices**: https://martinfowler.com/articles/practical-test-pyramid.html
-- **chrome-devtools-mcp Documentation**: (Internal MCP Tool)
-- **Vitest Documentation**: https://vitest.dev/
-- **Jest Documentation**: https://jestjs.io/
-- **Playwright Documentation**: https://playwright.dev/
-- **k6 Documentation**: https://k6.io/docs/
-
----
-
-**版本歷史 (Version History)**
-- **v1.0** (2026-01-31): 初版發布，涵蓋 Unit Test, Integration Test, E2E Test, Performance Test, Security Test
+- [Jest Documentation](https://jestjs.io/)
+- [Playwright Documentation](https://playwright.dev/)
+- [Testing Library](https://testing-library.com/)

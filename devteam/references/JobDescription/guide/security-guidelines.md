@@ -599,185 +599,22 @@ async function createUser(userDto: CreateUserDto) {
 
 ## 🔒 OWASP Top 10 Mitigation
 
-依據 **architecture.md (OWASP Top 10 Mitigation)**：
+---
 
-| OWASP Risk | 威脅 | 緩解措施 | 實作位置 |
-|-----------|------|---------|---------|
-| **#1 Injection** | SQL Injection, NoSQL Injection, Command Injection | ✅ Parameterized Queries (Prepared Statements) | All Services (PostgreSQL, MongoDB) |
-| **#2 Broken Authentication** | 弱密碼, Session Hijacking, Brute Force | ✅ JWT (15min) + bcrypt (cost 12) + MFA (TOTP) | User Service |
-| **#3 Sensitive Data Exposure** | 明文儲存, HTTP 傳輸 | ✅ AES-256 (at rest) + TLS 1.3 (in transit) | All Services |
-| **#4 XML External Entities (XXE)** | XML 解析漏洞 | ✅ 禁用外部實體, 使用 JSON | API Gateway (Kong) |
-| **#5 Broken Access Control** | 越權存取, IDOR | ✅ RBAC (5 roles) + Resource-level permissions | User Service + All Services |
-| **#6 Security Misconfiguration** | 預設密碼, 不必要服務 | ✅ AWS Secrets Manager, Security Hardening | All Services (Infrastructure) |
-| **#7 XSS** | Reflected XSS, Stored XSS, DOM-based XSS | ✅ CSP Header + Output Encoding (Vue 內建) | Web App (Nuxt) |
-| **#8 Insecure Deserialization** | Remote Code Execution | ✅ JSON Schema Validation (Ajv) | API Gateway (Kong) |
-| **#9 Using Components with Known Vulnerabilities** | 過時套件 | ✅ Snyk Dependency Scan (每週) | CI/CD Pipeline |
-| **#10 Insufficient Logging** | 無法追蹤攻擊 | ✅ Centralized Logging (Elasticsearch) + Audit Trail | All Services |
+## 📖 進階安全主題
+
+以下進階主題已拆分至獨立文件：
+
+- **OWASP Top 10**: [security-advanced-guide.md](./security-advanced-guide.md#-owasp-top-10-mitigation)
+- **PCI DSS Compliance**: [security-advanced-guide.md](./security-advanced-guide.md#-pci-dss-level-1-compliance)
+- **Security Testing**: [security-advanced-guide.md](./security-advanced-guide.md#-security-testing)
+- **Security Monitoring**: [security-advanced-guide.md](./security-advanced-guide.md#-security-monitoring)
+- **Incident Response**: [security-advanced-guide.md](./security-advanced-guide.md#-incident-response)
 
 ---
 
-## 💳 PCI DSS Level 1 Compliance
+## 📚 參考資料
 
-依據 **architecture.md (PCI DSS Level 1 Compliance)**，**Payment Service 必須符合 PCI DSS Level 1**：
-
-| Requirement | 措施 | 驗證方式 | 負責服務 |
-|-------------|------|---------|---------|
-| **Req 1**: 防火牆保護 | AWS VPC, Security Groups, NACL | ✅ AWS Config Rules | Infrastructure |
-| **Req 2**: 不使用預設密碼 | AWS Secrets Manager, IAM 強制密碼策略 (12+ 字元) | ✅ IAM Policy Audit | Infrastructure |
-| **Req 3**: 保護儲存的持卡人資料 | AES-256, 卡號 Tokenization (Stripe Vault) | ✅ KMS Audit Log | Payment Service |
-| **Req 4**: 傳輸加密 | TLS 1.3, HTTPS only | ✅ ALB Listener Policy | Infrastructure |
-| **Req 6**: 開發安全應用程式 | OWASP Top 10, Code Review, SAST/DAST | ✅ Snyk, OWASP ZAP | CI/CD Pipeline |
-| **Req 8**: 識別與驗證 | MFA (TOTP), JWT 15min expiry | ✅ User Service Log | User Service |
-| **Req 10**: 追蹤與監控 | AWS CloudWatch Logs, Audit Trail (每筆交易) | ✅ SIEM (Datadog) | All Services |
-| **Req 11**: 定期測試安全性 | Penetration Test (每季), Vulnerability Scan (每週) | ✅ External Auditor | Security Team |
-| **Req 12**: 維護資安政策 | Security Policy, Incident Response Plan | ✅ Security Team Review | Security Team |
-
----
-
-## 🚫 禁止使用技術 (Forbidden Technologies)
-
-依據 **AGENTS.md Section 5.2, 6** 與 **tech-stack.md (Forbidden Technologies)**：
-
-| 技術 | 原因 | 替代方案 | 來源 |
-|------|------|---------|------|
-| **sha256 (密碼雜湊)** | ❌ 快速雜湊不安全, 易於 GPU 爆破 | ✅ bcrypt (cost 12) / argon2 | AGENTS.md Section 6 |
-| **chrome.storage.sync (API Key)** | ❌ API Key 同步風險, 可能外洩 | ✅ chrome.storage.local + AES-256 Encryption | AGENTS.md Section 6 |
-| **eval / exec / system** | ❌ Code Injection 風險, RCE (Remote Code Execution) | ✅ 靜態分析 + 參數化查詢 + 白名單 | AGENTS.md Section 5.2 |
-| **單純 HTTP (無 HTTPS)** | ❌ 明文傳輸, MITM 攻擊 | ✅ TLS 1.3 (HTTPS only) | tech-stack.md |
-| **任何不受信任輸入直接拼入 SQL** | ❌ SQL Injection | ✅ Parameterized Query | coding-standards.md |
-| **弱密碼策略 (<8 字元)** | ❌ Brute Force 攻擊 | ✅ ≥8 字元 + 大小寫 + 數字 + 特殊符號 | coding-standards.md |
-
----
-
-## 🔍 Security Testing (安全測試)
-
-依據 **testing-standards.md (Security Test)**：
-
-### OWASP ZAP Automated Security Scan
-```bash
-# 執行 OWASP ZAP 基線掃描
-docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable \
-  zap-baseline.py -t https://linebotrag-staging.up.railway.app -r zap-report.html
-
-# 執行 OWASP ZAP 完整掃描 (耗時較長)
-docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable \
-  zap-full-scan.py -t https://linebotrag-staging.up.railway.app -r zap-full-report.html
-```
-
-### Snyk Dependency Scan
-```bash
-# 執行 Snyk 依賴掃描
-snyk test --all-projects --severity-threshold=high
-
-# 執行 Snyk Docker Image 掃描
-snyk container test hyperherox/api:latest
-```
-
-### Penetration Testing (滲透測試)
-| 測試項目 | 頻率 | 工具 | 負責人 |
-|---------|------|------|-------|
-| **Vulnerability Scan** | 每週 | Snyk, OWASP ZAP | CI/CD Pipeline |
-| **Penetration Test** | 每季 | External Security Auditor | Security Team |
-| **Red Team Exercise** | 每半年 | Internal Security Team | Security Team |
-
----
-
-## 📊 Security Monitoring (安全監控)
-
-### Security Metrics (安全指標)
-| 指標 | 目標值 | 監控工具 | Alert 閾值 |
-|------|-------|---------|----------|
-| **Failed Login Attempts** | < 5 per user per hour | Datadog | > 10 per user per hour |
-| **Suspicious API Requests** | < 0.1% | Kong Analytics | > 1% per hour |
-| **SQL Injection Attempts** | 0 | AWS WAF, Kong | > 0 per hour |
-| **XSS Attempts** | 0 | AWS WAF, Kong | > 0 per hour |
-| **Brute Force Attempts** | < 10 per IP per hour | Kong Rate Limiting | > 50 per IP per hour |
-| **Certificate Expiry** | > 30 days | AWS Certificate Manager | < 30 days |
-
-### Security Alerts (安全告警)
-```yaml
-# datadog-alerts.yml
-- name: "Failed Login Spike"
-  query: "avg(last_5m):sum:auth.login.failed{*} > 100"
-  message: "Failed login attempts > 100 in last 5 minutes"
-  notify:
-    - "@security-team"
-    - "@on-call"
-
-- name: "SQL Injection Detected"
-  query: "avg(last_1m):sum:waf.sql_injection{*} > 0"
-  message: "SQL Injection attempt detected"
-  notify:
-    - "@security-team"
-    - "@on-call"
-    - "pagerduty-critical"
-```
-
----
-
-## 🚨 Incident Response (事件回應)
-
-### Security Incident Severity (事件嚴重性)
-| 嚴重性 | 定義 | 範例 | 回應時間 (RTO) |
-|-------|------|------|---------------|
-| **Critical** | 資料外洩, 系統全面癱瘓 | Database 被駭, 所有服務無法存取 | < 15 分鐘 |
-| **High** | 部分服務癱瘓, 敏感資料外洩 | Payment Service 無法使用, PII 資料外洩 | < 1 小時 |
-| **Medium** | 服務效能降低, 非敏感資料外洩 | API 回應變慢, 非 PII 資料外洩 | < 4 小時 |
-| **Low** | 輕微異常, 無資料外洩 | 單一使用者無法登入 | < 24 小時 |
-
-### Incident Response Plan (事件回應計畫)
-1. **Detect** (偵測): 安全監控系統偵測異常
-2. **Alert** (告警): 自動告警到 Security Team + On-call Engineer
-3. **Contain** (隔離): 隔離受影響系統 (Block IP, Disable Service)
-4. **Investigate** (調查): 分析日誌, 追蹤攻擊來源
-5. **Remediate** (修復): 修復漏洞, 恢復服務
-6. **Post-Mortem** (事後檢討): 撰寫事件報告, 改善流程
-
----
-
-## 📚 參考文件 (References)
-
-### 內部文件
-- **architecture.md**: Security Architecture (Defense in Depth, OWASP Top 10, PCI DSS)
-- **coding-standards.md**: Security Coding Standards (Input Validation, Password Hashing, SQL Injection Prevention)
-- **testing-standards.md**: Security Test (OWASP ZAP, Snyk, Penetration Testing)
-- **AGENTS.md**: Section 5.2 (程式碼品質禁止事項), Section 6 (安全防護規範)
-- **tech-stack.md**: Forbidden Technologies
-
-### 外部標準
-- **OWASP Top 10**: https://owasp.org/www-project-top-ten/
-- **PCI DSS v4.0**: https://www.pcisecuritystandards.org/
-- **CISSP Domains**: https://www.isc2.org/Certifications/CISSP/CISSP-Domains
-- **NIST Cybersecurity Framework**: https://www.nist.gov/cyberframework
-- **CIS Benchmarks**: https://www.cisecurity.org/cis-benchmarks
-
----
-
-## 🔄 版本歷史 (Version History)
-
-| 版本 | 日期 | 變更內容 | 作者 |
-|------|------|---------|------|
-| 1.0 | 2026-01-31 | 初版建立 | AI Agent (Copilot) |
-
----
-
-## ✅ 結論 (Conclusion)
-
-本安全指南涵蓋 Defense in Depth (7 Layers), OWASP Top 10, CISSP, PCI DSS Level 1 等所有層面，所有程式碼與系統設計必須遵循本規範。
-
-**關鍵安全措施**:
-1. ✅ **Defense in Depth** (7 層防禦: Application → Data)
-2. ✅ **bcrypt cost 12** (AGENTS.md 強制要求, 禁止 sha256)
-3. ✅ **JWT Secret ≥ 32 字元** (AGENTS.md 強制要求)
-4. ✅ **Parameterized Query** (防止 SQL Injection)
-5. ✅ **OWASP Top 10 Mitigation** (#1-#10 全覆蓋)
-6. ✅ **PCI DSS Level 1 Compliance** (Payment Service, Req 1-12)
-7. ✅ **Security Testing** (OWASP ZAP, Snyk, Penetration Test)
-
----
-
-**維護責任**: HyperHeroX Security Team  
-**更新頻率**: 每季度檢視 (Q1, Q2, Q3, Q4)  
-**最後更新**: 2026-01-31
-
-**Compliance Status**: ✅ OWASP Top 10, ✅ CISSP, ✅ PCI DSS Level 1
+- [security-advanced-guide.md](./security-advanced-guide.md) - 進階安全主題
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/)
