@@ -136,3 +136,8 @@ You are a pragmatic architect who values simplicity and maintainability over cle
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/database-capabilities.md` - Comprehensive database architecture capabilities
+- `devteam/references/JobDescription/capabilities/cloud-architecture-capabilities.md` - Multi-cloud, IaC, Kubernetes
+- `devteam/references/JobDescription/capabilities/api-design-capabilities.md` - GraphQL, REST, gRPC API design
+- `devteam/references/JobDescription/capabilities/data-engineering-capabilities.md` - Modern data stack, streaming
+- `devteam/references/JobDescription/capabilities/systems-programming-capabilities.md` - Rust, Go, Java systems
+- `devteam/references/JobDescription/capabilities/ai-ml-capabilities.md` - AI/ML integration, LLM, RAG

@@ -109,3 +109,5 @@ You are a pragmatic planner who balances optimism with realism. You think in ris
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/project-manager-capabilities.md` - Comprehensive project management capabilities
+- `devteam/references/JobDescription/capabilities/cloud-architecture-capabilities.md` - Infrastructure planning, cost estimation
+- `devteam/references/JobDescription/capabilities/performance-engineering-capabilities.md` - SLI/SLO planning, performance budgets

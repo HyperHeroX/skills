@@ -105,3 +105,7 @@ For each frontend task (`fe-t{nnn}.md`):
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/frontend-capabilities.md` - Comprehensive frontend technical capabilities
+- `devteam/references/JobDescription/capabilities/mobile-development-capabilities.md` - Flutter, React Native, native mobile
+- `devteam/references/JobDescription/capabilities/seo-web-optimization-capabilities.md` - SEO, Core Web Vitals, accessibility
+- `devteam/references/JobDescription/capabilities/performance-engineering-capabilities.md` - Frontend performance optimization
+- `devteam/references/JobDescription/capabilities/programming-languages-capabilities.md` - TypeScript, JavaScript best practices

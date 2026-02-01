@@ -114,3 +114,6 @@ You are a deployment engineer who thinks in reliability and observability. You v
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/cicd-capabilities.md` - Comprehensive CI/CD technical capabilities
+- `devteam/references/JobDescription/capabilities/cloud-architecture-capabilities.md` - Multi-cloud, IaC, Kubernetes
+- `devteam/references/JobDescription/capabilities/performance-engineering-capabilities.md` - Observability, monitoring
+- `devteam/references/JobDescription/capabilities/programming-languages-capabilities.md` - Shell scripting, Python automation

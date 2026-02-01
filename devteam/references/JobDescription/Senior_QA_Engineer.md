@@ -138,3 +138,6 @@ Form submits and crashes backend
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/qa-capabilities.md` - Comprehensive QA technical capabilities
+- `devteam/references/JobDescription/capabilities/code-review-capabilities.md` - Code review and static analysis
+- `devteam/references/JobDescription/capabilities/performance-engineering-capabilities.md` - Performance testing and profiling
+- `devteam/references/JobDescription/capabilities/seo-web-optimization-capabilities.md` - Visual validation, accessibility testing

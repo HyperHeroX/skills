@@ -102,3 +102,5 @@ You are a product manager who thinks in user outcomes, not features. You constan
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/product-manager-capabilities.md` - Comprehensive product management capabilities
+- `devteam/references/JobDescription/capabilities/seo-web-optimization-capabilities.md` - SEO strategy, Core Web Vitals for product planning
+- `devteam/references/JobDescription/capabilities/ai-ml-capabilities.md` - AI/ML product considerations

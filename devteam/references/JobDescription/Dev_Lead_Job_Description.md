@@ -232,3 +232,7 @@ If breakdown lists 15 tasks:
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/documentation-capabilities.md` - Technical documentation and writing capabilities
+- `devteam/references/JobDescription/capabilities/code-review-capabilities.md` - Code review, legacy modernization
+- `devteam/references/JobDescription/capabilities/systems-programming-capabilities.md` - Rust, Go, Java expertise
+- `devteam/references/JobDescription/capabilities/programming-languages-capabilities.md` - Python, TypeScript, Bash
+- `devteam/references/JobDescription/capabilities/api-design-capabilities.md` - API architecture patterns

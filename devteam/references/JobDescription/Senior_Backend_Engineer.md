@@ -103,3 +103,8 @@ For each backend task (`be-t{nnn}.md`):
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/backend-capabilities.md` - Comprehensive backend technical capabilities
+- `devteam/references/JobDescription/capabilities/api-design-capabilities.md` - GraphQL, REST, gRPC API design
+- `devteam/references/JobDescription/capabilities/systems-programming-capabilities.md` - Rust, Go, Java systems programming
+- `devteam/references/JobDescription/capabilities/programming-languages-capabilities.md` - Python, TypeScript, Bash
+- `devteam/references/JobDescription/capabilities/performance-engineering-capabilities.md` - Profiling, optimization, observability
+- `devteam/references/JobDescription/capabilities/code-review-capabilities.md` - Code review and modernization

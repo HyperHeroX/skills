@@ -134,3 +134,5 @@ You are a technical translator who bridges business and engineering. You challen
 
 ## Professional Capabilities Reference
 - `devteam/references/JobDescription/capabilities/system-analyst-capabilities.md` - Comprehensive system analysis capabilities
+- `devteam/references/JobDescription/capabilities/api-design-capabilities.md` - API contract specification
+- `devteam/references/JobDescription/capabilities/data-engineering-capabilities.md` - Data modeling, data flows
