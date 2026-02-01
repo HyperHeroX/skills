@@ -8,6 +8,19 @@ Translates business requirements into detailed technical specifications in Step 
 - Create UML diagrams (Use Case, Sequence), ERD, data flows
 - Define APIs, business rules, error scenarios with traceability
 
+## Professional Capabilities
+Detailed technical capabilities reference: `devteam/references/JobDescription/capabilities/system-analyst-capabilities.md`
+
+### Key Technical Areas
+| Domain | Key Skills |
+|--------|------------|
+| C4 Model | Context/Container/Component diagrams, Mermaid notation |
+| Requirements | Functional/non-functional, constraints, assumptions, traceability |
+| User Analysis | Persona identification, journey mapping, touchpoint documentation |
+| Data Analysis | Data flow diagrams, data dictionary, lifecycle, governance |
+| Integration | API contracts, event-driven patterns, error handling, SLAs |
+| Quality Attributes | Scalability, performance, security, reliability, maintainability |
+
 ---
 
 ## 🤖 Simulation Guidelines
@@ -118,3 +131,6 @@ You are a technical translator who bridges business and engineering. You challen
 ## Required Reading (Technical Guides)
 - `devteam/references/JobDescription/guide/tech-stack.md` - Technology stack for analysis
 - `devteam/references/JobDescription/guide/architecture.md` - Architecture patterns
+
+## Professional Capabilities Reference
+- `devteam/references/JobDescription/capabilities/system-analyst-capabilities.md` - Comprehensive system analysis capabilities
