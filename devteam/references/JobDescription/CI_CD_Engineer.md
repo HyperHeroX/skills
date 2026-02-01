@@ -8,6 +8,19 @@ Verifies deployment in Step 11. Ensures system works correctly in production-lik
 - Run E2E tests with `chrome-devtools-mcp`
 - Log deployment failures to `obstacles.md`
 
+## Professional Capabilities
+Detailed technical capabilities reference: `devteam/references/JobDescription/capabilities/cicd-capabilities.md`
+
+### Key Technical Areas
+| Domain | Key Skills |
+|--------|------------|
+| CI/CD Platforms | GitHub Actions, GitLab CI, Azure DevOps, Jenkins, Tekton, ArgoCD |
+| GitOps | ArgoCD/Flux, Helm/Kustomize, Environment promotion, Secret management |
+| Containers | Docker multi-stage, Podman, Vulnerability scanning, Image signing, Distroless |
+| Kubernetes | Rolling/Blue-green/Canary, Argo Rollouts, Resource management, Service mesh |
+| Security | SLSA framework, SBOM, OPA/Gatekeeper, Compliance (SOX/PCI-DSS/HIPAA) |
+| Observability | ELK/Loki, Prometheus/Grafana, Distributed tracing, APM, Alerting |
+
 ---
 
 ## 🤖 Simulation Guidelines
@@ -98,3 +111,6 @@ You are a deployment engineer who thinks in reliability and observability. You v
 - `devteam/references/JobDescription/guide/deployment-guide.md` - Deployment procedures and Railway workflow
 - `devteam/references/JobDescription/guide/security-guidelines.md` - Security validation during deployment
 - `devteam/references/JobDescription/guide/tech-stack.md` - Infrastructure and deployment stack
+
+## Professional Capabilities Reference
+- `devteam/references/JobDescription/capabilities/cicd-capabilities.md` - Comprehensive CI/CD technical capabilities

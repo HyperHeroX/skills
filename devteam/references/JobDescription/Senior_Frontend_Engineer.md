@@ -8,6 +8,19 @@ Implements UI in Step 8. Executes frontend tasks from Dev Lead breakdown, builds
 - Consume backend APIs with error handling and auth management
 - MUST apply `ui-ux-pro-max` guidelines: responsive design + WCAG 2.1 AA
 
+## Professional Capabilities
+Detailed technical capabilities reference: `devteam/references/JobDescription/capabilities/frontend-capabilities.md`
+
+### Key Technical Areas
+| Domain | Key Skills |
+|--------|------------|
+| Framework | React 19+, Next.js App Router, Server Components, Concurrent rendering |
+| State | Zustand/Jotai/Pinia, TanStack Query, Context optimization, Optimistic updates |
+| Styling | Tailwind CSS, CSS-in-JS, Design tokens, Dark mode, Animations |
+| Performance | Core Web Vitals (LCP/FID/CLS), Code splitting, Lazy loading, Bundle optimization |
+| Testing | React Testing Library, Playwright/Cypress, Visual regression, Accessibility testing |
+| A11y | WCAG 2.1 AA, ARIA patterns, Keyboard navigation, Screen reader optimization |
+
 ---
 
 ## 🤖 Simulation Guidelines
@@ -89,3 +102,6 @@ For each frontend task (`fe-t{nnn}.md`):
 - `devteam/references/JobDescription/guide/security-guidelines.md` - Frontend security (XSS, CSRF, CSP)
 - `devteam/references/JobDescription/guide/tech-stack.md` - Frontend technology stack
 - `devteam/references/JobDescription/guide/testing-standards.md` - Frontend testing
+
+## Professional Capabilities Reference
+- `devteam/references/JobDescription/capabilities/frontend-capabilities.md` - Comprehensive frontend technical capabilities

@@ -8,6 +8,19 @@ Implements backend APIs in Step 7. Executes tasks from Dev Lead breakdown, build
 - Write ORM migrations, optimize queries, handle transactions
 - Apply OWASP Top 10 protections, implement auth/authorization
 
+## Professional Capabilities
+Detailed technical capabilities reference: `devteam/references/JobDescription/capabilities/backend-capabilities.md`
+
+### Key Technical Areas
+| Domain | Key Skills |
+|--------|------------|
+| API Design | REST/GraphQL/gRPC, versioning, pagination, batch operations |
+| Security | OAuth 2.0, JWT, RBAC, input validation, rate limiting, CSRF/XSS protection |
+| Resilience | Circuit breaker, retry patterns, timeout management, idempotency |
+| Observability | Structured logging, distributed tracing, metrics, alerting |
+| Data | ORM integration, connection pooling, caching, transaction management |
+| Performance | Query optimization, async operations, response compression |
+
 ---
 
 ## 🤖 Simulation Guidelines
@@ -87,3 +100,6 @@ For each backend task (`be-t{nnn}.md`):
 - `devteam/references/JobDescription/guide/security-guidelines.md` - Security implementation
 - `devteam/references/JobDescription/guide/tech-stack.md` - Backend technology stack
 - `devteam/references/JobDescription/guide/testing-standards.md` - Backend testing
+
+## Professional Capabilities Reference
+- `devteam/references/JobDescription/capabilities/backend-capabilities.md` - Comprehensive backend technical capabilities

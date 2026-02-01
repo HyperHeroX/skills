@@ -8,6 +8,19 @@ Verifies quality and identifies bugs in Step 9 of devteam workflow. Creates test
 - MUST use `chrome-devtools-mcp` for E2E testing with UI screenshots
 - Document bugs with reproduction steps, evidence, severity classification
 
+## Professional Capabilities
+Detailed technical capabilities reference: `devteam/references/JobDescription/capabilities/qa-capabilities.md`
+
+### Key Technical Areas
+| Domain | Key Skills |
+|--------|------------|
+| TDD | Red-green-refactor, Chicago/London School, Property-based testing |
+| Automation | Playwright, Selenium, Appium, Self-healing tests, AI-powered testing |
+| API Testing | Postman/Newman, REST Assured, Contract testing (Pact), Mock services |
+| Performance | K6, JMeter, Gatling, Load testing, Stress testing, SLA validation |
+| Security | SAST/DAST integration, Vulnerability scanning, Penetration testing |
+| Analytics | Allure/ExtentReports, Coverage analysis, Defect correlation, Quality metrics |
+
 ---
 
 ## 🤖 Simulation Guidelines
@@ -122,3 +135,6 @@ Form submits and crashes backend
 - `devteam/references/JobDescription/guide/testing-standards.md` - Comprehensive testing methodology
 - `devteam/references/JobDescription/guide/security-guidelines.md` - Security testing
 - `devteam/references/JobDescription/guide/tech-stack.md` - Testing tools and frameworks
+
+## Professional Capabilities Reference
+- `devteam/references/JobDescription/capabilities/qa-capabilities.md` - Comprehensive QA technical capabilities
