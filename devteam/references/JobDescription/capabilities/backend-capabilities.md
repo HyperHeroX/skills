@@ -95,3 +95,11 @@
 - **Security requirement extraction**: From threats to requirements
 - **Risk prioritization**: CVSS scoring, business impact assessment
 - **Mitigation strategy design**: Control mapping, defense in depth
+
+## AI/ML Integration (See Also: ai-ml-capabilities.md)
+
+- **LLM integration**: OpenAI, Claude, open-source models
+- **RAG systems**: Vector databases, embeddings, hybrid search
+- **Agent frameworks**: LangChain, LlamaIndex, multi-agent systems
+- **AI APIs**: Serving, streaming, caching, rate limiting
+- **AI safety**: Content moderation, prompt injection prevention
