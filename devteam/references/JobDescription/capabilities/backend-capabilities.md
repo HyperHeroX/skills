@@ -76,3 +76,22 @@
 - **Contract testing**: API contracts, consumer-driven contracts, schema validation
 - **Load testing**: Performance testing, stress testing, capacity planning
 - **Security testing**: Penetration testing, vulnerability scanning, OWASP Top 10
+
+## API Documentation & Developer Experience
+
+- **OpenAPI 3.1+**: Specification authoring, contract-driven development
+- **AsyncAPI**: Event-driven and real-time API documentation
+- **Interactive docs**: Swagger UI, Redoc, Stoplight Studio
+- **SDK generation**: Multi-language client libraries, Postman collections
+- **Authentication docs**: OAuth 2.0/OIDC flows, API key management, JWT handling
+- **Developer portals**: Information architecture, onboarding, analytics
+- **Version management**: Migration guides, deprecation notices, changelogs
+
+## Threat Modeling & Security Design
+
+- **STRIDE analysis**: Threat identification per component
+- **Attack tree construction**: Critical path analysis
+- **Data flow diagram analysis**: Trust boundaries, entry points
+- **Security requirement extraction**: From threats to requirements
+- **Risk prioritization**: CVSS scoring, business impact assessment
+- **Mitigation strategy design**: Control mapping, defense in depth

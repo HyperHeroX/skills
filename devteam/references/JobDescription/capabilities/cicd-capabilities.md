@@ -114,3 +114,23 @@
 - **Predictive analytics**: Capacity planning, resource forecasting
 - **Automated analysis**: Root cause analysis, intelligent alert clustering
 - **Performance prediction**: Time series forecasting, regression detection
+
+## Kubernetes Architecture (Advanced)
+
+- **Managed Kubernetes**: EKS (AWS), AKS (Azure), GKE (Google Cloud), OpenShift
+- **GitOps tools**: ArgoCD, Flux v2, OpenGitOps principles, progressive delivery
+- **Security**: Pod Security Standards, network policies, runtime security (Falco)
+- **Service mesh**: Istio, Linkerd, Cilium, Gateway API
+- **Multi-tenancy**: Namespace strategies, RBAC design, resource quotas
+- **Scalability**: HPA, VPA, Cluster Autoscaler, KEDA event-driven scaling
+- **FinOps**: KubeCost, OpenCost, resource optimization, spot instances
+
+## Incident Response & SRE
+
+- **Severity classification**: P0/P1/P2/P3 with SLA requirements
+- **Incident command**: IC, Communication Lead, Technical Lead roles
+- **Observability-driven investigation**: Tracing, metrics correlation, log analysis
+- **Communication strategy**: Internal/external updates, status page management
+- **Blameless post-mortems**: Timeline analysis, root cause, action items
+- **Error budget management**: Burn rate analysis, reliability vs velocity trade-offs
+- **Reliability patterns**: Circuit breakers, bulkhead, graceful degradation
