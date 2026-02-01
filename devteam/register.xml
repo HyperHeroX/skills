@@ -1,5 +1,5 @@
 <skill>
-<name>devtem</name>
+<name>devteam</name>
 <description>Development Team Simulation - Simulates a full software development team workflow including Product Manager, System Architect, System Analyst, Project Manager, Dev Lead, Database Architect, Backend/Frontend Engineers, QA Engineer, and CI/CD Engineer. Features autonomous continuous operation with state tracking, session continuity, and intelligent exit detection.</description>
-<file>devtem/SKILL.md</file>
+<file>devteam/SKILL.md</file>
 </skill>

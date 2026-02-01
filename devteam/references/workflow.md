@@ -1,4 +1,4 @@
-﻿# devteam Workflow Process
+# devteam Workflow Process
 
 This document contains the detailed 11-step workflow for the devteam skill.
 
@@ -25,7 +25,6 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Goal**: Clarify product specifications and user needs.
 - **Action**: Discuss with user to gather requirements.
 - **Output**: Save requirement documents to `docs/plan`.
-- **OpenSpec**: `/opsx:new <change-name>` (creates `openspec/changes/<change-name>/` directory)
 - **State Update**: `current_step: 1, current_role: "Product Manager"`
 - **Reference**: `devteam/references/JobDescription/Product_Manager.md`
 
@@ -35,7 +34,6 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
   1. Create system architecture document.
   2. **Generate `docs/env.md`** based on architecture and environment details.
 - **Output**: Save to `docs/plan` (architecture) and `docs` (env.md).
-- **OpenSpec**: `/opsx:continue` to create `proposal.md` artifact (or `/opsx:ff` to create all planning artifacts at once)
 - **Format**: `devteam/references/FormatSample/範例-系統分析.md`
 - **Reference**: `devteam/references/JobDescription/System_Architect.md`
 
@@ -53,7 +51,6 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Review**: Product Manager must review SA Doc for alignment.
 - **Action**: Create high-level project plan.
 - **Output**: Save to `docs/plan`.
-- **OpenSpec**: `/opsx:continue` to create `specs/` and `design.md` artifacts (artifacts are created based on dependency graph)
 - **Format**: `devteam/references/FormatSample/範例-開發計劃概述.md`
 - **Reference**: `devteam/references/JobDescription/Project_Manager.md`
 
@@ -62,12 +59,8 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Input**: Read documents `01-requirements.md` through `04-project-plan.md` from `docs/plan`.
 - **Action**:
   1. Create database design document: Save `05-database-design.md` to `docs/plan`.
-  2. **領取任務時介入 OpenSpec**:
-     - 執行 `/opsx:new db-design-<brief-description>`
-     - 例如：`/opsx:new db-design-user-authentication-schema`
-  3. Design database tables, relationships, indexes, foreign key constraints, etc.
+  2. Design database tables, relationships, indexes, foreign key constraints, etc.
 - **Output**: Database design document in `docs/plan/05-database-design.md`.
-- **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/db-design-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-資料庫設計.md`
 - **Reference**: `devteam/references/JobDescription/System_Architect.md`
 
@@ -123,14 +116,68 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Input**:
   1. Read all planning documents `01-06` from `docs/plan` (including database design from Step 5 and task breakdown from Step 6).
   2. Read backend task files from `docs/tasks/phase{n}/be-t{nnn}.md` (and sub-tasks if exists).
-- **Action**:
-  1. **領取任務時介入 OpenSpec**:
-     - 執行 `/opsx:new <task-id>-<brief-description>`
-     - 例如：`/opsx:new be-t001-user-registration-api`
-     - 若有子任務，為每個子任務建立 OpenSpec change
-  2. **根據 `docs/plan/05-database-design.md` 執行資料庫遷移或產生作業** (ORM migrations, SQL scripts, etc.)
-  3. Write backend code/docs based on task specifications and OpenSpec artifacts.
-  4. Use Serena MCP for code exploration.
+- **Execution Order**: Backend Engineer **MUST** complete ALL backend tasks in current phase before handing off to Frontend Engineer.
+
+##### 🔄 Backend Task Execution Loop (Mandatory Sequence)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    BACKEND ENGINEER WORKFLOW                     │
+├─────────────────────────────────────────────────────────────────┤
+│  Phase N Start                                                   │
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-1: Acquire task and reference planning documents     ││
+│  │ • Read docs/tasks/phase{n}/be-t{nnn}.md                     ││
+│  │ • Reference all docs/plan files (01-06)                     ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-2: Database migration (if db-t{nnn}.md exists)      ││
+│  │ • Retrieve corresponding db-t{nnn}.md in batch              ││
+│  │ • Execute /opsx:new db-<brief-description>                  ││
+│  │   Example: /opsx:new db-user-authentication-schema          ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-3: Approve and execute database migration           ││
+│  │ • Execute /opsx:apply db-<brief-description>                ││
+│  │ • Complete ORM migrations, SQL scripts, etc.                ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-4: Create OpenSpec backend development task         ││
+│  │ • Execute /opsx:new <task-id>-<brief-description>           ││
+│  │   Example: /opsx:new be-t001-user-registration-api          ││
+│  │ • If sub-tasks exist, create OpenSpec change for each       ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-5: Approve and execute backend development          ││
+│  │ • Execute /opsx:apply <task-id>-<brief-description>         ││
+│  │ • Use Serena MCP for source code exploration                ││
+│  │ • Implement backend code and documentation                  ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-6: Task completion check                            ││
+│  │ • Mark task complete, record execution notes & solutions    ││
+│  │ • Check if next be-t{nnn}.md exists                         ││
+│  │   └─ YES → Return to STEP be-1 for next backend task        ││
+│  │   └─ NO  → Backend phase complete, hand off to Frontend     ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ✅ ALL BE TASKS COMPLETE → Hand off to Frontend Engineer        │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 - **Completion**: Mark backend tasks complete in task files with execution notes and problem-solving details.
 - **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/<task-id>-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-後端開發計劃.md`, `devteam/references/FormatSample/範例-be-t001.md`
@@ -141,13 +188,65 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Input**:
   1. Read all planning documents `01-06` from `docs/plan`.
   2. Read frontend task files from `docs/tasks/phase{n}/fe-t{nnn}.md` (and sub-tasks if exists).
-- **Action**:
-  1. **領取任務時介入 OpenSpec**:
-     - 執行 `/opsx:new <task-id>-<brief-description>`
-     - 例如：`/opsx:new fe-t001-login-page-ui`
-     - 若有子任務，為每個子任務建立 OpenSpec change
-  2. Write frontend code/docs based on task specifications and OpenSpec artifacts.
-  3. **MUST** apply `ui-ux-pro-max` skill guidelines.
+- **Execution Order**: Frontend Engineer **MUST** complete ALL frontend tasks in current phase before handing off to Test Engineer.
+
+##### 🔄 Frontend Task Execution Loop (Mandatory Sequence)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                   FRONTEND ENGINEER WORKFLOW                     │
+├─────────────────────────────────────────────────────────────────┤
+│  (After ALL Backend Tasks Complete)                              │
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP fe-1: Acquire task and reference planning documents    ││
+│  │ • Read docs/tasks/phase{n}/fe-t{nnn}.md                     ││
+│  │ • Reference all docs/plan files (01-06)                     ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP fe-2: Create OpenSpec frontend development task        ││
+│  │ • Execute /opsx:new <task-id>-<brief-description>           ││
+│  │   Example: /opsx:new fe-t001-login-page-ui                  ││
+│  │ • ⚠️ MANDATORY: OpenSpec must explicitly specify using      ││
+│  │   ui-ux-pro-max skill for UI/UX design and implementation   ││
+│  │ • If sub-tasks exist, create OpenSpec change for each       ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP fe-3: Approve and execute frontend development         ││
+│  │ • Execute /opsx:apply <task-id>-<brief-description>         ││
+│  │ • ⚠️ MANDATORY: All frontend task implementation MUST use   ││
+│  │   ui-ux-pro-max skill for development                       ││
+│  │ • Use Serena MCP for source code exploration                ││
+│  │ • Implement frontend code and integrate backend APIs        ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP fe-4: Task completion check                            ││
+│  │ • Mark task complete, record execution notes & solutions    ││
+│  │ • Check if next fe-t{nnn}.md exists                         ││
+│  │   └─ YES → Return to STEP fe-1 for next frontend task       ││
+│  │   └─ NO  → Frontend phase complete, hand off to Test        ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ✅ ALL FE TASKS COMPLETE → Hand off to Test Engineer            │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+##### ⚠️ ui-ux-pro-max Skill Mandatory Usage Rules
+
+| Phase | Mandatory Requirement |
+|-------|----------------------|
+| `/opsx:new` | OpenSpec proposal must explicitly declare use of `ui-ux-pro-max` skill |
+| `/opsx:apply` | Implementation must follow `ui-ux-pro-max` design guidelines |
+| Acceptance Criteria | UI/UX must comply with `ui-ux-pro-max` priority matrix requirements |
+
 - **Completion**: Mark frontend tasks complete in task files with execution notes and problem-solving details.
 - **OpenSpec Artifacts**: `proposal.md`, `specs/`, `design.md`, `tasks.md` in `openspec/changes/<task-id>-<brief-description>/`
 - **Format**: `devteam/references/FormatSample/範例-前端開發計劃.md`, `devteam/references/FormatSample/範例-fe-t001.md`
@@ -160,12 +259,85 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Input**:
   1. Retrieve testing tasks from `docs/tasks/phase{n}/test-t{nnn}.md`.
   2. Review all implementation from Steps 6-8.
-- **Action**:
-  1. **Generate Test Cases**: Save to `docs/tests` using naming convention `tc-{nnn}.md`.
-  2. **Execute Tests**: Use `chrome-devtools-mcp` (Browser Automation).
-  3. **Record Results**: Annotate pass/fail status in test case files.
+- **Execution Order**: Test Engineer **MUST** complete ALL test tasks in current phase before handing off to CI/CD Engineer.
+
+##### 🔄 Test Task Execution Loop (Mandatory Sequence)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     TEST ENGINEER WORKFLOW                       │
+├─────────────────────────────────────────────────────────────────┤
+│  (After ALL Frontend Tasks Complete)                             │
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP test-1: Acquire task and reference planning documents  ││
+│  │ • Read docs/tasks/phase{n}/test-t{nnn}.md                   ││
+│  │ • Reference all docs/plan files (01-06)                     ││
+│  │ • Review all implementations from Steps 6-8                 ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP test-2: Create OpenSpec test task                      ││
+│  │ • Execute /opsx:new <task-id>-<brief-description>           ││
+│  │   Example: /opsx:new test-t001-user-login-e2e               ││
+│  │ • ⚠️ MANDATORY: OpenSpec must explicitly specify using:     ││
+│  │   - Playwright testing framework                            ││
+│  │   - chrome-devtools-mcp browser automation tool             ││
+│  │ • If sub-tasks exist, create OpenSpec change for each       ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP test-3: Approve and execute testing                    ││
+│  │ • Execute /opsx:apply <task-id>-<brief-description>         ││
+│  │ • ⚠️ MANDATORY: Implementation MUST use:                    ││
+│  │   - Browser testing for UI/UX operation verification        ││
+│  │   - Screenshot visual recognition and verification          ││
+│  │   - chrome-devtools-mcp for E2E testing                     ││
+│  │ • Generate test cases: Save to docs/tests/tc-{nnn}.md       ││
+│  │ • Record test results: Mark pass/fail status                ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP test-4: Task completion check                          ││
+│  │ • Mark task complete, record execution notes & solutions    ││
+│  │ • If test failed → Create BUG Tasks                         ││
+│  │   (be-bug-{nnn}.md, fe-bug-{nnn}.md)                        ││
+│  │ • Check if next test-t{nnn}.md exists                       ││
+│  │   └─ YES → Return to STEP test-1 for next test task         ││
+│  │   └─ NO  → Test phase complete, hand off to CI/CD           ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ✅ ALL TEST TASKS COMPLETE → Hand off to CI/CD Engineer         │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+##### ⚠️ Testing Tools Mandatory Usage Rules
+
+| Tool | Purpose | Mandatory Level |
+|------|---------|-----------------|
+| Playwright | E2E testing framework | **CRITICAL** |
+| chrome-devtools-mcp | Browser automation | **CRITICAL** |
+| Screenshot | Visual recognition verification | **CRITICAL** |
+| Console monitoring | Error detection | **HIGH** |
+
+##### ✅ Test Verification Checklist (Mandatory Checks)
+
+| Check Item | Description |
+|------------|-------------|
+| UI Screenshot | Must capture screenshot for each test step |
+| Visual Verification | Layout alignment, text completeness, color contrast |
+| RWD Testing | Responsive design verification |
+| Dark/Light Mode | Theme switching test |
+| Console Errors | No JS errors or warnings |
+| Accessibility | Accessibility standards compliance |
+| Performance | Performance metrics meet standards |
+
 - **OpenSpec**: `/opsx:verify` to validate implementation matches artifacts (checks Completeness, Correctness, Coherence)
-- **Checks**: UI screenshot, Visual verification, Console error check, Accessibility, Performance.
 - **Completion**:
   - Mark test tasks complete in `docs/tasks/phase{n}/test-t{nnn}.md`.
   - If failed → create **BUG Tasks** in appropriate `docs/tasks/phase{n}/` directory (e.g., `be-bug-{nnn}.md`, `fe-bug-{nnn}.md`).
@@ -183,7 +355,65 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 - **Input**:
   1. Retrieve CI/CD tasks from `docs/tasks/phase{n}/cicd-t{nnn}.md` or trigger on QA pass.
   2. Verify all test cases in `docs/tests` are marked PASS.
-- **Action**: Perform deployment tests and finalize.
+- **Execution Order**: CI/CD Engineer **MUST** complete ALL deployment tasks in current phase before moving to next phase.
+
+##### 🔄 CI/CD Task Execution Loop (Mandatory Sequence)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    CI/CD ENGINEER WORKFLOW                       │
+├─────────────────────────────────────────────────────────────────┤
+│  (After ALL Test Tasks Complete & Pass)                          │
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP cicd-1: Acquire task and verify test results           ││
+│  │ • Read docs/tasks/phase{n}/cicd-t{nnn}.md                   ││
+│  │ • Verify all test cases in docs/tests are marked PASS       ││
+│  │ • Reference all docs/plan files (01-06)                     ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP cicd-2: Create OpenSpec deployment task                ││
+│  │ • Execute /opsx:new <task-id>-<brief-description>           ││
+│  │   Example: /opsx:new cicd-t001-stage-deployment             ││
+│  │ • If sub-tasks exist, create OpenSpec change for each       ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP cicd-3: Approve and execute deployment                 ││
+│  │ • Execute /opsx:apply <task-id>-<brief-description>         ││
+│  │ • Perform deployment testing and finalization               ││
+│  │ • Wait 3 minutes for deployment to complete                 ││
+│  │ • Check deployment status via API                           ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP cicd-4: Stage environment E2E testing                  ││
+│  │ • Execute E2E tests on Stage site                           ││
+│  │ • Use chrome-devtools-mcp to verify deployment results      ││
+│  │ • If failed → Log to docs/obstacles.md                      ││
+│  │            → Create deployment bug task                     ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP cicd-5: Task completion and archival                   ││
+│  │ • Mark task complete, record execution notes & solutions    ││
+│  │ • Execute /opsx:archive to archive completed change         ││
+│  │ • Check if next cicd-t{nnn}.md exists                       ││
+│  │   └─ YES → Return to STEP cicd-1 for next deployment task   ││
+│  │   └─ NO  → Phase complete, proceed to next phase or end     ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ✅ ALL CICD TASKS COMPLETE → Phase Complete / Next Phase        │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 - **Completion**: Mark CI/CD tasks complete in task files.
 - **OpenSpec**: `/opsx:archive` (prompts to sync delta specs if needed, moves change to archive)
 - **Reference**: `devteam/references/JobDescription/CI_CD_Engineer.md`
@@ -192,6 +422,73 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
   2. Check deployment status via API.
   3. Run E2E tests on Stage site (`devteam/references/Environment/env-sample.md`).
   4. If failed → log to `docs/obstacles.md` and create deployment bug task.
+
+---
+
+## 🔄 Phase Task Execution Order (Mandatory Sequence)
+
+Within each phase, engineers **MUST** execute tasks in the following strict order. No engineer can start until the previous engineer completes ALL their tasks.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    PHASE N: ENGINEER EXECUTION ORDER                         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │ 1️⃣ BACKEND ENGINEER (be)                                              │   │
+│  │    • Process all be-t{nnn}.md tasks sequentially                     │   │
+│  │    • Include corresponding db-t{nnn}.md database migrations          │   │
+│  │    • After all backend tasks complete → Hand off to Frontend Eng.    │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+│                              │                                               │
+│                              ▼                                               │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │ 2️⃣ FRONTEND ENGINEER (fe)                                             │   │
+│  │    • Process all fe-t{nnn}.md tasks sequentially                     │   │
+│  │    • MANDATORY: Use ui-ux-pro-max skill                              │   │
+│  │    • After all frontend tasks complete → Hand off to Test Eng.       │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+│                              │                                               │
+│                              ▼                                               │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │ 3️⃣ TEST ENGINEER (test)                                               │   │
+│  │    • Process all test-t{nnn}.md tasks sequentially                   │   │
+│  │    • MANDATORY: Use Playwright + chrome-devtools-mcp                 │   │
+│  │    • Execute screenshot visual recognition verification              │   │
+│  │    • After all test tasks complete → Hand off to CI/CD Eng.          │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+│                              │                                               │
+│                              ▼                                               │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │ 4️⃣ CI/CD ENGINEER (cicd)                                              │   │
+│  │    • Process all cicd-t{nnn}.md tasks sequentially                   │   │
+│  │    • Execute deployment and Stage E2E verification                   │   │
+│  │    • After all deploy tasks complete → Phase done / Next Phase       │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+│                              │                                               │
+│                              ▼                                               │
+│  ✅ PHASE N COMPLETE → Proceed to Phase N+1 (if exists)                      │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 📋 Engineer Handoff Checklist
+
+| From | To | Handoff Condition |
+|------|----|--------------------|
+| Backend | Frontend | All `be-t{nnn}.md` + `db-t{nnn}.md` complete |
+| Frontend | Test | All `fe-t{nnn}.md` complete |
+| Test | CI/CD | All `test-t{nnn}.md` complete |
+| CI/CD | Next Phase | All `cicd-t{nnn}.md` complete |
+
+### ⚠️ Mandatory Tool Usage Summary
+
+| Engineer Role | OpenSpec Command | Mandatory Tool/Skill |
+|---------------|------------------|---------------------|
+| Backend | `/opsx:new db-*`, `/opsx:new be-*` | Serena MCP |
+| Frontend | `/opsx:new fe-*` | **ui-ux-pro-max skill** |
+| Test | `/opsx:new test-*` | **Playwright + chrome-devtools-mcp** |
+| CI/CD | `/opsx:new cicd-*` | chrome-devtools-mcp (E2E) |
 
 ---
 
@@ -204,7 +501,7 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 | System Analyst | `devteam/references/JobDescription/System_Analyst.md` | Handles Step 3 (system analysis) |
 | Project Manager | `devteam/references/JobDescription/Project_Manager.md` | Handles Step 4 (project planning) |
 | Database Architect | `devteam/references/JobDescription/System_Architect.md` | Handles Step 5 (database architecture & schema design) |
-| Dev Lead | `devteam/references/JobDescription/Dev_Lead_Job_Description.md` | Handles Step 6 (fine-grained task breakdown) - 資深全端工程師, 25年經驗, CISSP證照 |
+| Dev Lead | `devteam/references/JobDescription/Dev_Lead_Job_Description.md` | Handles Step 6 (fine-grained task breakdown) - Senior Full-Stack Engineer, 25 years exp., CISSP certified |
 | Backend Engineer | `devteam/references/JobDescription/Senior_Backend_Engineer.md` | Handles Step 7 (database migration & API development), 10 (bug fixes) |
 | Frontend Engineer | `devteam/references/JobDescription/Senior_Frontend_Engineer.md` | Handles Steps 8 (frontend development), 10 (bug fixes) |
 | QA Engineer | `devteam/references/JobDescription/Senior_QA_Engineer.md` | Handles Steps 9 (testing), creates test cases |
