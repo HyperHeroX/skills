@@ -1,6 +1,10 @@
 # QA Engineer Technical Capabilities Reference
 
-> Source: Adapted from `sample/unit-testing/agents/test-automator.md`
+> Sources:
+> - `sample/unit-testing/agents/test-automator.md`
+> - `sample/tdd-workflows/agents/tdd-orchestrator.md`
+> - `sample/code-documentation/agents/code-reviewer.md`
+> - `sample/security-scanning/agents/security-auditor.md`
 
 ## Test-Driven Development (TDD) Excellence
 
@@ -87,3 +91,31 @@
 - **Defect correlation**: Root cause analysis
 - **Test coverage analysis**: Gap identification
 - **Performance benchmarking**: Regression detection
+
+## Code Review & Static Analysis
+
+- **AI-powered analysis**: Trag, Bito, Codiga, GitHub Copilot integration
+- **Static analysis**: SonarQube, CodeQL, Semgrep comprehensive scanning
+- **Security analysis**: Snyk, Bandit, OWASP tools, Dependency-Check
+- **Code quality metrics**: Cyclomatic complexity, technical debt, code smells
+- **Performance analysis**: Database query optimization, N+1 detection, memory leaks
+- **Review automation**: GitHub Actions, GitLab CI/CD, quality gates integration
+
+## Security Testing & DevSecOps
+
+- **Security scanning**: SAST, DAST, IAST, dependency scanning in CI/CD
+- **OWASP expertise**: Top 10 vulnerabilities, ASVS, SAMM, ZAP, Burp Suite
+- **Container security**: Image scanning, runtime security, K8s Pod Security
+- **Supply chain security**: SLSA framework, SBOM, secrets management
+- **Compliance testing**: SOC 2, PCI DSS, HIPAA, GDPR verification
+- **Threat modeling**: STRIDE, PASTA, attack trees, risk assessment
+
+## TDD Orchestration & Governance
+
+- **TDD discipline**: Red-green-refactor cycle, test-first enforcement
+- **Multi-agent coordination**: Unit, integration, E2E agent orchestration
+- **TDD methodologies**: Chicago School (classic), London School (mockist)
+- **BDD integration**: Acceptance test-driven development, Gherkin
+- **Test suite architecture**: Test pyramid, categorization, parallel execution
+- **Quality metrics**: Cycle time, mutation testing, coverage thresholds
+- **Legacy code TDD**: Characterization tests, seam identification, golden master

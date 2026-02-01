@@ -22,6 +22,18 @@ Decomposes project plans and database designs into finest-grained executable tas
 - CI/CD: Deployment pipelines, environment setup
 - Testing: Unit/integration/E2E test strategies
 
+## Professional Capabilities
+Detailed technical capabilities reference: `devteam/references/JobDescription/capabilities/documentation-capabilities.md`
+
+### Key Technical Areas
+| Domain | Key Skills |
+|--------|------------|
+| Task Decomposition | Atomic breakdown, dependency graphs, effort estimation, acceptance criteria |
+| Documentation | Technical writing, API docs, C4 diagrams, architecture documentation |
+| Security (CISSP) | Auth/authz, OWASP Top 10, threat modeling, security requirements |
+| Cross-Stack | Backend APIs, Frontend components, Database design, CI/CD, Testing |
+| Code Review | AI-powered analysis, static analysis, security scanning, quality metrics |
+
 ---
 
 ## 🤖 Simulation Guidelines
@@ -217,3 +229,6 @@ If breakdown lists 15 tasks:
 - `devteam/references/JobDescription/guide/security-guidelines.md` - Security requirements (CISSP)
 - `devteam/references/JobDescription/guide/tech-stack.md` - Technology constraints
 - `devteam/references/JobDescription/guide/testing-standards.md` - Testing strategy
+
+## Professional Capabilities Reference
+- `devteam/references/JobDescription/capabilities/documentation-capabilities.md` - Technical documentation and writing capabilities

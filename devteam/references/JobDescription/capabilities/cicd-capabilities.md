@@ -1,6 +1,10 @@
 # CI/CD Engineer Technical Capabilities Reference
 
-> Source: Adapted from `sample/cicd-automation/agents/deployment-engineer.md` and `devops-troubleshooter.md`
+> Sources:
+> - `sample/cicd-automation/agents/deployment-engineer.md`
+> - `sample/cicd-automation/agents/devops-troubleshooter.md`
+> - `sample/observability-monitoring/agents/observability-engineer.md`
+> - `sample/security-scanning/agents/security-auditor.md`
 
 ## Modern CI/CD Platforms
 
@@ -85,3 +89,28 @@
 - **Pipeline templates**: Reusable pipeline templates, organization-wide standards
 - **Documentation**: Automated documentation, deployment guides, troubleshooting
 - **Training**: Developer onboarding, best practices dissemination
+
+## Observability & Monitoring (Advanced)
+
+- **Metrics infrastructure**: Prometheus, Grafana, InfluxDB, DataDog, CloudWatch
+- **Distributed tracing**: Jaeger, Zipkin, AWS X-Ray, OpenTelemetry instrumentation
+- **Log management**: ELK Stack, Fluentd/Fluent Bit, Splunk, Loki
+- **Alerting**: PagerDuty, Slack integration, alert correlation, runbook automation
+- **SLI/SLO**: Service Level Indicators, Objectives, error budgets, burn rate
+- **Chaos engineering**: Chaos Monkey, Gremlin, fault injection, resilience testing
+
+## DevSecOps Integration
+
+- **Security pipeline**: SAST, DAST, IAST, dependency scanning in CI/CD
+- **Container security**: Image scanning, runtime security, K8s security policies
+- **Supply chain**: SLSA framework, SBOM generation, artifact signing
+- **Secrets management**: HashiCorp Vault, cloud secret managers, rotation
+- **Compliance automation**: Policy as Code (OPA), continuous compliance monitoring
+- **Incident response**: NIST framework, forensics, breach notification procedures
+
+## AI & ML Integration
+
+- **Anomaly detection**: Statistical models, ML-based pattern recognition
+- **Predictive analytics**: Capacity planning, resource forecasting
+- **Automated analysis**: Root cause analysis, intelligent alert clustering
+- **Performance prediction**: Time series forecasting, regression detection

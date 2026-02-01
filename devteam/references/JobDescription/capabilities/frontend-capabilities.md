@@ -1,6 +1,9 @@
 # Frontend Engineer Technical Capabilities Reference
 
-> Source: Adapted from `sample/frontend-mobile-development/agents/frontend-developer.md`
+> Sources:
+> - `sample/frontend-mobile-development/agents/frontend-developer.md`
+> - `sample/ui-design/agents/ui-designer.md`
+> - `sample/ui-design/agents/accessibility-expert.md`
 
 ## Core React/Framework Expertise
 
@@ -67,9 +70,22 @@
 
 ## Accessibility & Inclusive Design
 
-- **WCAG 2.1/2.2 AA compliance**: Implementation patterns
-- **ARIA patterns**: Semantic HTML
-- **Keyboard navigation**: Focus management
-- **Screen reader optimization**: Accessible forms
-- **Color contrast**: Visual accessibility
-- **Inclusive design principles**: Universal usability
+- **WCAG 2.1/2.2 AA compliance**: Implementation patterns, Section 508, EN 301 549
+- **ARIA patterns**: Roles, states, properties for custom components, live regions
+- **Keyboard navigation**: Tab order, focus trapping, skip links, roving tabindex
+- **Screen reader optimization**: NVDA, JAWS, VoiceOver, TalkBack testing
+- **Color contrast**: WCAG AA (4.5:1), AAA (7:1), color blindness considerations
+- **Inclusive design principles**: Universal usability, cognitive accessibility
+- **Assistive technology**: Voice control, switch access, screen magnification support
+- **Automated testing**: axe-core, WAVE, Lighthouse, jest-axe integration
+
+## UI Design & Visual Systems
+
+- **Atomic design methodology**: Atoms, molecules, organisms, templates, pages
+- **Component states**: Default, hover, active, focus, disabled, error, loading
+- **Layout systems**: CSS Grid, Flexbox, responsive grids, container queries
+- **Visual fundamentals**: Color theory, typography systems, iconography, shadows
+- **Design tokens**: CSS custom properties, theming systems, dark mode
+- **Design-to-code**: Tailwind CSS, CSS-in-JS, CSS Modules, SVG optimization
+- **Prototyping**: Wireframing, high-fidelity prototyping, interaction design
+- **Animation principles**: Micro-interactions, transitions, skeleton loaders
