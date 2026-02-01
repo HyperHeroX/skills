@@ -531,17 +531,22 @@ DELETE FROM users WHERE id = 123;
 
 ---
 
-## 🔍 Indexing 優化 (Indexing Optimization)
+---
 
-### Index 類型 (Index Types)
+## 📖 進階主題
 
-| Index 類型 | 適用場景 | PostgreSQL 語法 | 備註 |
-|-----------|---------|----------------|------|
-| **B-tree Index** | 等值查詢, 範圍查詢 | `CREATE INDEX idx_users_email ON users(email);` | ✅ 預設 Index 類型 |
-| **Hash Index** | 等值查詢 (無範圍) | `CREATE INDEX idx_users_email ON users USING hash(email);` | ⚠️ 效能略優於 B-tree (僅等值查詢) |
-| **GIN Index** | 全文搜尋, JSONB 查詢, 陣列查詢 | `CREATE INDEX idx_products_name_fts ON products USING gin(to_tsvector('english', name));` | ✅ 適用於複雜資料結構 |
-| **GiST Index** | 地理空間查詢 | `CREATE INDEX idx_stores_location ON stores USING gist(location);` | ✅ PostGIS 擴充支援 |
-| **BRIN Index** | 時間序列資料 (大表) | `CREATE INDEX idx_logs_created_at ON logs USING brin(created_at);` | ✅ 儲存空間小, 適用於 Append-only 資料 |
+以下進階主題已拆分至獨立文件：
+
+- **Indexing 優化**: 請參閱 [database-operations-guide.md](./database-operations-guide.md#-indexing-優化-indexing-optimization)
+- **Database Sharding**: 請參閱 [database-operations-guide.md](./database-operations-guide.md#️-database-sharding)
+- **Database Migration**: 請參閱 [database-operations-guide.md](./database-operations-guide.md#-database-migration)
+- **ORM 最佳實踐**: 請參閱 [database-operations-guide.md](./database-operations-guide.md#️-orm-最佳實踐)
+- **Database Security**: 請參閱 [database-operations-guide.md](./database-operations-guide.md#-database-security)
+- **Backup & DR**: 請參閱 [database-operations-guide.md](./database-operations-guide.md#-backup--disaster-recovery)
+
+---
+
+## 📚 參考資料 (References)
 
 **決策**:
 - ✅ **預設使用 B-tree Index** (等值 + 範圍查詢)
