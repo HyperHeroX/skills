@@ -54,7 +54,7 @@
 ### 4.1 專用通道（Exclusive Channel）
 
 - 所有對使用者的溝通（進度更新、問題、摘要、建議、結論）一律**只透過**  
-  `user-web-feedback` 進行。
+  `mcp_user-web-feed_collect_feedback` 進行。
 
 ### 4.2 主視窗使用限制
 
@@ -80,7 +80,7 @@
 
 ### 4.5 行動導向（Action-Oriented）
 
-- 每次收到 user-web-feedback MCP 回覆後，必須先執行至少一個具體的 repo action  
+- 每次收到 MCP 回覆後，必須先執行至少一個具體的 repo action  
   （讀檔、搜尋、執行命令、修改程式碼等），再進行下一次 MCP 回報。
 - 不得在多次 MCP 溝通之間只停留在思考或規劃層級，必須有可驗證的實際進度。
 
@@ -160,6 +160,42 @@
 
 ## 8. 核心開發流程（Skills / Serena / MCP / E2E）
 
+### 8.0 🚨 Session Resume Protocol（會話恢復協議 — MANDATORY）
+
+> **本節為最高優先級流程閘門。任何 AI 在恢復會話或發現待辦任務時，必須在執行任何實作之前完成本協議。**
+
+#### 觸發條件（任一成立即觸發）
+- 會話從摘要（summary）或轉錄（transcript）恢復
+- 存在來自上一次會話的待辦 TODO 項目
+- 使用者說「continue」、「resume」、「繼續」、「接著做」
+- `docs/tasks/` 中存在尚未透過 OpenSpec 處理的 task .md 檔案
+- `docs/.devteam/status.json` 存在且 `current_step >= 7`（實作階段）
+
+#### 強制動作（按順序執行）
+1. **宣告**：「⚠️ 偵測到會話恢復。正在執行 OpenSpec 流程檢查清單。」
+2. **讀取狀態**：讀取 `docs/.devteam/status.json` 確認當前步驟
+3. **盤點任務**：掃描 `docs/tasks/phase{n}/` 中所有 task .md 檔案
+4. **檢查 OpenSpec**：執行 `openspec list --json` 確認現有 changes
+5. **映射**：將每個未完成的 task .md 對應到 OpenSpec change
+6. **產生執行計畫**：按照工程師執行順序（BE → FE → Test → CI/CD）排列
+7. **確認**：向使用者確認執行計畫
+8. **執行**：開始 auto-continue loop，直到所有任務完成
+
+#### 核心規則（不可違反）
+- **一個 task .md = 一個 OpenSpec change**：Dev Lead 產出的每個 task .md 檔案必須有獨立的 OpenSpec 生命週期
+- **完整生命週期**：每個 task 必須完成 `new → continue/ff → apply → verify → archive` 全流程
+- **循序處理**：完成一個 task 的完整 OpenSpec 生命週期後，才開始下一個 task
+- **不得停止**：AI 不得在任務之間停止，除非 circuit breaker 觸發或使用者明確說「pause/stop」
+- **task .md 是唯一真相來源**：`docs/tasks/phase{n}/` 中的 task .md 定義「做什麼」，OpenSpec 追蹤「如何做」
+- **禁止直接實作**：未建立對應 OpenSpec change 之前，禁止修改任何原始碼
+
+#### 詳細流程
+請讀取 `openspec-session-resume` Skill 取得完整步驟說明。
+
+---
+
+### 8.1 標準開發流程
+
 1. 確認任務是否需要 Skills，並搜尋 `.claude` 中的所有 Agents、Commands、Skills、References、Tools。
 2. 若有合適 Skills → 優先使用 Skills 完成開發；若無 → 使用其他工具。
 3. 所有原始碼探索與結構理解 → 優先使用 Serena MCP 工具。
@@ -175,7 +211,7 @@
 8. 若部署或測試過程中出現問題：
    - 記錄於 `docs/obstacles.md`。
    - 回到相應任務持續修復，直到所有問題清除。
-9. 全部任務完成後，使用 user-web-feedback MCP 通知使用者任務完成，並等待後續指示：
+9. 全部任務完成後，使用 `mcp_user-web-feed_collect_feedback` 通知使用者任務完成，並等待後續指示：
    - 若使用者要求繼續其他任務 → 回到步驟 1。
    - 若使用者要求處理特定問題 → 依 E2E 流程重新測試與修復。
 
@@ -183,7 +219,7 @@
 
 ### 9.1 Output Gate 的硬性流程（避免忘記走 MCP / Serena-first）
 
-- 任何對使用者的輸出（提問、報告、建議、結論）→ 一律透過 `user-web-feedback`，並等待回覆。
+- 任何對使用者的輸出（提問、報告、建議、結論）→ 一律透過 `mcp_user-web-feed_collect_feedback`，並等待回覆。
 - 收到 MCP 回覆後，在下一次 MCP 回報前，必須先完成至少一個 repo action。
 - 當需求切換、換題或新增子問題時：
   - 視為新任務。
@@ -234,9 +270,12 @@
 
 ## 10. 強制指令總結
 
+- 🚨 **強制執行 Session Resume Protocol**：會話恢復時必須先執行 §8.0，禁止跳過。
+- 🚨 **強制一個 task .md = 一個 OpenSpec change**：Dev Lead 產出的每個 task .md 必須獨立走完 OpenSpec 生命週期（new → continue → apply → verify → archive），完成一個才能開始下一個。
+- 🚨 **強制不停止**：AI 在處理 task 序列時不得自行停止，除非 circuit breaker 觸發或使用者明確暫停。
 - 強制使用 Skills 進行開發（若有適用 Skills）。 
 - 強制使用 Serena MCP 工具進行原始碼探索與分析。
-- 強制使用 user-web-feedback MCP 進行通訊與回報（opencode 特例除外）。
+- 強制使用 `mcp_user-web-feed_collect_feedback` 進行通訊與回報（opencode 特例除外）。
 - 強制使用 `chrome-devtools-mcp` 進行瀏覽器操作與 E2E 測試。
 - 強制使用 Podman 啟動容器進行整體驗證。
 - 實作時必須仔細思考：
@@ -291,7 +330,7 @@
 本專案採用嚴格的開發流程模擬規範 (OpenSpec)，所有功能開發必須遵循以下標準。
 
 ### 13.1 開發流程模擬 (Dev Team Simulation)
-執行功能開發時，必須依據 `devtem` Skill 定義的角色與流程進行：
+執行功能開發時，必須依據 `devteam` Skill 定義的角色與流程進行：
 1. **Product Manager**: 需求訪談與確認。
 2. **System Architect**: 產出系統架構文件與 `env.md` (`docs/FormatSample/範例-系統分析.md`)。
 3. **System Analyst**: 產出系統分析文件。

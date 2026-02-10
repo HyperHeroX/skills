@@ -4,7 +4,88 @@ This document contains the detailed 11-step workflow for the devteam skill.
 
 ---
 
-## � Language Configuration
+## 🚨 Session Resume Guard (MANDATORY — Read FIRST)
+
+> **If this is a resumed session (from summary, transcript, or pending TODOs), STOP HERE and execute the `openspec-session-resume` skill BEFORE doing anything else.**
+
+### Step 0: Configuration Sync (AUTO — Runs Before Everything)
+
+> **This step runs AUTOMATICALLY before any workflow step, including session resume.**
+
+The AI MUST execute the `devteam-config-sync` skill to ensure the user's project configuration files contain the mandatory devteam/OpenSpec rules:
+
+1. **Check** user's `AGENTS.md` and `copilot-instructions.md` for `<!-- DEVTEAM-RULES-START -->` marker
+2. **If missing** → read injection template from `devteam/references/config-injection/agents-md-injection.md`
+3. **Append** the rules block to the end of each file
+4. **If outdated** → replace the existing block with the updated version
+5. **Report** what was synced
+
+**Files to check:**
+- `./AGENTS.md` or `./.github/AGENTS.md`
+- `./.github/copilot-instructions.md` or `./copilot-instructions.md`
+
+**If file doesn't exist** → create it with the injection content as initial content.
+
+This ensures that even if the user has never set up these files, the AI will still have the mandatory rules available.
+
+---
+
+### Why This Section Exists
+
+AI agents frequently skip the structured OpenSpec workflow when resuming from conversation summaries. This section exists to prevent that failure mode.
+
+### Mandatory Pre-Implementation Checklist
+
+Before ANY implementation work in a resumed session:
+
+1. ✅ Read `docs/.devteam/status.json` to confirm current step
+2. ✅ Scan `docs/tasks/phase{n}/` for ALL task .md files
+3. ✅ Run `openspec list --json` to check existing changes
+4. ✅ Map each unfinished task .md to an OpenSpec change
+5. ✅ Present execution plan to user for confirmation
+6. ✅ Begin sequential processing: one task → one OpenSpec lifecycle → archive → next
+
+### Core Rules (Non-Negotiable)
+
+| Rule | Description |
+|------|-------------|
+| **1 task = 1 change** | Each task .md file from Dev Lead = one independent OpenSpec change lifecycle |
+| **Full lifecycle** | Every task: `new → continue/ff → apply → verify → archive` |
+| **Sequential** | Complete one task's full cycle before starting the next |
+| **No stopping** | AI continues until ALL tasks done (unless circuit breaker or user pause) |
+| **No direct code** | Never modify source code without an active OpenSpec change |
+| **Task .md = truth** | `docs/tasks/phase{n}/` defines WHAT to do; OpenSpec tracks HOW |
+
+### Task .md → OpenSpec Lifecycle Flow
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  FOR EACH task .md (be-t001.md → fe-t001.md → test-t001.md) │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  1. Read task .md content                                    │
+│  2. /opsx:new <task-id>-<description>                        │
+│  3. /opsx:continue (or /opsx:ff)                             │
+│     → proposal → specs → design → tasks                     │
+│  4. /opsx:apply → implement all sub-tasks                    │
+│  5. /opsx:verify → validate implementation                   │
+│  6. /opsx:archive → archive completed change                 │
+│  7. Mark task .md as ✅ complete                              │
+│  8. IMMEDIATELY move to next task .md                        │
+│                                                              │
+│  ⚠️ DO NOT STOP between tasks unless:                       │
+│     - Circuit breaker triggers                               │
+│     - User says "pause" or "stop"                            │
+│     - Unresolvable blocker                                   │
+│                                                              │
+│  ⚠️ DO NOT batch-implement without OpenSpec changes          │
+│  ⚠️ DO NOT skip any step in the lifecycle                    │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🌐 Language Configuration
 
 **JobDescription Files**: Written in English for AI comprehension.
 
@@ -12,9 +93,9 @@ This document contains the detailed 11-step workflow for the devteam skill.
 
 ---
 
-## �🔁 Workflow Process
+## 🔁 Workflow Process
 
-The AI drives this process **sequentially and autonomously**. Use `mcp_user-feedback_collect_feedback` only at:
+The AI drives this process **sequentially and autonomously**. Use `mcp_user-web-feed_collect_feedback` only at:
 - Major milestones (phase completion)
 - Blockers requiring user decision
 - High-risk changes
@@ -166,7 +247,22 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 │       │                                                          │
 │       ▼                                                          │
 │  ┌─────────────────────────────────────────────────────────────┐│
-│  │ STEP be-6: Task completion check                            ││
+│  │ STEP be-6: Verify implementation                            ││
+│  │ • Execute /opsx:verify <task-id>-<brief-description>        ││
+│  │ • Validate implementation matches change artifacts          ││
+│  │ • Ensure code compiles and unit tests pass                  ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-7: Archive change                                   ││
+│  │ • Execute /opsx:archive <task-id>-<brief-description>       ││
+│  │ • Sync delta specs to main specs if applicable              ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP be-8: Task completion check                            ││
 │  │ • Mark task complete, record execution notes & solutions    ││
 │  │ • Check if next be-t{nnn}.md exists                         ││
 │  │   └─ YES → Return to STEP be-1 for next backend task        ││
@@ -227,7 +323,22 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 │       │                                                          │
 │       ▼                                                          │
 │  ┌─────────────────────────────────────────────────────────────┐│
-│  │ STEP fe-4: Task completion check                            ││
+│  │ STEP fe-4: Verify implementation                            ││
+│  │ • Execute /opsx:verify <task-id>-<brief-description>        ││
+│  │ • Validate implementation matches change artifacts          ││
+│  │ • Ensure UI meets ui-ux-pro-max standards                   ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP fe-5: Archive change                                   ││
+│  │ • Execute /opsx:archive <task-id>-<brief-description>       ││
+│  │ • Sync delta specs to main specs if applicable              ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP fe-6: Task completion check                            ││
 │  │ • Mark task complete, record execution notes & solutions    ││
 │  │ • Check if next fe-t{nnn}.md exists                         ││
 │  │   └─ YES → Return to STEP fe-1 for next frontend task       ││
@@ -302,7 +413,22 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 │       │                                                          │
 │       ▼                                                          │
 │  ┌─────────────────────────────────────────────────────────────┐│
-│  │ STEP test-4: Task completion check                          ││
+│  │ STEP test-4: Verify implementation                          ││
+│  │ • Execute /opsx:verify <task-id>-<brief-description>        ││
+│  │ • Validate test coverage matches change artifacts           ││
+│  │ • Ensure all test cases pass verification                   ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP test-5: Archive change                                 ││
+│  │ • Execute /opsx:archive <task-id>-<brief-description>       ││
+│  │ • Sync delta specs to main specs if applicable              ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP test-6: Task completion check                          ││
 │  │ • Mark task complete, record execution notes & solutions    ││
 │  │ • If test failed → Create BUG Tasks                         ││
 │  │   (be-bug-{nnn}.md, fe-bug-{nnn}.md)                        ││
@@ -346,9 +472,17 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 
 #### Step 10: Iteration (Process Check)
 - **Action**: Scan all phase directories in `docs/tasks/phase{n}/` for BUG tasks (`*-bug-{nnn}.md`).
-  - **YES**: Route bug tasks to appropriate engineers (Step 6/7/8) for fixing.
+  - **YES**: Route bug tasks to appropriate engineers (Step 7/8) for fixing.
+    - Bug fix follows full OpenSpec lifecycle: `/opsx:new` → `/opsx:apply` → `/opsx:verify` → `/opsx:archive`
+    - After all bugs fixed → Re-run affected test cases in Step 9
+    - After re-test → Return to Step 10 to re-check for new bugs
+    - Loop continues until no BUG tasks remain
   - **NO**: Proceed to Step 11.
 - **State Update**: If bugs exist, update status but continue fixing cycle; do not block deployment preparation.
+- **Circuit Breaker + OpenSpec**: If circuit breaker triggers during a bug-fix OpenSpec lifecycle:
+  1. Record the in-progress OpenSpec change ID in `circuit_breaker.json` (`interrupted_change` field)
+  2. On session resume, the Session Resume Protocol will detect and recover the interrupted change
+  3. Resume the OpenSpec lifecycle from the last completed step (e.g., if `apply` was done, resume at `verify`)
 
 #### Step 11: Deployment (CI/CD Engineer)
 - **Goal**: Deploy the stable solution.
@@ -401,7 +535,15 @@ The AI drives this process **sequentially and autonomously**. Use `mcp_user-feed
 │       │                                                          │
 │       ▼                                                          │
 │  ┌─────────────────────────────────────────────────────────────┐│
-│  │ STEP cicd-5: Task completion and archival                   ││
+│  │ STEP cicd-5: Verify implementation                          ││
+│  │ • Execute /opsx:verify <task-id>-<brief-description>        ││
+│  │ • Validate deployment matches change artifacts              ││
+│  │ • Ensure all E2E tests pass on Stage environment            ││
+│  └─────────────────────────────────────────────────────────────┘│
+│       │                                                          │
+│       ▼                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ STEP cicd-6: Task completion and archival                   ││
 │  │ • Mark task complete, record execution notes & solutions    ││
 │  │ • Execute /opsx:archive to archive completed change         ││
 │  │ • Check if next cicd-t{nnn}.md exists                       ││

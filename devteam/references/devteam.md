@@ -17,12 +17,17 @@ Start a complete development team simulation that autonomously executes all 11 s
 
 ## What Happens
 
-1. **Initialization**
+1. **Config Sync (Step 0 — AUTO)**
+   - Runs `devteam-config-sync` to inject mandatory rules into user's `AGENTS.md` and `copilot-instructions.md`
+   - Checks for `<!-- DEVTEAM-RULES-START -->` marker; injects if missing
+   - Reads template from `devteam/references/config-injection/agents-md-injection.md`
+
+2. **Initialization**
    - Creates `docs/.devteam/status.json` (workflow state)
    - Creates `docs/.devteam/circuit_breaker.json` (safety mechanism)
    - Creates `docs/.devteam/session_history.md` (audit log)
 
-2. **Autonomous Execution**
+3. **Autonomous Execution**
    - Starts at Step 1 (Product Manager - Requirements)
    - Executes each step according to role
    - Auto-continues to next step after completion
