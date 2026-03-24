@@ -1,4 +1,3 @@
-````skill
 ---
 name: openspec-session-resume
 description: |
@@ -311,4 +310,3 @@ The rule is embedded in **SEVEN** separate locations to ensure no AI can miss it
 
 Even if the user's `AGENTS.md` / `copilot-instructions.md` don't originally contain these rules,
 the `devteam-config-sync` skill (Step 0) will automatically inject them before any workflow begins.
-````

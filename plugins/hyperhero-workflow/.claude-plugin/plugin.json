@@ -1,0 +1,26 @@
+{
+  "name": "hyperhero-workflow",
+  "description": "HyperHeroX 開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程 + OpenSpec SDD 驅動開發，完整涵蓋規劃到部署的軟體開發生命週期",
+  "version": "1.0.0",
+  "author": {
+    "name": "HyperHeroX"
+  },
+  "keywords": ["development", "team-simulation", "workflow", "openspec", "sdd", "devops"],
+  "license": "MIT",
+  "commands": [
+    "./commands/"
+  ],
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/scripts/devteam-stop-hook.mjs"
+          }
+        ]
+      }
+    ]
+  }
+}

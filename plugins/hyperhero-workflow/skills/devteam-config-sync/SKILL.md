@@ -1,4 +1,3 @@
-````skill
 ---
 name: devteam-config-sync
 description: |
@@ -167,4 +166,3 @@ This skill is called automatically by:
 | `openspec-session-resume` | Before session resume processing |
 
 The AI executing any of these workflows MUST run config-sync first.
-````

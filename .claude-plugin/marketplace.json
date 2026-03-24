@@ -1,0 +1,23 @@
+{
+  "name": "hyperhero-skills",
+  "owner": {
+    "name": "HyperHeroX"
+  },
+  "metadata": {
+    "description": "HyperHeroX 開發團隊模擬與全流程開發技能套件",
+    "version": "2.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "hyperhero-workflow",
+      "source": "hyperhero-workflow",
+      "description": "開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程 + OpenSpec SDD 驅動開發"
+    },
+    {
+      "name": "hyperhero-tools",
+      "source": "hyperhero-tools",
+      "description": "輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發"
+    }
+  ]
+}

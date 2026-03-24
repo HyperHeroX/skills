@@ -5,7 +5,7 @@
 - 規範：[.github/copilot-instructions.md](./.github/copilot-instructions.md)
 - 專案文檔：[docs](./docs)
 - 專案資料：[README.md](./README.md)
-- 環境資訊：[docs/Environment/env.md](../docs/Environment/env.md)
+- 環境資訊：[plugins/devteam/references/Environment/env.md](./plugins/devteam/references/Environment/env.md)
 
 ## 2. 🚨 Non-Negotiable Directives & Operational Rules
 
@@ -144,7 +144,7 @@
 
 ### 7.3 E2E 測試目標站點
 
-詳見 [docs/Environment/env.md](../docs/Environment/env.md)
+詳見 [plugins/devteam/references/Environment/env.md](./plugins/devteam/references/Environment/env.md)
 
 ### 7.4 Railway 部署檢查流程
 
@@ -288,7 +288,7 @@
 
 ## 11. 專案資料
 
-詳見 [docs/Environment/env.md](../docs/Environment/env.md)
+詳見 [plugins/devteam/references/Environment/env.md](./plugins/devteam/references/Environment/env.md)
 
 ## 12. UI/UX Design Standards (UI-UX-Pro-Max)
 
@@ -332,11 +332,11 @@
 ### 13.1 開發流程模擬 (Dev Team Simulation)
 執行功能開發時，必須依據 `devteam` Skill 定義的角色與流程進行：
 1. **Product Manager**: 需求訪談與確認。
-2. **System Architect**: 產出系統架構文件與 `env.md` (`docs/FormatSample/範例-系統分析.md`)。
+2. **System Architect**: 產出系統架構文件與 `env.md` (`plugins/devteam/references/FormatSample/範例-系統分析.md`)。
 3. **System Analyst**: 產出系統分析文件。
 4. **Project Manager**: 制定開發計畫與里程碑。
-5. **Database Architect**: 資料庫設計 (`docs/FormatSample/範例-資料庫設計.md`)。
-6. **Dev Lead**: 拆解詳細任務 (`docs/FormatSample/範例-模組開發計劃.md`) - 資深全端工程師，25年經驗，CISSP證照，必須將所有功能拆解至最小粒度。
+5. **Database Architect**: 資料庫設計 (`plugins/devteam/references/FormatSample/範例-資料庫設計.md`)。
+6. **Dev Lead**: 拆解詳細任務 (`plugins/devteam/references/FormatSample/範例-模組開發計劃.md`) - 資深全端工程師，25年經驗，CISSP證照，必須將所有功能拆解至最小粒度。
 7. **Backend/Frontend/QA/CI-CD**: 依據職務說明書進行開發、測試與部署。
 
 ### 13.2 文件與格式規範

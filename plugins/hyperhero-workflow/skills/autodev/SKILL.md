@@ -335,7 +335,7 @@ FOR EACH 後端任務:
 - [ ] 敏感資料加密
 - [ ] 日誌不包含敏感資訊
 
-**詳細檢查清單**: [references/phase-checklists/phase-1-security.md](references/phase-checklists/phase-1-security.md)
+**詳細檢查清單**: [references/phase-checklists/phase-1-security.md](../../references/phase-checklists/phase-1-security.md)
 
 ### 交付物
 
@@ -380,7 +380,7 @@ FOR EACH 後端任務:
 - [ ] 快取策略
 - [ ] 前端打包優化
 
-**詳細檢查清單**: [references/phase-checklists/phase-2-code-review.md](references/phase-checklists/phase-2-code-review.md)
+**詳細檢查清單**: [references/phase-checklists/phase-2-code-review.md](../../references/phase-checklists/phase-2-code-review.md)
 
 ### 交付物
 
@@ -416,7 +416,7 @@ FOR EACH 後端任務:
 - [ ] 組件測試 (前端)
 - [ ] E2E 測試 (使用者流程)
 
-**測試範例**: [references/test-examples.md](references/test-examples.md)
+**測試範例**: [references/test-examples.md](../../references/test-examples.md)
 
 ### 交付物
 
@@ -460,7 +460,7 @@ FOR EACH 後端任務:
 - [ ] Container 健康檢查配置
 - [ ] 日誌管理
 
-**部署指南**: [references/deployment-guide.md](references/deployment-guide.md)
+**部署指南**: [references/deployment-guide.md](../../references/deployment-guide.md)
 
 ### 交付物
 
@@ -502,7 +502,7 @@ FOR EACH 後端任務:
 - [ ] Tablet
 - [ ] Mobile
 
-**測試範例**: [references/test-examples.md](references/test-examples.md)
+**測試範例**: [references/test-examples.md](../../references/test-examples.md)
 
 ### 交付物
 
@@ -539,7 +539,7 @@ FOR EACH 後端任務:
 - [ ] 焦點指示器可見性
 - [ ] 螢幕閱讀器相容性
 
-**視覺檢查項目**: [references/visual-testing.md](references/visual-testing.md)
+**視覺檢查項目**: [references/visual-testing.md](../../references/visual-testing.md)
 
 ### 交付物
 
@@ -586,7 +586,7 @@ FOR EACH 後端任務:
 - [ ] 改善命名
 - [ ] 增強型別定義
 
-**優化清單**: [references/optimization-checklist.md](references/optimization-checklist.md)
+**優化清單**: [references/optimization-checklist.md](../../references/optimization-checklist.md)
 
 ### 交付物
 
@@ -625,8 +625,8 @@ FOR EACH 後端任務:
 
 #### 10.4 驗收報告
 
-**詳細檢查清單**: [references/acceptance-checklist.md](references/acceptance-checklist.md)  
-**報告模板**: [references/acceptance-template.md](references/acceptance-template.md)
+**詳細檢查清單**: [references/acceptance-checklist.md](../../references/acceptance-checklist.md)  
+**報告模板**: [references/acceptance-template.md](../../references/acceptance-template.md)
 
 ### 交付物
 
@@ -756,15 +756,15 @@ task(
 
 | 文件 | 說明 |
 |------|------|
-| [references/planning-guide.md](references/planning-guide.md) | 規劃階段詳細指南（devteam 使用） |
-| [references/development-workflows.md](references/development-workflows.md) | 開發工作流程詳解 |
-| [references/test-examples.md](references/test-examples.md) | 單元測試與 E2E 測試範例 |
-| [references/deployment-guide.md](references/deployment-guide.md) | 容器化部署完整指南 |
-| [references/visual-testing.md](references/visual-testing.md) | 視覺回歸測試指南 |
-| [references/optimization-checklist.md](references/optimization-checklist.md) | 效能優化檢查清單 |
-| [references/acceptance-checklist.md](references/acceptance-checklist.md) | 最終驗收完整檢查清單 |
-| [references/acceptance-template.md](references/acceptance-template.md) | 最終驗收報告模板 |
-| [references/phase-checklists/](references/phase-checklists/) | 各階段詳細檢查清單 |
+| [references/planning-guide.md](../../references/planning-guide.md) | 規劃階段詳細指南（devteam 使用） |
+| [references/development-workflows.md](../../references/development-workflows.md) | 開發工作流程詳解 |
+| [references/test-examples.md](../../references/test-examples.md) | 單元測試與 E2E 測試範例 |
+| [references/deployment-guide.md](../../references/deployment-guide.md) | 容器化部署完整指南 |
+| [references/visual-testing.md](../../references/visual-testing.md) | 視覺回歸測試指南 |
+| [references/optimization-checklist.md](../../references/optimization-checklist.md) | 效能優化檢查清單 |
+| [references/acceptance-checklist.md](../../references/acceptance-checklist.md) | 最終驗收完整檢查清單 |
+| [references/acceptance-template.md](../../references/acceptance-template.md) | 最終驗收報告模板 |
+| [references/phase-checklists/](../../references/phase-checklists/) | 各階段詳細檢查清單 |
 
 ---
 

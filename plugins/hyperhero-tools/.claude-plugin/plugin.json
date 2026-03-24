@@ -1,0 +1,26 @@
+{
+  "name": "hyperhero-tools",
+  "description": "HyperHeroX 輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發",
+  "version": "1.0.0",
+  "author": {
+    "name": "HyperHeroX"
+  },
+  "keywords": ["testing", "e2e", "documentation", "ralph-loop", "iteration"],
+  "license": "MIT",
+  "commands": [
+    "./commands/"
+  ],
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/scripts/ralph-stop-hook.mjs"
+          }
+        ]
+      }
+    ]
+  }
+}

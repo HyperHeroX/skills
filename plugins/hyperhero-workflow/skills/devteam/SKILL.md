@@ -44,7 +44,7 @@ Before ANY workflow step, the AI **MUST** run the `devteam-config-sync` skill to
 
 **What it does:**
 1. Checks for `<!-- DEVTEAM-RULES-START -->` marker in user's files
-2. If missing → reads template from `devteam/references/config-injection/agents-md-injection.md`
+2. If missing → reads template from `../../references/config-injection/agents-md-injection.md`
 3. Appends the rules block to the user's files
 4. If marker exists but version is outdated → replaces with updated version
 
@@ -112,7 +112,7 @@ When stagnation detected (same error 3+ times):
 | **Implementation** | 7-8 | Backend → Frontend |
 | **Verification** | 9-11 | QA → Iteration Check → CI/CD |
 
-For detailed step-by-step instructions, see [references/workflow.md](references/workflow.md).
+For detailed step-by-step instructions, see [references/workflow.md](../../references/workflow.md).
 
 ## 📁 State Management
 
@@ -123,13 +123,13 @@ For detailed step-by-step instructions, see [references/workflow.md](references/
 | `docs/.devteam/session_history.md` | Audit log |
 | `docs/.devteam/progress_tracker.md` | Detailed progress |
 
-State templates available at [references/StateTemplate/](references/StateTemplate/).
+State templates available at [references/StateTemplate/](../../references/StateTemplate/).
 
 ## 🚨 Non-Negotiable Directives
 
 1. **Serena MCP First**: Use `mcp_oraios_serena_*` for all code exploration
 2. **MCP-Only Communication**: Report via `mcp_user-web-feed_collect_feedback`
-3. **Strict Formatting**: Follow `references/FormatSample/` templates
+3. **Strict Formatting**: Follow `../../references/FormatSample/` templates
 4. **UI/UX Standards**: Apply `ui-ux-pro-max` skill for frontend work
 5. **Pre-Commit Checks**: Build + Tests must pass before commit
 6. **Session Recovery**: Always check `docs/.devteam/status.json` on resume
@@ -159,24 +159,24 @@ EXIT_SIGNAL: true
 | `skip to step N` | Jump to step N |
 | `pause` | Save state and stop |
 
-For detailed command documentation, see [references/commands.md](references/commands.md).
+For detailed command documentation, see [references/commands.md](../../references/commands.md).
 
 ## 📚 Additional Resources
 
 ### Core Documentation
-- **Detailed Workflow**: [references/workflow.md](references/workflow.md)
-- **Commands Reference**: [references/commands.md](references/commands.md)
-- **Hook System**: [references/hooks.md](references/hooks.md)
+- **Detailed Workflow**: [references/workflow.md](../../references/workflow.md)
+- **Commands Reference**: [references/commands.md](../../references/commands.md)
+- **Hook System**: [references/hooks.md](../../references/hooks.md)
 
 ### Configuration
-- **Circuit Breaker**: [references/circuit_breaker.json](references/circuit_breaker.json)
-- **Response Analyzer**: [references/response_analyzer.json](references/response_analyzer.json)
+- **Circuit Breaker**: [references/circuit_breaker.json](../../references/circuit_breaker.json)
+- **Response Analyzer**: [references/response_analyzer.json](../../references/response_analyzer.json)
 
 ### Reference Materials
-- **Role Definitions**: [references/JobDescription/](references/JobDescription/)
-- **Document Templates**: [references/FormatSample/](references/FormatSample/)
-- **State Templates**: [references/StateTemplate/](references/StateTemplate/)
-- **Environment Info**: [references/Environment/](references/Environment/)
+- **Role Definitions**: [references/JobDescription/](../../references/JobDescription/)
+- **Document Templates**: [references/FormatSample/](../../references/FormatSample/)
+- **State Templates**: [references/StateTemplate/](../../references/StateTemplate/)
+- **Environment Info**: [references/Environment/](../../references/Environment/)
 
 ### Plugin (Claude Code Only)
 - **Stop Hook**: [plugin/stop-hook.sh](plugin/stop-hook.sh)
