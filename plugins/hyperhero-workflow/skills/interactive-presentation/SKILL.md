@@ -1,7 +1,6 @@
 ---
 name: interactive-presentation
 description: "This skill should be used when the user asks to \"create a presentation\", \"generate slides\", \"make an interactive demo\", \"create HTML animation\", \"generate PPT\", \"build a slideshow\", \"create a visual explainer\", or wants to convert text content into animated HTML presentations. Supports three-step workflow: base HTML generation, PPT-style template restructuring, and optional flowchart-style layout."
-version: 1.0.0
 ---
 
 # Interactive Presentation: AI-Driven HTML Presentation Generator

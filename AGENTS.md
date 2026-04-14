@@ -168,29 +168,25 @@
 - 會話從摘要（summary）或轉錄（transcript）恢復
 - 存在來自上一次會話的待辦 TODO 項目
 - 使用者說「continue」、「resume」、「繼續」、「接著做」
-- `docs/tasks/` 中存在尚未透過 OpenSpec 處理的 task .md 檔案
+- `docs/tasks/` 中存在尚未處理的 task .md 檔案
 - `docs/.devteam/status.json` 存在且 `current_step >= 7`（實作階段）
 
 #### 強制動作（按順序執行）
-1. **宣告**：「⚠️ 偵測到會話恢復。正在執行 OpenSpec 流程檢查清單。」
+1. **宣告**：「⚠️ 偵測到會話恢復。正在執行流程檢查清單。」
 2. **讀取狀態**：讀取 `docs/.devteam/status.json` 確認當前步驟
 3. **盤點任務**：掃描 `docs/tasks/phase{n}/` 中所有 task .md 檔案
-4. **檢查 OpenSpec**：執行 `openspec list --json` 確認現有 changes
-5. **映射**：將每個未完成的 task .md 對應到 OpenSpec change
-6. **產生執行計畫**：按照工程師執行順序（BE → FE → Test → CI/CD）排列
-7. **確認**：向使用者確認執行計畫
-8. **執行**：開始 auto-continue loop，直到所有任務完成
+4. **檢查進度**：確認已完成與未完成的任務
+5. **產生執行計畫**：按照工程師執行順序（BE → FE → Test → CI/CD）排列
+6. **確認**：向使用者確認執行計畫
+7. **執行**：開始 auto-continue loop，直到所有任務完成
+
+> **OpenSpec 整合（條件式）**：若專案已安裝 OpenSpec 相關 skills，則每個 task .md 應對應一個 OpenSpec change，
+> 並遵循 `new → continue/ff → apply → verify → archive` 生命週期。若未安裝 OpenSpec skills，則直接按任務順序實作。
 
 #### 核心規則（不可違反）
-- **一個 task .md = 一個 OpenSpec change**：Dev Lead 產出的每個 task .md 檔案必須有獨立的 OpenSpec 生命週期
-- **完整生命週期**：每個 task 必須完成 `new → continue/ff → apply → verify → archive` 全流程
-- **循序處理**：完成一個 task 的完整 OpenSpec 生命週期後，才開始下一個 task
+- **循序處理**：完成一個 task 後，才開始下一個 task
 - **不得停止**：AI 不得在任務之間停止，除非 circuit breaker 觸發或使用者明確說「pause/stop」
-- **task .md 是唯一真相來源**：`docs/tasks/phase{n}/` 中的 task .md 定義「做什麼」，OpenSpec 追蹤「如何做」
-- **禁止直接實作**：未建立對應 OpenSpec change 之前，禁止修改任何原始碼
-
-#### 詳細流程
-請讀取 `openspec-session-resume` Skill 取得完整步驟說明。
+- **task .md 是唯一真相來源**：`docs/tasks/phase{n}/` 中的 task .md 定義「做什麼」
 
 ---
 
@@ -271,7 +267,7 @@
 ## 10. 強制指令總結
 
 - 🚨 **強制執行 Session Resume Protocol**：會話恢復時必須先執行 §8.0，禁止跳過。
-- 🚨 **強制一個 task .md = 一個 OpenSpec change**：Dev Lead 產出的每個 task .md 必須獨立走完 OpenSpec 生命週期（new → continue → apply → verify → archive），完成一個才能開始下一個。
+- 🚨 **強制循序處理 task**：完成一個 task 才開始下一個。若有安裝 OpenSpec skills，每個 task .md 須走完 OpenSpec 生命週期。
 - 🚨 **強制不停止**：AI 在處理 task 序列時不得自行停止，除非 circuit breaker 觸發或使用者明確暫停。
 - 強制使用 Skills 進行開發（若有適用 Skills）。 
 - 強制使用 Serena MCP 工具進行原始碼探索與分析。
@@ -325,22 +321,25 @@
 - **Responsive**: `width=device-width`, 字體在手機上至少 16px。
 - **No Horizontal Scroll**: 確保內容適配視口寬度。
 
-## 13. OpenSpec & Development Standards
+## 13. Development Standards
 
-本專案採用嚴格的開發流程模擬規範 (OpenSpec)，所有功能開發必須遵循以下標準。
+本專案採用開發流程模擬規範，所有功能開發遵循以下標準。
 
 ### 13.1 開發流程模擬 (Dev Team Simulation)
 執行功能開發時，必須依據 `devteam` Skill 定義的角色與流程進行：
 1. **Product Manager**: 需求訪談與確認。
-2. **System Architect**: 產出系統架構文件與 `env.md` (`plugins/devteam/references/FormatSample/範例-系統分析.md`)。
+2. **System Architect**: 產出系統架構文件與 `env.md`。
 3. **System Analyst**: 產出系統分析文件。
 4. **Project Manager**: 制定開發計畫與里程碑。
-5. **Database Architect**: 資料庫設計 (`plugins/devteam/references/FormatSample/範例-資料庫設計.md`)。
-6. **Dev Lead**: 拆解詳細任務 (`plugins/devteam/references/FormatSample/範例-模組開發計劃.md`) - 資深全端工程師，25年經驗，CISSP證照，必須將所有功能拆解至最小粒度。
+5. **Database Architect**: 資料庫設計。
+6. **Dev Lead**: 拆解詳細任務 — 資深全端工程師，25年經驗，CISSP證照，必須將所有功能拆解至最小粒度。
 7. **Backend/Frontend/QA/CI-CD**: 依據職務說明書進行開發、測試與部署。
 
+> **OpenSpec 整合（條件式）**：若專案已安裝 OpenSpec skills，開發流程應整合 OpenSpec SDD 驅動開發模式。
+> 參考文件範本位於 `references/FormatSample/` 目錄下。
+
 ### 13.2 文件與格式規範
-所有產出文件必須嚴格遵守 `docs/FormatSample` 下的 Markdown 格式，確保資訊結構一致性。
+所有產出文件必須嚴格遵守 `references/FormatSample` 下的 Markdown 格式，確保資訊結構一致性。
 
 ### 13.3 角色扮演與職責
-在執行任務時，Agent 必須明確切換並宣告當前扮演的角色，參考 `devteam/references/JobDescription` 中的定義。
+在執行任務時，Agent 必須明確切換並宣告當前扮演的角色，參考 `references/JobDescription` 中的定義。

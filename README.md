@@ -56,7 +56,7 @@ cp -r skills/plugins/hyperhero-tools/.claude-plugin ~/.claude/plugins/cache/hype
 
 ### hyperhero-workflow — 開發流程核心
 
-整合 devteam 團隊模擬、AutoDEV 全流程、OpenSpec SDD 驅動開發，完整涵蓋規劃到部署。
+整合 devteam 團隊模擬、AutoDEV 全流程開發，完整涵蓋規劃到部署。
 
 #### Slash Commands
 
@@ -71,11 +71,10 @@ cp -r skills/plugins/hyperhero-tools/.claude-plugin ~/.claude/plugins/cache/hype
 | Skill | 說明 | 觸發時機 |
 |-------|------|----------|
 | **devteam** | 11 步驟開發團隊模擬（需求 → 架構 → 分析 → 規劃 → DB → 拆任務 → 開發 → 測試 → 部署） | 使用 `/devteam` 指令 |
-| **autodev** | 10 階段全流程（規劃 → OpenSpec → 資安 → Code Review → 測試 → 部署 → UI → 視覺 → 優化 → 驗收） | 提及全流程開發、AutoDEV |
+| **autodev** | 10 階段全流程（規劃 → 資安 → Code Review → 測試 → 部署 → UI → 視覺 → 優化 → 驗收） | 提及全流程開發、AutoDEV |
 | **dotnet-enterprise** | .NET 10 企業級開發規範（Clean Architecture + DDD + MediatR CQRS） | 涉及 .NET、C#、EF Core、MediatR 等關鍵字 |
-| **openspec-*** | OpenSpec SDD 完整生命週期（12 skills） | 開發過程中自動觸發 |
-| **devteam-config-sync** | 自動注入 devteam/OpenSpec 規則到專案設定 | 專案初始化時 |
-| **openspec-session-resume** | 會話恢復時的強制 OpenSpec 流程閘門 | 會話恢復時 |
+| **interactive-presentation** | 互動式 HTML 簡報生成（含動畫、流程圖） | 提及簡報、presentation、投影片 |
+| **devteam-config-sync** | 自動注入 devteam 規則到專案設定 | 專案初始化時 |
 
 #### dotnet-enterprise Skill 詳細說明
 
@@ -170,13 +169,13 @@ skills/
 ├── plugins/
 │   ├── hyperhero-workflow/         # 開發流程核心
 │   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/ (16 skills)
+│   │   ├── skills/ (5 skills)
 │   │   │   ├── devteam/
 │   │   │   ├── autodev/
 │   │   │   ├── dotnet-enterprise/  # .NET 10 開發規範
-│   │   │   ├── openspec-*/         # OpenSpec SDD 生命週期
+│   │   │   ├── interactive-presentation/
 │   │   │   └── devteam-config-sync/
-│   │   ├── commands/ (3 commands)
+│   │   ├── commands/ (4 commands)
 │   │   ├── scripts/devteam-stop-hook.mjs
 │   │   └── references/
 │   └── hyperhero-tools/            # 輔助工具
