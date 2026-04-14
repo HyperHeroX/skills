@@ -54,16 +54,21 @@ See `devteam-config-sync` skill for full details.
 
 ## 🚨 Session Resume Guard (MANDATORY)
 
-When resuming from a conversation summary or when pending tasks exist, the AI **MUST** invoke the `openspec-session-resume` skill BEFORE any implementation work. This is a non-negotiable gate.
+When resuming from a conversation summary or when pending tasks exist, the AI **MUST** perform session resume processing BEFORE any implementation work. This is a non-negotiable gate.
 
-**Core Rules:**
+**Detection (three-tier — see `../../references/openspec-integration.md`):**
+1. **Tier 1** — If `openspec-session-resume` skill is installed → invoke via Skill tool
+2. **Tier 2** — If OpenSpec CLI is installed → run `openspec status` + manually scan pending tasks
+3. **Tier 3** — Scan `docs/tasks/phase{n}/` for unprocessed task .md files and resume accordingly
+
+**Core Rules (apply regardless of tier):**
 - Each task .md file (created by Dev Lead in Step 6) = one independent OpenSpec change lifecycle
 - Full lifecycle per task: `new → continue/ff → apply → verify → archive`
 - Process tasks sequentially; complete one before starting the next
 - AI does NOT stop until ALL tasks are completed
 - Never modify source code without an active OpenSpec change
 
-See `openspec-session-resume` skill for full details.
+For full Tier mechanics, see `../../references/openspec-integration.md`.
 
 ## ⚡ Autonomous Continuous Operation
 

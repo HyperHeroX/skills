@@ -98,24 +98,34 @@ task(
 
 使用 OpenSpec 規格驅動開發 (SDD) 實作功能需求，確保每個任務/規格都經過完整的 OpenSpec 生命週期。
 
-### 前置條件：OpenSpec 環境確認 (強制)
+### 前置條件：OpenSpec 環境檢測 (三層策略)
 
-在開始任何開發工作前，**必須**確認 OpenSpec 已安裝且為最新版本：
+本 plugin 不再綑綁 OpenSpec 輔助 skills。每個工作流步驟會依可用性自動選擇最佳執行路徑。完整機制參考 `../../references/openspec-integration.md`。
 
-```bash
-# 檢查 OpenSpec 是否安裝
-openspec --version
+**三層檢測順序：**
 
-# 若未安裝 → 安裝最新版本
-npm install -g @fission-ai/openspec@latest
-
-# 若已安裝但非最新版 → 更新
-npm install -g @fission-ai/openspec@latest
-
-# 在專案中初始化 OpenSpec（若尚未初始化）
-cd <project-root>
-openspec init
 ```
+步驟 1. 檢查是否已安裝 OpenSpec 輔助 skills（例如 openspec-new-change）
+        → 有：Tier 1 直接透過 Skill 工具呼叫（最佳體驗）
+        → 無：進入步驟 2
+
+步驟 2. 檢查 OpenSpec CLI 是否已安裝
+        $ openspec --version
+        → 有：Tier 2 使用 CLI 指令（openspec new / apply / verify / archive）
+        → 無：進入步驟 3
+
+步驟 3. Tier 3 內建 fallback
+        手動建立 docs/openspec/changes/<change-id>/
+        包含 proposal.md、specs/、design.md、tasks.md
+```
+
+**若用戶希望獲得最佳體驗，建議安裝 OpenSpec：**
+```bash
+npm install -g @fission-ai/openspec@latest
+cd <project-root> && openspec init
+```
+
+**完整對應表** 請參考 `../../references/openspec-integration.md`。
 
 ### 核心規則：OpenSpec 生命週期 (不可違反)
 
@@ -129,22 +139,39 @@ openspec init
 
 ### OpenSpec 任務執行流程 (強制)
 
+每個步驟依可用性自動選擇 Tier 1 / Tier 2 / Tier 3（詳見 `../../references/openspec-integration.md`）：
+
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │  FOR EACH 開發任務:                                          │
 ├──────────────────────────────────────────────────────────────┤
-│                                                              │
 │  1. 讀取任務需求描述                                         │
-│  2. /opsx:new <task-id>-<description>                        │
-│     → 建立 OpenSpec change（proposal + specs + design + tasks）│
-│  3. /opsx:continue (或 /opsx:ff 快速推進)                     │
-│     → 審閱並完善規格                                         │
-│  4. /opsx:apply                                              │
-│     → 依據規格實作程式碼                                     │
-│  5. /opsx:verify                                             │
-│     → 驗證實作是否符合規格                                   │
-│  6. /opsx:archive                                            │
-│     → 歸檔完成的 change                                      │
+│                                                              │
+│  2. 建立 change（proposal + specs + design + tasks）         │
+│     Tier 1: Skill(skill: "openspec-new-change")              │
+│     Tier 2: openspec new <task-id>-<description>             │
+│     Tier 3: 手動建立 docs/openspec/changes/<id>/             │
+│                                                              │
+│  3. 完善規格                                                 │
+│     Tier 1: openspec-continue-change / openspec-ff-change    │
+│     Tier 2: 編輯 proposal.md / specs/ / design.md            │
+│     Tier 3: 同 Tier 2                                        │
+│                                                              │
+│  4. 實作程式碼                                               │
+│     Tier 1: openspec-apply-change                            │
+│     Tier 2: openspec apply <change-id>                       │
+│     Tier 3: 依 specs/ 和 tasks.md 手動實作                   │
+│                                                              │
+│  5. 驗證實作                                                 │
+│     Tier 1: openspec-verify-change                           │
+│     Tier 2: openspec verify <change-id>                      │
+│     Tier 3: 對照 specs 手動檢查 + 執行 tasks.md 中的測試     │
+│                                                              │
+│  6. 歸檔 change                                              │
+│     Tier 1: openspec-archive-change                          │
+│     Tier 2: openspec archive <change-id>                     │
+│     Tier 3: 移至 docs/openspec/archived/<change-id>/         │
+│                                                              │
 │  7. 標記任務為 ✅ 完成                                        │
 │  8. 立即開始下一個任務                                       │
 │                                                              │

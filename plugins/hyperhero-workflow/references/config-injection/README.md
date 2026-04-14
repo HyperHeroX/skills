@@ -32,7 +32,7 @@ This system ensures those sections are automatically present.
 ## When Injection Happens
 
 - **devteam workflow Step 0** (Configuration Sync)
-- **openspec-session-resume** skill (before session resume processing)
+- **Session resume processing** (if `openspec-session-resume` skill is installed, else via Tier 2/3 fallback — see `../openspec-integration.md`)
 - **devteam-continue** command (before resuming)
 
 ## AI Instructions

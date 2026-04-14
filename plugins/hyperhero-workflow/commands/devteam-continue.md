@@ -21,13 +21,16 @@ Resume an interrupted devteam development team simulation.
    - Check for `<!-- DEVTEAM-RULES-START -->` marker; inject if missing
    - Read template from `devteam/references/config-injection/agents-md-injection.md`
 
-2. **🚨 Session Resume Guard (MANDATORY)**
-   - Before resuming ANY implementation, invoke the `openspec-session-resume` skill
-   - This skill scans `docs/tasks/phase{n}/` for unprocessed task .md files
+2. **🚨 Session Resume Guard (MANDATORY — three-tier detection)**
+   - Before resuming ANY implementation, perform session resume processing
+   - **Tier 1:** If `openspec-session-resume` skill is installed → invoke via Skill tool
+   - **Tier 2:** If OpenSpec CLI is installed → run `openspec status` + scan pending tasks manually
+   - **Tier 3:** Scan `docs/tasks/phase{n}/` for unprocessed task .md files and resume accordingly
    - Maps each task to an OpenSpec change
    - Ensures no task is implemented without going through the full OpenSpec lifecycle
    - Core rule: **1 task .md = 1 OpenSpec change** (new → continue → apply → verify → archive)
    - AI does NOT stop until ALL tasks are completed (auto-continue loop)
+   - Full mechanism: `../references/openspec-integration.md`
 
 3. **Check State**
    - Read `docs/.devteam/status.json`

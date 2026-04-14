@@ -6,7 +6,12 @@ This document contains the detailed 11-step workflow for the devteam skill.
 
 ## 🚨 Session Resume Guard (MANDATORY — Read FIRST)
 
-> **If this is a resumed session (from summary, transcript, or pending TODOs), STOP HERE and execute the `openspec-session-resume` skill BEFORE doing anything else.**
+> **If this is a resumed session (from summary, transcript, or pending TODOs), STOP HERE and perform session resume processing BEFORE doing anything else.**
+>
+> **Three-tier detection (see `openspec-integration.md`):**
+> - **Tier 1:** If `openspec-session-resume` skill is installed → invoke it via Skill tool
+> - **Tier 2:** If OpenSpec CLI is installed → `openspec status` + scan pending tasks
+> - **Tier 3:** Scan `docs/tasks/phase{n}/` for unprocessed task .md files
 
 ### Step 0: Configuration Sync (AUTO — Runs Before Everything)
 

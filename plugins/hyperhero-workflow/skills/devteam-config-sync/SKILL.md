@@ -25,7 +25,6 @@ metadata:
   runBefore:
     - devteam
     - devteam-continue
-    - openspec-session-resume
 ---
 
 # devteam Config Sync
@@ -163,6 +162,6 @@ This skill is called automatically by:
 |--------|------|
 | `devteam` SKILL.md | Step 0: Before starting any workflow step |
 | `devteam-continue` | Before resuming from saved state |
-| `openspec-session-resume` | Before session resume processing |
+| Session resume logic | Before session resume processing (see `../../references/openspec-integration.md`) |
 
 The AI executing any of these workflows MUST run config-sync first.
