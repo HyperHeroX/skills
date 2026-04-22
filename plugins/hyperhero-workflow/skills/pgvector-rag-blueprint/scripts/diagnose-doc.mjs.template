@@ -1,0 +1,74 @@
+// scripts/diagnose-doc.mjs
+// Diagnostic template adapted from LineBotRAG 2026-04-20 null-byte incident.
+// Fills a fault tree for a doc stuck in embed_failed / embed_partial.
+//
+// Usage: DATABASE_URL=postgres://... node scripts/diagnose-doc.mjs <bot_id> [<doc_name_substring>]
+import postgres from 'postgres'
+
+const [, , botIdArg, docNameHint] = process.argv
+const botId = Number(botIdArg)
+if (!botId) { console.error('usage: node diagnose-doc.mjs <botId> [docNameHint]'); process.exit(1) }
+
+const sql = postgres(process.env.DATABASE_URL, { ssl: 'require', max: 1 })
+
+try {
+  const [bot] = await sql`SELECT id, name, tenant_id, workspace_slug FROM bots WHERE id = ${botId}`
+  if (!bot) { console.error('bot not found'); process.exit(1) }
+  console.log(`\n=== bot ${bot.id} "${bot.name}" (tenant ${bot.tenant_id}) ===`)
+
+  const like = docNameHint ? `%${docNameHint}%` : '%'
+  const docs = await sql`
+    SELECT id, doc_name, status, is_embedded, chunk_count, expected_chunk_count,
+           (content IS NULL) AS content_null,
+           COALESCE(LENGTH(content), 0) AS content_len,
+           file_size, uploaded_at, updated_at, embedded_at
+    FROM bot_documents
+    WHERE bot_id = ${botId} AND doc_name LIKE ${like}
+    ORDER BY uploaded_at DESC LIMIT 20
+  `
+
+  for (const d of docs) {
+    console.log(`\n--- doc ${d.id} ---`)
+    console.log(`  name: ${d.doc_name}`)
+    console.log(`  status=${d.status} embedded=${d.is_embedded} chunks=${d.chunk_count}/${d.expected_chunk_count}`)
+    console.log(`  file_size=${d.file_size} content_len=${d.content_len} null=${d.content_null}`)
+    console.log(`  uploaded=${d.uploaded_at?.toISOString?.()}  updated=${d.updated_at?.toISOString?.()}  embedded=${d.embedded_at ?? 'null'}`)
+
+    if (d.status !== 'embedded') {
+      // Recent notifications
+      const notifs = await sql`
+        SELECT type, title, message, created_at
+        FROM notifications
+        WHERE (metadata->>'docId') = ${String(d.id)}
+        ORDER BY created_at DESC LIMIT 10
+      `
+      console.log(`  notifications (${notifs.length}):`)
+      for (const n of notifs) console.log(`    [${n.created_at.toISOString()}] ${n.type} ${n.title}`)
+
+      // error_logs in window
+      if (d.uploaded_at) {
+        const from = new Date(d.uploaded_at.getTime() - 60_000).toISOString()
+        const to = new Date((d.updated_at ?? d.uploaded_at).getTime() + 60_000).toISOString()
+        const errs = await sql`
+          SELECT level, source, message, created_at
+          FROM error_logs
+          WHERE created_at BETWEEN ${from}::timestamptz AND ${to}::timestamptz
+          ORDER BY created_at ASC LIMIT 20
+        `
+        console.log(`  error_logs in +/-60s window (${errs.length}):`)
+        for (const e of errs) console.log(`    [${e.created_at.toISOString()}] ${e.level}/${e.source}: ${(e.message || '').slice(0, 200)}`)
+      }
+    }
+
+    // Chunk stats
+    const [cs] = await sql`
+      SELECT COUNT(*)::int AS total,
+             COUNT(embedding)::int AS with_emb,
+             COUNT(*) FILTER (WHERE content IS NULL OR content = '')::int AS empty
+      FROM document_chunks WHERE document_id = ${d.id}
+    `
+    console.log(`  chunks: total=${cs.total} with_embedding=${cs.with_emb} empty=${cs.empty}`)
+  }
+} finally {
+  await sql.end()
+}
