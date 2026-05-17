@@ -1,0 +1,64 @@
+{
+  "skill_name": "llm-coworker",
+  "notes": "本 skill 為流程協調型（multi-LLM coordination），主觀性高，建議直接拿真實任務試。本檔案為觸發/結構性 sanity check，非完整功能評估。實際品質驗證請開兩個 Claude session 跑一段真實任務（例如本 repo 的 Sprint 計劃），觀察中繼檔流轉、報告產出與卡死處理是否如預期。",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想開兩個 Claude session，一個負責寫 D.1 sprint 的 company-roles 重構，另一個同時驗證它寫出來的東西能不能跑。怎麼讓它們自己同步進度，不要我手動搬訊息？",
+      "expected_behavior": "識別出這是雙 LLM 協作場景，呼叫 llm-coworker skill，說明角色機制（implementer/validator）、中繼檔位置 ~/.claude/coworker/<project-hash>/、報告目錄 docs/coworker-reports/，並建議使用者先在 implementer session init、再去 validator session claim。",
+      "expected_skill_invocations": ["llm-coworker"],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我是 validator，剛接手這個專案，怎麼開始？",
+      "expected_behavior": "讀 validator-guide.md，依序：跑 `node coworker.mjs path` + `get` 確認中繼檔存在 → `claim-validator --session-label X` → 進入輪詢 `wait-for awaiting_validation`。若中繼檔不存在則回報「請 implementer 先 init」，不可自行 init。",
+      "expected_skill_invocations": ["llm-coworker"],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我是 implementer，剛把 task-a 改完了，要怎麼通知 validator？",
+      "expected_behavior": "依 implementer-guide.md：(1) 寫 implementation report 到 docs/coworker-reports/implementation/YYYY-MM-DD-task-a.md (2) 跑 `node coworker.mjs report-implementation --report <path>` 自動轉為 awaiting_validation (3) 進入輪詢等驗證結果。不可自己 set-status approved。",
+      "expected_skill_invocations": ["llm-coworker"],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "驗證者拿到實作者交付的前端 UI 改動要怎麼驗？",
+      "expected_behavior": "依 validator-guide.md 至少組合 2 種驗證手段，且**必須**透過 Skill tool 呼叫 e2e-ui-testing skill 跑瀏覽器自動化測試（不可自己手刻 Playwright），其他組合：tsc 靜態檢查 / 既有測試 / API 黑箱 / 視覺檢查。系統未跑時先試自行啟動容器或要求 implementer 補 dev seed。",
+      "expected_skill_invocations": ["llm-coworker", "e2e-ui-testing"],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "validator 跑了三次 wait-for 都 timeout，implementer 那邊看起來沒在動，要怎麼處理？",
+      "expected_behavior": "依 troubleshooting + SKILL.md 失敗處理章節：主動回報使用者「另一端 session 似乎沒在動，最後心跳是 <ts>」，不繼續無聲輪詢；建議使用者去看 implementer session 或 `unlock --force` 處理殘留 lock；不可自行接手 implementer 工作改 production code。",
+      "expected_skill_invocations": ["llm-coworker"],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "幫我做一下這個專案的 D.1 sprint 重構",
+      "expected_behavior": "**不應**自動觸發 llm-coworker（這是單 session 的一般開發請求，沒有多 LLM 協作意圖）。應走 devteam / autodev / openspec 等一般流程。負例用，驗證 skill 沒被過度觸發。",
+      "expected_skill_invocations": [],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "我把另一個 Claude session 開好了，他要當 validator，我這邊是 implementer，session_id 應該是什麼？",
+      "expected_behavior": "說明 session_id 由 implementer 首次 init 時自動產生（預設為 YYYY-MM-DD-<title-slug>），不需要兩端互相約定；兩端只要在同一個專案根目錄（相同 project_hash）即可串起來。可用 `node coworker.mjs path` 互相比對中繼檔位置確認對齊。",
+      "expected_skill_invocations": ["llm-coworker"],
+      "files": []
+    }
+  ],
+  "assertions_strategy": {
+    "type": "qualitative",
+    "rationale": "skill 本身輸出的是『下一步該做什麼 / 跑哪個指令』，而不是固定格式產物。assertions 不適合機械化。建議以下三類定性檢查：(1) 是否正確識別角色並走對 guide；(2) 是否使用 coworker.mjs 而非手動讀寫 state.json；(3) UI 任務是否串接 e2e-ui-testing skill。",
+    "automation_possible": [
+      "在實際試跑後檢查 ~/.claude/coworker/<hash>/state.json 是否存在 + status 流轉合法",
+      "檢查 docs/coworker-reports/ 是否真的產出兩種報告檔",
+      "檢查 history append-only 是否正確記錄 reported / validated_pass / validated_rework 事件"
+    ]
+  }
+}
