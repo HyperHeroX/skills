@@ -1,6 +1,6 @@
 # 測試 7：Frontend Engineer（繁體中文環境）
 
-## 測試目的
+## 測試場景
 驗證 Frontend Engineer JD 在繁體中文環境下：
 1. ✅ 語言偵測正確（輸出為繁體中文）
 2. ✅ UI/UX 規範完整應用（ui-ux-pro-max integration）
@@ -35,7 +35,7 @@
 
 ---
 
-## 預期輸出（Frontend Engineer 回應）
+## 角色輸出（Frontend Engineer 預期輸出）
 
 ### Task: fe-t001 - Login Page UI
 
@@ -863,7 +863,7 @@ export const useAuth = () => {
 
 ---
 
-## 驗證指標
+## 驗證結果
 
 | 驗證項目 | 狀態 | 說明 |
 |---------|------|------|

@@ -12,7 +12,7 @@
 - Dev Lead 產出的任務拆解（chinese-devlead-test.md）
 - 具體任務：be-t001-st002, be-t001-st004
 
-## Backend Engineer 回應（AI 依偵測語言生成：繁體中文）
+## 角色輸出（Backend Engineer 回應，AI 依偵測語言生成：繁體中文）
 
 ---
 
@@ -345,7 +345,7 @@ describe('POST /api/auth/register - Password Hashing', () => {
 
 ---
 
-## 實作完成確認
+## 驗證結果（實作完成確認）
 
 - ✅ 實作檔案：`server/utils/auth.ts`
 - ✅ 單元測試：`server/utils/auth.spec.ts`（6 個測試案例）

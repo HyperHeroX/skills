@@ -13,7 +13,7 @@
 - System Architect 產出的系統架構
 - System Analyst 產出的系統分析文件（chinese-analyst-test.md）
 
-## Dev Lead 回應（AI 依偵測語言生成：繁體中文）
+## 角色輸出（Dev Lead 回應，AI 依偵測語言生成：繁體中文）
 
 ---
 
@@ -605,7 +605,7 @@ db-t001 → db-t002 → db-t003 → be-t001 → be-t002 → be-t003 → be-t004 
 
 ---
 
-## 測試驗證
+## 驗證結果
 
 ✅ **語言偵測**：文件以繁體中文生成  
 ✅ **原子化拆解**：所有任務 ≤ 2 天，子任務 ≤ 0.5 天  
