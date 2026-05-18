@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, stage, hiro/addnewfeature]
     paths:
-      - 'devteam/references/JobDescription/**'
+      - 'plugins/hyperhero-workflow/references/JobDescription/**'
       - 'test/multilang-test/**'
       - '.github/workflows/multilang-test.yml'
   pull_request:
@@ -83,14 +83,14 @@ jobs:
         run: |
           echo "📏 Verifying JD file sizes..."
           declare -A jd_targets=(
-            ["devteam/references/JobDescription/Dev_Lead.md"]=150
-            ["devteam/references/JobDescription/Product_Manager.md"]=150
-            ["devteam/references/JobDescription/System_Architect.md"]=150
-            ["devteam/references/JobDescription/CI_CD_Engineer.md"]=150
-            ["devteam/references/JobDescription/Senior_Backend_Engineer.md"]=150
-            ["devteam/references/JobDescription/Senior_Frontend_Engineer.md"]=150
-            ["devteam/references/JobDescription/System_Analyst.md"]=150
-            ["devteam/references/JobDescription/Senior_QA_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Dev_Lead_Job_Description.md"]=250
+            ["plugins/hyperhero-workflow/references/JobDescription/Product_Manager.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/System_Architect.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/CI_CD_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Senior_Backend_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Senior_Frontend_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/System_Analyst.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Senior_QA_Engineer.md"]=150
           )
           
           failed_checks=0
@@ -292,14 +292,14 @@ jobs:
           
           # Add JD files to table
           declare -A jd_targets=(
-            ["devteam/references/JobDescription/Dev_Lead.md"]=150
-            ["devteam/references/JobDescription/Product_Manager.md"]=150
-            ["devteam/references/JobDescription/System_Architect.md"]=150
-            ["devteam/references/JobDescription/CI_CD_Engineer.md"]=150
-            ["devteam/references/JobDescription/Senior_Backend_Engineer.md"]=150
-            ["devteam/references/JobDescription/Senior_Frontend_Engineer.md"]=150
-            ["devteam/references/JobDescription/System_Analyst.md"]=150
-            ["devteam/references/JobDescription/Senior_QA_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Dev_Lead_Job_Description.md"]=250
+            ["plugins/hyperhero-workflow/references/JobDescription/Product_Manager.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/System_Architect.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/CI_CD_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Senior_Backend_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Senior_Frontend_Engineer.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/System_Analyst.md"]=150
+            ["plugins/hyperhero-workflow/references/JobDescription/Senior_QA_Engineer.md"]=150
           )
           
           for file in "${!jd_targets[@]}"; do
@@ -364,7 +364,7 @@ jobs:
                 
                 ### Related Files
                 - Test files: \`test/multilang-test/*.md\`
-                - JD files: \`devteam/references/JobDescription/*.md\`
+                - JD files: \`plugins/hyperhero-workflow/references/JobDescription/*.md\`
                 - Workflow: \`.github/workflows/multilang-test.yml\`
               `,
               labels: ['bug', 'ci-failure', 'multilang-test']
@@ -382,7 +382,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Metrics" >> $GITHUB_STEP_SUMMARY
           total_test_files=$(find test/multilang-test -name "*.md" -type f | wc -l)
-          total_jd_files=$(find devteam/references/JobDescription -name "*.md" -type f | wc -l)
+          total_jd_files=$(find plugins/hyperhero-workflow/references/JobDescription -name "*.md" -type f | wc -l)
           echo "- Test files: $total_test_files" >> $GITHUB_STEP_SUMMARY
           echo "- JD files: $total_jd_files" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
