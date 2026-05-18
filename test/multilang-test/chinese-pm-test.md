@@ -1,6 +1,6 @@
 # 測試 8：Project Manager（繁體中文環境）
 
-## 測試目的
+## 測試場景
 驗證 Project Manager JD 在繁體中文環境下：
 1. ✅ 語言偵測正確（輸出為繁體中文）
 2. ✅ 甘特圖生成（Mermaid Gantt Chart）
@@ -46,7 +46,7 @@
 
 ---
 
-## 預期輸出（Project Manager 回應）
+## 角色輸出（Project Manager 預期輸出）
 
 # 專案計畫：待辦事項應用程式（Task Manager）
 
@@ -702,7 +702,7 @@ be-t003 → fe-t002 → fe-t003 → fe-t004 → test-t003 → cicd-t002
 
 ---
 
-## 驗證指標
+## 驗證結果
 
 | 驗證項目 | 狀態 | 說明 |
 |---------|------|------|
