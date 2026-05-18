@@ -1,11 +1,11 @@
 {
   "name": "hyperhero-workflow",
-  "description": "HyperHeroX 開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程 + OpenSpec SDD 驅動開發 + LLM CoWorker 多模型協作，完整涵蓋規劃到部署的軟體開發生命週期",
-  "version": "1.1.0",
+  "description": "HyperHeroX 開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程 + OpenSpec SDD 驅動開發 + LLM CoWorker 多模型協作 + TWAA 無障礙驗證，完整涵蓋規劃到部署的軟體開發生命週期",
+  "version": "1.2.0",
   "author": {
     "name": "HyperHeroX"
   },
-  "keywords": ["development", "team-simulation", "workflow", "openspec", "sdd", "devops", "llm-coworker", "multi-agent", "implementer-validator"],
+  "keywords": ["development", "team-simulation", "workflow", "openspec", "sdd", "devops", "llm-coworker", "multi-agent", "implementer-validator", "twaa", "accessibility", "wcag"],
   "license": "MIT",
   "commands": [
     "./commands/"

@@ -1,0 +1,51 @@
+# {{ page.title }} — 無障礙檢測報告
+
+**Path:** `{{ page.path }}`
+**檢測等級:** {{ level }}
+**最後更新:** {{ generated_at }}
+
+## 檢測結果矩陣
+
+| 指引 | 等級 | 狀態 | 嚴重度 | 檢測手段 |
+|------|------|------|--------|----------|
+{%- for gid, cell in page.cells.items() %}
+| {{ gid }} | {{ cell.level }} | {{ cell.status_emoji }} {{ cell.status }} | {{ cell.severity }} | {{ cell.checks | join(", ") }} |
+{%- endfor %}
+
+## 失敗條目細節
+
+{% for gid, cell in page.failed_cells.items() %}
+### {{ gid }} — {{ cell.guideline_title }}
+
+**狀態:** {{ cell.status_emoji }} {{ cell.status }}
+**嚴重度:** {{ cell.severity }}
+
+{% for issue in cell.issues %}
+- **位置:** `{{ issue.file }}:{{ issue.line }}`
+- **訊息:** {{ issue.message }}
+- **建議:** {{ issue.suggestion or "見 references/method-by-guideline.md" }}
+{% if issue.snippet %}
+
+```{{ issue.lang or "html" }}
+{{ issue.snippet }}
+```
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+
+## 框架嵌套地雷
+
+{% if page.framework_hazards %}
+{% for h in page.framework_hazards %}
+- **{{ h.pattern }}** ({{ h.framework }}) — 影響 {{ h.guideline }}
+  - 位置：`{{ h.file }}:{{ h.line }}`
+  - 修補建議：{{ h.fix }}
+{% endfor %}
+{% else %}
+未偵測到已知地雷。
+{% endif %}
+
+---
+
+_本檔由 twaa skill 產生。內容可重跑覆蓋。_

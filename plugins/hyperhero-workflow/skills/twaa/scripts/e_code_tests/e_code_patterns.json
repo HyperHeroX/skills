@@ -1,0 +1,1256 @@
+[
+  {
+    "code": "AR2410300E",
+    "type": "aria",
+    "criterion": "4.1.3",
+    "message": "使用ARIA role=status顯示狀態訊息"
+  },
+  {
+    "code": "AR2410301E",
+    "type": "aria",
+    "criterion": "4.1.3",
+    "message": "使用ARIA role=alert或aria-live來識別錯誤"
+  },
+  {
+    "code": "AR2410302E",
+    "type": "aria",
+    "criterion": "4.1.3",
+    "message": "使用ARIA role=log識別順序訊息更新"
+  },
+  {
+    "code": "AR3130600E",
+    "type": "aria",
+    "criterion": "1.3.6",
+    "message": "使用ARIA地標來識別網頁的區域"
+  },
+  {
+    "code": "CS1110113E",
+    "type": "css",
+    "criterion": "1.1.1",
+    "message": "裝飾性圖片均透過CSS來置入"
+  },
+  {
+    "code": "CS1110114E",
+    "type": "css",
+    "criterion": "1.1.1",
+    "message": "使用CSS方塊模型來處理版面設計，不要用佔位圖片"
+  },
+  {
+    "code": "CS1130103E",
+    "type": "css",
+    "criterion": "1.3.1",
+    "message": "文字的視覺呈現均以CSS來控制"
+  },
+  {
+    "code": "CS1130202E",
+    "type": "css",
+    "criterion": "1.3.2",
+    "message": "使用CSS來控制字詞內的字母間距"
+  },
+  {
+    "code": "CS1130203E",
+    "type": "css",
+    "criterion": "1.3.2",
+    "message": "DOM物件順序需與視覺順序一致"
+  },
+  {
+    "code": "CS1140101E",
+    "type": "css",
+    "criterion": "1.4.1",
+    "message": "當使用者介面元件取得焦點時，使用CSS變更其呈現方式"
+  },
+  {
+    "code": "CS1240405E",
+    "type": "css",
+    "criterion": "2.4.4",
+    "message": "在靠近網頁開頭處提供可以變更鏈結文字的控制元件，或使用CSS隱藏部分鏈結文字"
+  },
+  {
+    "code": "CS2140402E",
+    "type": "css",
+    "criterion": "1.4.4",
+    "message": "縮放含有文字的表單組件"
+  },
+  {
+    "code": "CS2140500E",
+    "type": "css",
+    "criterion": "1.4.5",
+    "message": "使用CSS來將文字取代成影像文字，並提供使用者介面控制元件來加以切換"
+  },
+  {
+    "code": "CS2141000E",
+    "type": "css",
+    "criterion": "1.4.10",
+    "message": "使用媒體查詢和CSS網格重排網頁欄格"
+  },
+  {
+    "code": "CS2141001E",
+    "type": "css",
+    "criterion": "1.4.10",
+    "message": "使用CSS彈性容器重排內容"
+  },
+  {
+    "code": "CS2141002E",
+    "type": "css",
+    "criterion": "1.4.10",
+    "message": "針對長網址跟文字字符串可以進行重排"
+  },
+  {
+    "code": "CS2141003E",
+    "type": "css",
+    "criterion": "1.4.10",
+    "message": "使用CSS寬度、最大寬度和彈性容器屬性調適標籤和輸入"
+  },
+  {
+    "code": "CS2141006E",
+    "type": "css",
+    "criterion": "1.4.10",
+    "message": "使用媒體查詢來解除粘滯的頁首/頁尾"
+  },
+  {
+    "code": "CS2141007E",
+    "type": "css",
+    "criterion": "1.4.10",
+    "message": "使用CSS最大寬度和高度容納圖像"
+  },
+  {
+    "code": "CS2141200E",
+    "type": "css",
+    "criterion": "1.4.12",
+    "message": "允許使用者按照其偏好覆蓋原有的網頁文字設定間距"
+  },
+  {
+    "code": "CS2141201E",
+    "type": "css",
+    "criterion": "1.4.12",
+    "message": "允許調整文字間距而不換行(wrapping)"
+  },
+  {
+    "code": "CS2141202E",
+    "type": "css",
+    "criterion": "1.4.12",
+    "message": "使用CSS letter-spacing來控制單字內空格"
+  },
+  {
+    "code": "CS2141203E",
+    "type": "css",
+    "criterion": "1.4.12",
+    "message": "以CSS設定行間距"
+  },
+  {
+    "code": "CS2141204E",
+    "type": "css",
+    "criterion": "1.4.12",
+    "message": "以em單位為單位設定文字容器的大小"
+  },
+  {
+    "code": "CS2240700E",
+    "type": "css",
+    "criterion": "2.4.7",
+    "message": "使用者介面取得焦點時，使其鍵盤焦點指示具高可見度"
+  },
+  {
+    "code": "CS3140801E",
+    "type": "css",
+    "criterion": "1.4.8",
+    "message": "如果不確定使用者能選擇前景及背景色彩，則不要指定主要內容的文字色彩與背景色彩，而且不要使用會變更這些"
+  },
+  {
+    "code": "CS3140802E",
+    "type": "css",
+    "criterion": "1.4.8",
+    "message": "在CSS當中劃分區域時僅指定邊框與版面，不要指定文字色彩及文字背景色彩"
+  },
+  {
+    "code": "CS3140803E",
+    "type": "css",
+    "criterion": "1.4.8",
+    "message": "文字僅對齊某一邊，或提供可移除文字左右全齊的機制"
+  },
+  {
+    "code": "CS3140804E",
+    "type": "css",
+    "criterion": "1.4.8",
+    "message": "在CSS當中指定行距，且行距應介於1.5倍行高至2倍行高之間"
+  },
+  {
+    "code": "CS3140900E",
+    "type": "css",
+    "criterion": "1.4.9",
+    "message": "只有在純裝飾或者是對於傳達資訊來說以此特定方式呈現文字是必要的情況下，使用CSS來將文字取代成影像文"
+  },
+  {
+    "code": "CS3230300E",
+    "type": "css",
+    "criterion": "2.3.3",
+    "message": "使用CSS媒體查詢的reduce-motion避免畫面動態"
+  },
+  {
+    "code": "CS3240903E",
+    "type": "css",
+    "criterion": "2.4.9",
+    "message": "針對單獨存在的鏈結，在靠近網頁開頭處提供可以變更鏈結文字的控制元件，或使用CSS隱藏部分鏈結文字。"
+  },
+  {
+    "code": "FA1210401E",
+    "type": "focus",
+    "criterion": "2.1.4",
+    "message": "由於實作的快捷鍵無法關閉或重新對應，而導致成功準則2.1.4失敗"
+  },
+  {
+    "code": "FA1250102E",
+    "type": "failure",
+    "criterion": "2.5.1",
+    "message": "由於提供的功能只有基於路徑的手勢，而沒有單點指標替代方法，而導致成功準則2.5.1失敗"
+  },
+  {
+    "code": "FA1250202E",
+    "type": "failure",
+    "criterion": "2.5.2",
+    "message": "由於向下事件啟動一個控制元件而導致成功準則2.5.2失敗"
+  },
+  {
+    "code": "FA1250303E",
+    "type": "failure",
+    "criterion": "2.5.3",
+    "message": "由於無障礙名稱不包含可見標籤文字而導致失敗"
+  },
+  {
+    "code": "FA1250401E",
+    "type": "failure",
+    "criterion": "2.5.4",
+    "message": "由於無法停用動作啟動而導致失敗"
+  },
+  {
+    "code": "FA2130401E",
+    "type": "failure",
+    "criterion": "1.3.4",
+    "message": "由於將螢幕方向鎖定到橫向或直向視圖而導致失敗"
+  },
+  {
+    "code": "FA2130402E",
+    "type": "failure",
+    "criterion": "1.3.4",
+    "message": "有訊息顯示要求重新定向裝置設備，導致成功準則1.3.4失敗"
+  },
+  {
+    "code": "FA2130501E",
+    "type": "failure",
+    "criterion": "1.3.5",
+    "message": "由於自動完成屬性值不正確，而導致成功準則1.3.5失敗"
+  },
+  {
+    "code": "FA2141008E",
+    "type": "resize",
+    "criterion": "1.4.10",
+    "message": "由於內容消失並且在內容重排後不可用，而導致成功準則1.4.10失敗"
+  },
+  {
+    "code": "FA2141104E",
+    "type": "focus",
+    "criterion": "1.4.11",
+    "message": "由於樣式元素的輪廓和邊框會消除或使視覺焦點指示器不可見，而導致成功準則2.4.7失敗"
+  },
+  {
+    "code": "FA2141205E",
+    "type": "css",
+    "criterion": "1.4.12",
+    "message": "由於調整文字間距時內容被剪切或重疊，而導致成功準則1.4.12失敗"
+  },
+  {
+    "code": "FA2141301E",
+    "type": "hover",
+    "criterion": "1.4.13",
+    "message": "由於游標無法移動到懸浮的內容，而導致成功準則1.4.13失敗"
+  },
+  {
+    "code": "FA2410303E",
+    "type": "aria",
+    "criterion": "4.1.3",
+    "message": "由於提供無法通過角色或屬性以程式化確定的狀態消息而導致成功準則4.1.3失敗"
+  },
+  {
+    "code": "FA3250600E",
+    "type": "failure",
+    "criterion": "2.5.6",
+    "message": "由於觸控設備上的互動僅限於觸控而失敗"
+  },
+  {
+    "code": "GN1110107E",
+    "type": "media",
+    "criterion": "1.1.1",
+    "message": "提供可描述現場純音訊內容目的及現場純視訊內容目的的描述性標籤"
+  },
+  {
+    "code": "GN1110109E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "針對虛擬實境、立體成像、或環場空間等知覺體驗的非文字內容需要有替代文字或長描述，並至少要為這些非文字"
+  },
+  {
+    "code": "GN1110110E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "任何CAPTCHA驗證均需提供描述CAPTCHA驗證目的的替代文字"
+  },
+  {
+    "code": "GN1110111E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "網頁上任何一個CAPTCHA驗證均至少有另一個運用不同形式的CAPTCHA驗證，且具有相同的目的與功"
+  },
+  {
+    "code": "GN1120100E",
+    "type": "media",
+    "criterion": "1.2.1",
+    "message": "提供預先錄製之純音訊內容的等義資訊替代內容"
+  },
+  {
+    "code": "GN1120101E",
+    "type": "media",
+    "criterion": "1.2.1",
+    "message": "提供預先錄製之純視訊內容的等義資訊替代"
+  },
+  {
+    "code": "GN1120102E",
+    "type": "media",
+    "criterion": "1.2.1",
+    "message": "提供描述預先錄製之重要視訊內容的音訊，並描述其本身係用於描述重要視訊內容"
+  },
+  {
+    "code": "GN1120200E",
+    "type": "media",
+    "criterion": "1.2.2",
+    "message": "提供預先錄製之音訊內容的隱藏式或非隱藏式(永遠看得到的)字幕"
+  },
+  {
+    "code": "GN1120300E",
+    "type": "dom",
+    "criterion": "1.2.3",
+    "message": "提供預先錄製之時序媒體的替代內容，並在時序媒體的非文字內容後馬上放置連往替代內容的鏈結"
+  },
+  {
+    "code": "GN1120301E",
+    "type": "media",
+    "criterion": "1.2.3",
+    "message": "除非同步媒體是文字內容的替代媒體，並且有明確地標示出來，否則就為影片提供音訊描述或延伸音訊描述，或提"
+  },
+  {
+    "code": "GN1120302E",
+    "type": "media",
+    "criterion": "1.2.3",
+    "message": "影片畫面僅呈現講者頭部視訊時，提供靜態文字替代"
+  },
+  {
+    "code": "GN1130100E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "使用文字來傳達藉由文字呈現上的變化所傳達的資訊"
+  },
+  {
+    "code": "GN1130101E",
+    "type": "css",
+    "criterion": "1.3.1",
+    "message": "使用色彩線索的時候就使用語意標記"
+  },
+  {
+    "code": "GN1130102E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "從呈現當中抽離資訊與結構，以便啟用不同的呈現"
+  },
+  {
+    "code": "GN1130200E",
+    "type": "dom",
+    "criterion": "1.3.2",
+    "message": "將內容依據有意義的序列來排序"
+  },
+  {
+    "code": "GN1130201E",
+    "type": "dom",
+    "criterion": "1.3.2",
+    "message": "使用萬國碼的右至左標記(RLM)或左至右標記(LRM)來即席混用文字走向，或在行內組件使用文字方向屬"
+  },
+  {
+    "code": "GN1130300E",
+    "type": "dom",
+    "criterion": "1.3.3",
+    "message": "針對若無文字項目識別則必須仰賴感官資訊才能理解的內容，提供文字項目識別"
+  },
+  {
+    "code": "GN1140100E",
+    "type": "css",
+    "criterion": "1.4.1",
+    "message": "確保所有藉由顏色所傳達出來的訊息，在沒有顏色後仍然能夠傳達出來"
+  },
+  {
+    "code": "GN1140102E",
+    "type": "css",
+    "criterion": "1.4.1",
+    "message": "對有顏色的表單控制標題，提供文字線索提示"
+  },
+  {
+    "code": "GN1140200E",
+    "type": "dom",
+    "criterion": "1.4.2",
+    "message": "除非聲音在3秒鐘內會自動關閉，或者在靠近頁面開頭處有提供可以關閉自動播放的聲音的控制元件，否則只有當"
+  },
+  {
+    "code": "GN1210100E",
+    "type": "keyboard",
+    "criterion": "2.1.1",
+    "message": "提供由鍵盤觸發的事件處理程式"
+  },
+  {
+    "code": "GN1210101E",
+    "type": "keyboard",
+    "criterion": "2.1.1",
+    "message": "確認所有功能都能透過鍵盤介面來操作"
+  },
+  {
+    "code": "GN1210200E",
+    "type": "keyboard",
+    "criterion": "2.1.2",
+    "message": "確認使用者不會困在內容中"
+  },
+  {
+    "code": "GN1210400E",
+    "type": "dom",
+    "criterion": "2.1.4",
+    "message": "提供一種機制，允許用戶重新對應或關閉字符鍵快捷方式"
+  },
+  {
+    "code": "GN1220100E",
+    "type": "form",
+    "criterion": "2.2.1",
+    "message": "在多頁表單的第1頁提供一個核選框，讓使用者可以要求較寬鬆的階段時間限制，或者完全不要有階段時間限制"
+  },
+  {
+    "code": "GN1220101E",
+    "type": "form",
+    "criterion": "2.2.1",
+    "message": "提供能讓使用者將時間限制設為預設時間限制十倍，或完全關閉時間限制的方法"
+  },
+  {
+    "code": "GN1220200E",
+    "type": "media",
+    "criterion": "2.2.2",
+    "message": "讓內容能加以暫停，並可從暫停處重新開始"
+  },
+  {
+    "code": "GN1220201E",
+    "type": "media",
+    "criterion": "2.2.2",
+    "message": "建立閃動少於5秒鐘的內容"
+  },
+  {
+    "code": "GN1220202E",
+    "type": "dom",
+    "criterion": "2.2.2",
+    "message": "在網頁內使用可以停止移動、閃動、自動更新等內容的控制元件"
+  },
+  {
+    "code": "GN1220203E",
+    "type": "dom",
+    "criterion": "2.2.2",
+    "message": "使用能由使用者代理關閉閃動內容的科技"
+  },
+  {
+    "code": "GN1220204E",
+    "type": "dom",
+    "criterion": "2.2.2",
+    "message": "提供鏈結、按鈕，或任何可以不閃動內容即重新載入頁面的機制"
+  },
+  {
+    "code": "GN1220205E",
+    "type": "dom",
+    "criterion": "2.2.2",
+    "message": "動畫GIF圖檔之閃動時間不超過五秒鐘"
+  },
+  {
+    "code": "GN1230100E",
+    "type": "dom",
+    "criterion": "2.3.1",
+    "message": "使用工具來確認內容不會超出一般閃爍閾值或紅閃爍閾值，或者確認在任何1秒鐘的週期內，沒有任何內容標籤會"
+  },
+  {
+    "code": "GN1230101E",
+    "type": "dom",
+    "criterion": "2.3.1",
+    "message": "能讓閃爍區域保持夠小"
+  },
+  {
+    "code": "GN1240100E",
+    "type": "keyboard",
+    "criterion": "2.4.1",
+    "message": "在每一個頁面頂端加入一個鏈結，直接連往主要的內容區域"
+  },
+  {
+    "code": "GN1240101E",
+    "type": "dom",
+    "criterion": "2.4.1",
+    "message": "在重複內容的區塊開頭加入鏈結，連到該區塊結束之處，或用頁框來群聚重複出現的材料區塊"
+  },
+  {
+    "code": "GN1240102E",
+    "type": "dom",
+    "criterion": "2.4.1",
+    "message": "在頁面頂端加入鏈結，連到該頁面的內容區域的開頭位置"
+  },
+  {
+    "code": "GN1240103E",
+    "type": "aria",
+    "criterion": "2.4.1",
+    "message": "使用結構性組件來將鏈結分群"
+  },
+  {
+    "code": "GN1240104E",
+    "type": "form",
+    "criterion": "2.4.1",
+    "message": "在每一個內容區段開頭處提供標頭組件"
+  },
+  {
+    "code": "GN1240105E",
+    "type": "css",
+    "criterion": "2.4.1",
+    "message": "根據結構性標記來將內容定位"
+  },
+  {
+    "code": "GN1240300E",
+    "type": "dom",
+    "criterion": "2.4.3",
+    "message": "按照內容的序列及關連性來安排互動元件的放置順序"
+  },
+  {
+    "code": "GN1240301E",
+    "type": "keyboard",
+    "criterion": "2.4.3",
+    "message": "在鏈結、表單控制元件、物件間建立合乎邏輯的跳位順序"
+  },
+  {
+    "code": "GN1240401E",
+    "type": "dom",
+    "criterion": "2.4.4",
+    "message": "針對脈絡中的鏈結，提供描述鏈結目的的鏈結文字"
+  },
+  {
+    "code": "GN1240500E",
+    "type": "dom",
+    "criterion": "2.4.5",
+    "message": "提供網站導覽、導覽工具或機制、搜尋功能、網頁清單鏈結等功能，協助使用者尋找內容"
+  },
+  {
+    "code": "GN1250100E",
+    "type": "dom",
+    "criterion": "2.5.1",
+    "message": "提供單點指標控制元件以實現與基於路徑或多點手勢相同的結果"
+  },
+  {
+    "code": "GN1250101E",
+    "type": "dom",
+    "criterion": "2.5.1",
+    "message": "為控制滑塊提供單點啟動"
+  },
+  {
+    "code": "GN1250200E",
+    "type": "dom",
+    "criterion": "2.5.2",
+    "message": "確保可以取消拖放操作"
+  },
+  {
+    "code": "GN1250201E",
+    "type": "dom",
+    "criterion": "2.5.2",
+    "message": "使用網頁規範原生控制元件來確保在向上事件發生時可觸發功能"
+  },
+  {
+    "code": "GN1250300E",
+    "type": "dom",
+    "criterion": "2.5.3",
+    "message": "確保無障礙名稱包含可見文字"
+  },
+  {
+    "code": "GN1250301E",
+    "type": "dom",
+    "criterion": "2.5.3",
+    "message": "將無障礙名稱與可見標籤匹配"
+  },
+  {
+    "code": "GN1250400E",
+    "type": "dom",
+    "criterion": "2.5.4",
+    "message": "為動作啟動輸入提供常規控制元件和應用程式設定"
+  },
+  {
+    "code": "GN1310100E",
+    "type": "dom",
+    "criterion": "3.1.1",
+    "message": "明確指出網頁文字所使用的人類語言"
+  },
+  {
+    "code": "GN1320100E",
+    "type": "keyboard",
+    "criterion": "3.2.1",
+    "message": "物件單純取得焦點時不要觸發脈絡變更，等使用者啟動該物件後才觸發脈絡變更"
+  },
+  {
+    "code": "GN1320200E",
+    "type": "dom",
+    "criterion": "3.2.2",
+    "message": "表單控制元件之行為將使網頁跳轉或變更，則在脈絡變更前需先明確描述將發生的事情"
+  },
+  {
+    "code": "GN1320201E",
+    "type": "dom",
+    "criterion": "3.2.2",
+    "message": "使用按鈕來做出行動並啟動脈絡變更"
+  },
+  {
+    "code": "GN1320202E",
+    "type": "dom",
+    "criterion": "3.2.2",
+    "message": "提供下載檔案格式為不需依賴特定文書商用軟體即能開啟之檔案"
+  },
+  {
+    "code": "GN1330100E",
+    "type": "form",
+    "criterion": "3.3.1",
+    "message": "提供文字描述以指明未完成的必填欄位。"
+  },
+  {
+    "code": "GN1330101E",
+    "type": "form",
+    "criterion": "3.3.1",
+    "message": "使用者輸入的內容不在允許清單中，或格式未符合所需時，均提供文字描述。"
+  },
+  {
+    "code": "GN1330102E",
+    "type": "form",
+    "criterion": "3.3.1",
+    "message": "資料成功送出後，提供成功的回饋"
+  },
+  {
+    "code": "GN1330200E",
+    "type": "dom",
+    "criterion": "3.3.2",
+    "message": "在使用者送出資料前，先描述會發生什麼事"
+  },
+  {
+    "code": "GN1330201E",
+    "type": "dom",
+    "criterion": "3.3.2",
+    "message": "提供文字描述以指明需填寫的必填欄位"
+  },
+  {
+    "code": "GN1330202E",
+    "type": "dom",
+    "criterion": "3.3.2",
+    "message": "提供預期的資料格式與範例"
+  },
+  {
+    "code": "GN1330203E",
+    "type": "dom",
+    "criterion": "3.3.2",
+    "message": "妥善定位描述性標籤的位置，使關連性的可預期性最大化"
+  },
+  {
+    "code": "GN1330204E",
+    "type": "dom",
+    "criterion": "3.3.2",
+    "message": "使用毗鄰的按鈕來標示輸入區目的"
+  },
+  {
+    "code": "GN1330205E",
+    "type": "dom",
+    "criterion": "3.3.2",
+    "message": "在表單或一組表單欄位開頭處提供文字指示來描述必要的輸入欄位"
+  },
+  {
+    "code": "GN1330206E",
+    "type": "aria",
+    "criterion": "3.3.2",
+    "message": "指出必需的表單控制元件"
+  },
+  {
+    "code": "GN1410200E",
+    "type": "aria",
+    "criterion": "4.1.2",
+    "message": "使用者介面元件應暴露名稱與角色，允許直接設定可由使用者設定的屬性，並在變更時提供通知"
+  },
+  {
+    "code": "GN2120400E",
+    "type": "media",
+    "criterion": "1.2.4",
+    "message": "為現場的同步媒體建立字幕"
+  },
+  {
+    "code": "GN2120500E",
+    "type": "media",
+    "criterion": "1.2.5",
+    "message": "為同步媒體中所有的視訊內容提供具有音訊描述或延伸音訊描述，或提供使用者可選取、且含有音訊描述的第二音"
+  },
+  {
+    "code": "GN2130400E",
+    "type": "dom",
+    "criterion": "1.3.4",
+    "message": "允許使用者可以使用不同方向操作控制元件"
+  },
+  {
+    "code": "GN2140300E",
+    "type": "dom",
+    "criterion": "1.4.3",
+    "message": "確認文字(及影像文字)與文字後面的背景間，至少有4.5:1的對比值"
+  },
+  {
+    "code": "GN2140301E",
+    "type": "dom",
+    "criterion": "1.4.3",
+    "message": "確認大尺寸文字(及影像文字)與文字後面的背景間，至少有3:1的對比值"
+  },
+  {
+    "code": "GN2140302E",
+    "type": "dom",
+    "criterion": "1.4.3",
+    "message": "提供具對比值至少4.5:1，且可讓使用者將呈現切換成具有充分對比值(文字及影像文字至少4.5:1，大"
+  },
+  {
+    "code": "GN2140303E",
+    "type": "dom",
+    "criterion": "1.4.3",
+    "message": "如果無法確認對比值充分(文字及影像文字至少4.5:1，大尺寸文字及影像文字至少3:1)，則不要指定背"
+  },
+  {
+    "code": "GN2140400E",
+    "type": "dom",
+    "criterion": "1.4.4",
+    "message": "使用具有支援縮放功能且容易取得的使用者代理的科技，或者在頁面上提供可讓使用者變大所有文字尺寸到百分之"
+  },
+  {
+    "code": "GN2140401E",
+    "type": "dom",
+    "criterion": "1.4.4",
+    "message": "使用流動版面設計，或者確認當文字尺寸變更而文字容器尺寸並未變更時，不會喪失任何內容或功能"
+  },
+  {
+    "code": "GN2141005E",
+    "type": "dom",
+    "criterion": "1.4.10",
+    "message": "在內容內提供選項以切換到不需要用戶水平滾動以閱讀文字行的佈局"
+  },
+  {
+    "code": "GN2141100E",
+    "type": "css",
+    "criterion": "1.4.11",
+    "message": "使用網頁作者設定的高可視焦點指示器"
+  },
+  {
+    "code": "GN2141101E",
+    "type": "dom",
+    "criterion": "1.4.11",
+    "message": "確保圖示的對比度為3：1"
+  },
+  {
+    "code": "GN2141102E",
+    "type": "dom",
+    "criterion": "1.4.11",
+    "message": "在相鄰顏色之間的邊界處提供足夠的對比度"
+  },
+  {
+    "code": "GN2141103E",
+    "type": "dom",
+    "criterion": "1.4.11",
+    "message": "提供具有足夠對比度的控制元件，以允許用戶切換到足夠對比度的呈現"
+  },
+  {
+    "code": "GN2240600E",
+    "type": "dom",
+    "criterion": "2.4.6",
+    "message": "提供描述性的標題(headings)"
+  },
+  {
+    "code": "GN2240601E",
+    "type": "dom",
+    "criterion": "2.4.6",
+    "message": "提供描述性的標籤(label)"
+  },
+  {
+    "code": "GN2320300E",
+    "type": "css",
+    "criterion": "3.2.3",
+    "message": "每一次會重複出現的元件出現時，均按照相同的相對順序來呈現"
+  },
+  {
+    "code": "GN2320400E",
+    "type": "dom",
+    "criterion": "3.2.4",
+    "message": "按照具有相同功能的內容，一致地使用標籤、名稱、替代文字"
+  },
+  {
+    "code": "GN2330300E",
+    "type": "form",
+    "criterion": "3.3.3",
+    "message": "提供文字描述以指明未完成的必填欄位，並建立可以讓使用者跳到出錯之處的機制"
+  },
+  {
+    "code": "GN2330301E",
+    "type": "form",
+    "criterion": "3.3.3",
+    "message": "使用者輸入的內容不在允許清單中，或格式未符合所需時，均提供文字描述，並提供建議的文字校正"
+  },
+  {
+    "code": "GN2330400E",
+    "type": "dom",
+    "criterion": "3.3.4",
+    "message": "在法律、財務、個人資料方面，均提供取回已刪除資訊的能力"
+  },
+  {
+    "code": "GN2330401E",
+    "type": "dom",
+    "criterion": "3.3.4",
+    "message": "在法律、財務、個人資料，均提供表單遞交後何時可由使用者更新或取消的時段說明"
+  },
+  {
+    "code": "GN2330402E",
+    "type": "dom",
+    "criterion": "3.3.4",
+    "message": "在法律、財務、個人資料方面，均提供使用者在送出答覆前加以檢查及更正的能力"
+  },
+  {
+    "code": "GN2330403E",
+    "type": "dom",
+    "criterion": "3.3.4",
+    "message": "在法律、財務、個人資料方面，均要求確認後才繼續所選的動作"
+  },
+  {
+    "code": "GN3120600E",
+    "type": "media",
+    "criterion": "1.2.6",
+    "message": "在視訊串流當中包含手語翻譯"
+  },
+  {
+    "code": "GN3120601E",
+    "type": "media",
+    "criterion": "1.2.6",
+    "message": "提供可以在不同視埠播放、或由播放軟體疊合在影像上的手語翻譯同步視訊"
+  },
+  {
+    "code": "GN3120700E",
+    "type": "media",
+    "criterion": "1.2.7",
+    "message": "當前景音訊停頓處不足插入音訊描述時，為影片提供延伸音訊描述"
+  },
+  {
+    "code": "GN3120800E",
+    "type": "dom",
+    "criterion": "1.2.8",
+    "message": "提供所有時序媒體的替代內容，並在時序媒體的非文字內容後馬上放置連往替代內容的鏈結"
+  },
+  {
+    "code": "GN3120801E",
+    "type": "media",
+    "criterion": "1.2.8",
+    "message": "提供所有純視訊內容的時序媒體替代內容"
+  },
+  {
+    "code": "GN3120900E",
+    "type": "media",
+    "criterion": "1.2.9",
+    "message": "提供現場純音訊內容的文字形式替代內容，或在網頁內合併採用現場音訊字幕服務。"
+  },
+  {
+    "code": "GN3120901E",
+    "type": "media",
+    "criterion": "1.2.9",
+    "message": "提供連往預先準備好的發言文字逐字稿的鏈結；如果有劇本的話，則提供連往劇本的鏈結"
+  },
+  {
+    "code": "GN3140600E",
+    "type": "dom",
+    "criterion": "1.4.6",
+    "message": "確認文字(及影像文字)與文字後面的背景間，至少有7:1的對比值。"
+  },
+  {
+    "code": "GN3140601E",
+    "type": "dom",
+    "criterion": "1.4.6",
+    "message": "確認大尺寸文字(及影像文字)與文字後面的背景間，至少有4.5:1的對比值。"
+  },
+  {
+    "code": "GN3140602E",
+    "type": "dom",
+    "criterion": "1.4.6",
+    "message": "提供具對比值至少7:1，且可讓使用者將呈現切換成具有充分對比值(文字及影像文字至少7:1，大尺寸文字"
+  },
+  {
+    "code": "GN3140603E",
+    "type": "dom",
+    "criterion": "1.4.6",
+    "message": "如果無法確認對比值充分(文字及影像文字至少7:1，大尺寸文字及影像文字至少4.5:1)，則不要指定背"
+  },
+  {
+    "code": "GN3140700E",
+    "type": "dom",
+    "criterion": "1.4.7",
+    "message": "混音處理音訊檔案，使非語音的聲音至少比語音音訊內容低20分貝。"
+  },
+  {
+    "code": "GN3140800E",
+    "type": "dom",
+    "criterion": "1.4.8",
+    "message": "使用能夠變更文字區塊前景與背景且容易取得的使用者代理的科技，或者在頁面上提供前景色彩與背景色彩的多重"
+  },
+  {
+    "code": "GN3140805E",
+    "type": "dom",
+    "criterion": "1.4.8",
+    "message": "在網頁上提供可以增加行距及段落間距的按鈕。"
+  },
+  {
+    "code": "GN3210300E",
+    "type": "keyboard",
+    "criterion": "2.1.3",
+    "message": "僅提供由鍵盤觸發的事件處理程式。"
+  },
+  {
+    "code": "GN3220300E",
+    "type": "dom",
+    "criterion": "2.2.3",
+    "message": "讓使用者可以在沒有任何時間限制的情況下完成活動。"
+  },
+  {
+    "code": "GN3220400E",
+    "type": "dom",
+    "criterion": "2.2.4",
+    "message": "提供可以延遲任何內容更新的機制。"
+  },
+  {
+    "code": "GN3220500E",
+    "type": "dom",
+    "criterion": "2.2.5",
+    "message": "儲存資料以便使用者重新認證後仍可使用。"
+  },
+  {
+    "code": "GN3220501E",
+    "type": "dom",
+    "criterion": "2.2.5",
+    "message": "在重新認證的頁面上將使用者資料編碼為隱藏或加密的資料。"
+  },
+  {
+    "code": "GN3230200E",
+    "type": "dom",
+    "criterion": "2.3.2",
+    "message": "確認在任何一秒鐘的週期內，沒有任何內容標籤會閃爍超過三次。"
+  },
+  {
+    "code": "GN3240900E",
+    "type": "aria",
+    "criterion": "2.4.9",
+    "message": "針對單獨存在的鏈結，提供描述鏈結目的的鏈結文字。"
+  },
+  {
+    "code": "GN3241000E",
+    "type": "dom",
+    "criterion": "2.4.10",
+    "message": "使用標頭來組織網頁"
+  },
+  {
+    "code": "GN3310300E",
+    "type": "dom",
+    "criterion": "3.1.3",
+    "message": "針對不常見的字詞，列舉詞彙、提供定義，或提供搜尋線上辭典的功能。"
+  },
+  {
+    "code": "GN3310400E",
+    "type": "dom",
+    "criterion": "3.1.4",
+    "message": "針對縮寫字，列舉詞彙、提供其展開的形式或定義，或提供搜尋線上辭典的功能"
+  },
+  {
+    "code": "GN3310500E",
+    "type": "dom",
+    "criterion": "3.1.5",
+    "message": "提供文字的口說版本。"
+  },
+  {
+    "code": "GN3310501E",
+    "type": "dom",
+    "criterion": "3.1.5",
+    "message": "提供不需超出國中閱讀能力程度即可理解的文字摘要。"
+  },
+  {
+    "code": "GN3310502E",
+    "type": "dom",
+    "criterion": "3.1.5",
+    "message": "提供視覺插圖、圖片、符號以協助解釋概念、事件、程序。"
+  },
+  {
+    "code": "GN3310503E",
+    "type": "dom",
+    "criterion": "3.1.5",
+    "message": "讓文字更容易閱讀。"
+  },
+  {
+    "code": "GN3310504E",
+    "type": "dom",
+    "criterion": "3.1.5",
+    "message": "針對使用內容所必需理解之資訊、概念、程序，提供手語版本。"
+  },
+  {
+    "code": "GN3310600E",
+    "type": "dom",
+    "criterion": "3.1.6",
+    "message": "某個字詞若不知其發音，就算依據前後文脈絡來判讀而仍會造成混淆時，即列舉詞彙、提供發音或發音資訊。"
+  },
+  {
+    "code": "GN3320500E",
+    "type": "dom",
+    "criterion": "3.2.5",
+    "message": "除非使用即刻用戶端重新導向，否則不要自動更新內容，而是提供可以請求內容更新的機制。"
+  },
+  {
+    "code": "GN3320501E",
+    "type": "dom",
+    "criterion": "3.2.5",
+    "message": "在使用者請求的情況下才開出新視窗，並在鏈結文字中指出此行為。"
+  },
+  {
+    "code": "GN3330500E",
+    "type": "dom",
+    "criterion": "3.3.5",
+    "message": "在所有網頁上均提供協助"
+  },
+  {
+    "code": "GN3330501E",
+    "type": "dom",
+    "criterion": "3.3.5",
+    "message": "在文字輸入區域提供拼寫檢查與建議"
+  },
+  {
+    "code": "GN3330502E",
+    "type": "dom",
+    "criterion": "3.3.5",
+    "message": "利用標題屬性來提供針對脈絡而作的協助說明"
+  },
+  {
+    "code": "GN3330600E",
+    "type": "dom",
+    "criterion": "3.3.6",
+    "message": "在所有情況中，均提供取回已刪除資訊的能力"
+  },
+  {
+    "code": "GN3330601E",
+    "type": "dom",
+    "criterion": "3.3.6",
+    "message": "在所有情況中，均提供表單遞交後何時可由使用者更新或取消的時段說明"
+  },
+  {
+    "code": "GN3330602E",
+    "type": "dom",
+    "criterion": "3.3.6",
+    "message": "在所有情況中，均提供使用者在送出答覆前加以檢查及更正的能力。"
+  },
+  {
+    "code": "GN3330603E",
+    "type": "dom",
+    "criterion": "3.3.6",
+    "message": "在所有情況中，均要求確認後才繼續所選的行動"
+  },
+  {
+    "code": "HM1110100E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "圖片需要加上有意義、可代替圖片在文件上下文中的功能及內容的替代文字"
+  },
+  {
+    "code": "HM1110101E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "僅在一組緊連圖片中的其中一個項目使用替代文字，描述該組圖片的所有項目"
+  },
+  {
+    "code": "HM1110102E",
+    "type": "aria",
+    "criterion": "1.1.1",
+    "message": "提供影像地圖區域的替代文字，並要能確實表達這些地圖區域的功能與目的"
+  },
+  {
+    "code": "HM1110103E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "圖片無法以替代文字清晰表達時，利用長描述提供更詳盡的說明網頁網址，利用整個說明網頁的篇幅來詳盡描述，"
+  },
+  {
+    "code": "HM1110104E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "提供字符圖案、表情符號、其他挪用文字外型作為表意功能之語言形式的替代文字，且其替代文字需有意義、可代"
+  },
+  {
+    "code": "HM1110105E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "圖片以外的非文字內容需要有替代文字或長描述，並需具有與該內容或物件相同目的、呈現相同資訊，或者可提供"
+  },
+  {
+    "code": "HM1110106E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "作為「送出」按鈕之用的圖片需提供替代文字，且此替代文字需能充分表達此按鈕之意義與功能"
+  },
+  {
+    "code": "HM1110108E",
+    "type": "form",
+    "criterion": "1.1.1",
+    "message": "提供物件的文字替代內容與非文字替代內容，且要能完整表達該物件的意義與功能"
+  },
+  {
+    "code": "HM1110112E",
+    "type": "dom",
+    "criterion": "1.1.1",
+    "message": "對於輔助科技應當要忽略的圖片，使用空字串作為替代文字，並且不可使用標題屬性"
+  },
+  {
+    "code": "HM1130104E",
+    "type": "aria",
+    "criterion": "1.3.1",
+    "message": "適當使用巢狀標頭呈現文件結構"
+  },
+  {
+    "code": "HM1130105E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "使用語意組件來標記結構"
+  },
+  {
+    "code": "HM1130106E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "使用具語意的標記來標出強調的文字或特殊文字"
+  },
+  {
+    "code": "HM1130107E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "使用表格標記來呈現表格資訊"
+  },
+  {
+    "code": "HM1130108E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "以有意義的標記來提供資料表格的概觀"
+  },
+  {
+    "code": "HM1130109E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "以有意義的標記來建立表格標題與資料表格的關連"
+  },
+  {
+    "code": "HM1130110E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "對於複雜表格，以有意義的標記來建立表格標頭儲存格與資料儲存格之間的關連"
+  },
+  {
+    "code": "HM1130111E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "將表單控制元件及表單內的選項予以適當地分群並提供相關的描述"
+  },
+  {
+    "code": "HM1130112E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "使用標籤組件將文字標籤與表單控制元件建立關連"
+  },
+  {
+    "code": "HM1130113E",
+    "type": "dom",
+    "criterion": "1.3.1",
+    "message": "無法使用標籤組件的情況下，用標題屬性來指明表單控制元件"
+  },
+  {
+    "code": "HM1240200E",
+    "type": "dom",
+    "criterion": "2.4.2",
+    "message": "提供網頁的描述性標題"
+  },
+  {
+    "code": "HM1240400E",
+    "type": "dom",
+    "criterion": "2.4.4",
+    "message": "使用鏈結文字及前後的脈絡情境來指明鏈結目的"
+  },
+  {
+    "code": "HM1240402E",
+    "type": "dom",
+    "criterion": "2.4.4",
+    "message": "合併相同資源的毗鄰圖片與文字鏈結"
+  },
+  {
+    "code": "HM1240403E",
+    "type": "dom",
+    "criterion": "2.4.4",
+    "message": "提供描述鏈結組件鏈結目的的鏈結文字"
+  },
+  {
+    "code": "HM1240404E",
+    "type": "dom",
+    "criterion": "2.4.4",
+    "message": "針對脈絡中的鏈結，用標題屬性來補充鏈結文字"
+  },
+  {
+    "code": "HM2130500E",
+    "type": "dom",
+    "criterion": "1.3.5",
+    "message": "使用HTML 5.2自動完成之屬性"
+  },
+  {
+    "code": "HM2310200E",
+    "type": "dom",
+    "criterion": "3.1.2",
+    "message": "明確地指出網頁內容中人類語言的轉換"
+  },
+  {
+    "code": "HM3140806E",
+    "type": "dom",
+    "criterion": "1.4.8",
+    "message": "除非是要在內容當中提供選項，讓使用者可以切換到無需水平捲動即可閱讀整行文字的版面，否則當檢視視窗變窄"
+  },
+  {
+    "code": "HM3240800E",
+    "type": "dom",
+    "criterion": "2.4.8",
+    "message": "使用導覽工具，指明目前所在網頁在一整組網頁或整個網站中的位置，以及與其他網頁之間的關連性"
+  },
+  {
+    "code": "HM3240901E",
+    "type": "dom",
+    "criterion": "2.4.9",
+    "message": "針對單獨存在的鏈結，合併相同資源的毗鄰圖片與文字鏈結。"
+  },
+  {
+    "code": "HM3240902E",
+    "type": "dom",
+    "criterion": "2.4.9",
+    "message": "針對單獨存在的鏈結，提供描述鏈結組件鏈結目的的鏈結文字"
+  },
+  {
+    "code": "HM3240904E",
+    "type": "dom",
+    "criterion": "2.4.9",
+    "message": "針對單獨存在的影像地圖區域，提供有意義的替代文字"
+  },
+  {
+    "code": "SC2141004E",
+    "type": "resize",
+    "criterion": "1.4.10",
+    "message": "使用與文字大小成比例的方式計算大小和位置"
+  },
+  {
+    "code": "SC2141300E",
+    "type": "keyboard",
+    "criterion": "1.4.13",
+    "message": "使懸浮或焦點內容可移除或維持，使其呈現可忽略或持續"
+  }
+]

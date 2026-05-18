@@ -1,0 +1,41 @@
+# {{ project_name }} — TWAA {{ level }} 全網站檢測總覽
+
+**產出時間:** {{ generated_at }}
+**頁面總數:** {{ stats.total_pages }}
+**指引總數:** {{ stats.total_guidelines }}
+**檢測格數:** {{ stats.total_cells }}（pass {{ stats.passed }} / fail {{ stats.failed }} / 待人工 {{ stats.needs_human }}）
+
+## 嚴重度分佈
+
+| 嚴重度 | 數量 |
+|--------|------|
+| Critical | {{ stats.severity.critical }} |
+| High | {{ stats.severity.high }} |
+| Medium | {{ stats.severity.medium }} |
+| Low | {{ stats.severity.low }} |
+
+## 頁面 × 指引 通過矩陣
+
+| 頁面 \ 指引 |{% for gid in matrix.guideline_ids %} {{ gid }} |{% endfor %}
+|--------------|{% for gid in matrix.guideline_ids %}-------|{% endfor %}
+{%- for row in matrix.rows %}
+| {{ row.page_title }} |{% for cell in row.cells %} {{ cell }} |{% endfor %}
+{%- endfor %}
+
+> ✅ pass / ❌ fail / ⚠ 需人工 / ➖ N/A
+
+## 高風險頁面 Top 5
+
+{% for p in stats.top_risky_pages %}
+1. **{{ p.title }}** (`{{ p.path }}`) — {{ p.failed_count }} fail / {{ p.critical_count }} critical
+{% endfor %}
+
+## 高風險指引 Top 5
+
+{% for g in stats.top_risky_guidelines %}
+1. **{{ g.id }}** — {{ g.title }}（{{ g.failed_count }} 頁失敗）
+{% endfor %}
+
+---
+
+詳情請見 `per-page/` 與 `per-guideline/` 子目錄。

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>TWAA 檢測儀表板</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 1rem; background: #fafafa; }
+  h1 { margin-top: 0; }
+  table { border-collapse: collapse; width: 100%; background: #fff; }
+  th, td { border: 1px solid #ddd; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+  th { background: #1a7a94; color: #fff; position: sticky; top: 0; }
+  tr:nth-child(even) td { background: #f6f6f6; }
+  .pass { color: #22c55e; font-weight: bold; }
+  .fail { color: #ef4444; font-weight: bold; }
+  .needs-human { color: #d97706; font-weight: bold; }
+  .filter { margin-bottom: 1rem; }
+  .filter input, .filter select { padding: 0.3rem 0.5rem; }
+  .stat { display: inline-block; padding: 0.4rem 0.8rem; margin-right: 0.5rem; background: #fff; border: 1px solid #ddd; border-radius: 4px; }
+</style>
+</head>
+<body>
+<h1>__PROJECT__ — TWAA __LEVEL__ 檢測儀表板</h1>
+<div>
+  <span class="stat">頁面：<strong id="stat-pages">0</strong></span>
+  <span class="stat">通過：<strong class="pass" id="stat-pass">0</strong></span>
+  <span class="stat">失敗：<strong class="fail" id="stat-fail">0</strong></span>
+  <span class="stat">需人工：<strong class="needs-human" id="stat-human">0</strong></span>
+</div>
+<div class="filter">
+  <input type="text" id="filter-text" placeholder="搜尋路徑或指引...">
+  <select id="filter-status">
+    <option value="">全部狀態</option>
+    <option value="failed">僅 fail</option>
+    <option value="needs_human">僅需人工</option>
+    <option value="passed">僅 pass</option>
+  </select>
+</div>
+<table id="grid">
+  <thead><tr><th>頁面</th><th>路徑</th><th>指引</th><th>狀態</th><th>嚴重度</th><th>位置</th><th>訊息</th></tr></thead>
+  <tbody></tbody>
+</table>
+<script>
+const STATE = __STATE_JSON__;
+const tbody = document.querySelector('#grid tbody');
+const rows = [];
+const stats = { pages: 0, pass: 0, fail: 0, human: 0 };
+
+for (const page of STATE.sitemap) {
+  stats.pages++;
+  const cells = STATE.results[page.path] || {};
+  for (const [gid, cell] of Object.entries(cells)) {
+    if (cell.status === 'passed') stats.pass++;
+    if (cell.status === 'failed') stats.fail++;
+    if (cell.status === 'needs_human') stats.human++;
+    const issues = cell.issues || [{ message: '', file: '', line: 0 }];
+    for (const issue of issues) {
+      rows.push({
+        title: page.title, path: page.path, gid,
+        status: cell.status,
+        severity: (issue.severity || cell.severity || '-'),
+        location: issue.file ? `${issue.file}:${issue.line}` : '-',
+        message: issue.message || '-',
+      });
+    }
+  }
+}
+
+document.getElementById('stat-pages').textContent = stats.pages;
+document.getElementById('stat-pass').textContent = stats.pass;
+document.getElementById('stat-fail').textContent = stats.fail;
+document.getElementById('stat-human').textContent = stats.human;
+
+function render() {
+  const ft = document.getElementById('filter-text').value.toLowerCase();
+  const fs = document.getElementById('filter-status').value;
+  tbody.innerHTML = '';
+  for (const r of rows) {
+    if (ft && !(r.path.toLowerCase().includes(ft) || r.gid.includes(ft) || r.message.toLowerCase().includes(ft))) continue;
+    if (fs && r.status !== fs) continue;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.title}</td><td>${r.path}</td><td>${r.gid}</td>` +
+      `<td class="${r.status === 'passed' ? 'pass' : (r.status === 'failed' ? 'fail' : 'needs-human')}">${r.status}</td>` +
+      `<td>${r.severity}</td><td>${r.location}</td><td>${r.message}</td>`;
+    tbody.appendChild(tr);
+  }
+}
+document.getElementById('filter-text').addEventListener('input', render);
+document.getElementById('filter-status').addEventListener('change', render);
+render();
+</script>
+</body>
+</html>

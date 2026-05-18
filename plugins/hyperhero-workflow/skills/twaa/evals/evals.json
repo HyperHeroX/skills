@@ -1,0 +1,83 @@
+{
+  "skill_name": "twaa",
+  "description": "台灣無障礙規範 TWAA 全等級檢測技能測試案例",
+  "evals": [
+    {
+      "id": 1,
+      "name": "lookup-checkcode-1.4.4",
+      "prompt": "政府稽核說我的網站 CSS font-size 用了固定 px，違反 1.4.4，給了我一個代碼 CS2140401C。請查出這個代碼的完整規則說明和修正方式。",
+      "expected_output": "應查出 CS2140401C 的完整台灣規範說明，包含：檢測碼、對應成功準則 1.4.4、認證等級 AA、規則說明（不能用固定 px，要用 em/rem/百分比），以及修正建議。",
+      "assertions": [
+        {
+          "name": "mentions_cs2140401c",
+          "description": "回應包含 CS2140401C 檢測碼",
+          "check": "output contains 'CS2140401C'"
+        },
+        {
+          "name": "mentions_relative_units",
+          "description": "回應提到相對單位（em、rem 或百分比）",
+          "check": "output contains 'em' or 'rem' or '百分比' or '%'"
+        },
+        {
+          "name": "mentions_aa_level",
+          "description": "回應提到 AA 等級",
+          "check": "output contains 'AA'"
+        },
+        {
+          "name": "provides_fix_guidance",
+          "description": "回應提供具體修正方向",
+          "check": "output contains '修正' or '改成' or '應使用' or 'font-size'"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "list-all-1.4.4-codes",
+      "prompt": "請列出台灣 TWAA 成功準則 1.4.4 的所有官方檢測碼，並說明哪些是自動可檢測、哪些需要人工稽核。",
+      "expected_output": "列出 1.4.4 的所有台灣官方碼：CS2140401C（自動）和 GN2140400E（人工），並說明兩者的差異和各自的檢測方法。",
+      "assertions": [
+        {
+          "name": "lists_c_code",
+          "description": "列出自動檢測碼 CS2140401C",
+          "check": "output contains 'CS2140401C'"
+        },
+        {
+          "name": "lists_e_code",
+          "description": "列出人工稽核碼 GN2140400E",
+          "check": "output contains 'GN2140400E'"
+        },
+        {
+          "name": "distinguishes_auto_vs_manual",
+          "description": "區分自動檢測和人工稽核",
+          "check": "output contains '自動' and ('人工' or '稽核')"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "aa-level-checklist",
+      "prompt": "幫我列出台灣 MODA 認證 AA 等級的所有官方檢測碼，特別是關於 1.1.x 替代文字的部分，我要準備網站無障礙標章申請。",
+      "expected_output": "列出 AA 等級的所有台灣官方碼（共 36 項），其中 1.1.x 相關碼包含 HM1110100C 等 HTML 圖片替代文字相關碼，並說明自動檢測和人工稽核的區分。",
+      "assertions": [
+        {
+          "name": "lists_aa_codes",
+          "description": "列出 AA 等級碼",
+          "check": "output contains ('AA' and 'CS' or 'GN' or 'HM')"
+        },
+        {
+          "name": "mentions_alt_text_codes",
+          "description": "提到 1.1.x 替代文字相關碼",
+          "check": "output contains 'HM1110' or '替代文字' or 'alt'"
+        },
+        {
+          "name": "distinguishes_levels",
+          "description": "區分 A 和 AA 等級",
+          "check": "output contains '等級' and 'AA'"
+        }
+      ],
+      "files": []
+    }
+  ]
+}

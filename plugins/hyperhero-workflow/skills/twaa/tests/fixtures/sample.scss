@@ -1,0 +1,14 @@
+$primaryColor: #1a7a94;
+$primaryColor-300: lighten($primaryColor, 20%);
+$primaryColor-600: darken($primaryColor, 10%);
+$bgColor: #FFFFFF;
+
+.btn {
+  background: $primaryColor;
+  color: $bgColor;
+}
+
+.btn-light {
+  background: $primaryColor-300;
+  color: $bgColor;
+}

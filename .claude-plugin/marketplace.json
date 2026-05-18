@@ -11,7 +11,7 @@
     {
       "name": "hyperhero-workflow",
       "source": "./plugins/hyperhero-workflow",
-      "description": "開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程開發 + LLM CoWorker 雙模型協作"
+      "description": "開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程開發 + LLM CoWorker 雙模型協作 + TWAA 無障礙驗證"
     },
     {
       "name": "hyperhero-tools",

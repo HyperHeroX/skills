@@ -1,0 +1,36 @@
+# 指引 {{ guideline.id }} — {{ guideline.title }}
+
+**WCAG 等級:** {{ guideline.level }}
+**檢測等級:** {{ level }}
+**最後更新:** {{ generated_at }}
+
+## 跨頁面命中情況
+
+| 頁面 | 路徑 | 狀態 | 嚴重度 |
+|------|------|------|--------|
+{%- for hit in guideline.hits %}
+| {{ hit.page_title }} | `{{ hit.path }}` | {{ hit.status_emoji }} {{ hit.status }} | {{ hit.severity }} |
+{%- endfor %}
+
+## 共通根因分析
+
+{% if guideline.common_root %}
+{{ guideline.common_root }}
+{% else %}
+無顯著共通根因。
+{% endif %}
+
+## 各頁失敗細節
+
+{% for hit in guideline.failed_hits %}
+### {{ hit.page_title }} (`{{ hit.path }}`)
+
+{% for issue in hit.issues %}
+- `{{ issue.file }}:{{ issue.line }}` — {{ issue.message }}
+{% endfor %}
+
+{% endfor %}
+
+---
+
+_本檔由 twaa skill 產生。_
