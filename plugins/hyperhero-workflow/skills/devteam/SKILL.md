@@ -1,24 +1,9 @@
-﻿---
+---
 name: devteam
 description: |
-  Development Team Simulation Skill - Automatically simulates a complete software development team with 11-step autonomous workflow.
+  Development Team Simulation Skill for end-to-end software development. Use when the user asks to develop, implement, build, or deploy a feature; requests a development-team or dev-team workflow; invokes `/devteam`; or wants a systematic, enterprise-grade process with planning, coding, testing, and verification.
 
-  **USE THIS SKILL WHEN:**
-  - User asks to "develop a feature", "implement a feature", "build a new feature"
-  - User mentions "development team", "team simulation", "dev team"
-  - User wants end-to-end development from requirements to deployment
-  - User mentions roles like "Product Manager", "Architect", "Dev Lead", "Engineer", "QA", "CI/CD"
-  - User says "/devteam", "devteam", or variations like "dev team simulation"
-  - User wants structured development workflow with planning, implementation, and verification phases
-  - User asks for "systematic development", "professional development process", "enterprise-grade development"
-  - User requests feature development with documentation, testing, and deployment
-
-  **WHAT IT DOES:**
-  - Executes 11 sequential steps: Requirements → Architecture → Analysis → Planning → Database → Task Breakdown → Backend → Frontend → Testing → Iteration → Deployment
-  - Manages state via docs/.devteam/ for session continuity
-  - Applies role-based execution (PM, Architect, Dev Lead, Engineers, QA, CI/CD)
-  - Enforces code quality standards and pre-commit checks
-  - Integrates with MCP tools (Serena, user-feedback, browser automation)
+  Runs an 11-step workflow covering requirements, architecture, analysis, planning, database, task breakdown, backend, frontend, testing, iteration, and deployment. Persists session state in `docs/.devteam/`, applies role-based execution, enforces quality checks, and integrates with available development tools.
 ---
 
 # devteam - Development Team Simulation
