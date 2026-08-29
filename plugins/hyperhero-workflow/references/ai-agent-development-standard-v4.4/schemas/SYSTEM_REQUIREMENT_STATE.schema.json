@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ai-essd/v4.4/SYSTEM_REQUIREMENT_STATE.schema.json",
+  "title": "AI-ESSD System Requirement State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "const": "ai-essd/v4.4"
+    },
+    "kind": {
+      "const": "SystemRequirementState"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "version",
+        "baseline_digest"
+      ],
+      "properties": {
+        "project": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "const": "4.4.0"
+        },
+        "baseline_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_stage",
+        "requirements"
+      ],
+      "properties": {
+        "current_stage": {
+          "enum": [
+            "L0-MVP",
+            "L1-FORMAL-PROJECT",
+            "L2-INTERNAL-TEST",
+            "L3-PILOT",
+            "L4-GENERAL-AVAILABILITY",
+            "L5-MAINTENANCE",
+            "L6-RETIREMENT"
+          ]
+        },
+        "requirements": {
+          "type": "array",
+          "minItems": 57,
+          "uniqueItems": false,
+          "items": {
+            "$ref": "#/$defs/requirementState"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "location",
+        "digest"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string"
+        }
+      }
+    },
+    "requirementState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "owner",
+        "source_condition",
+        "feature_state",
+        "evidence",
+        "deviation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(ARCH|SEC|DATA|TEST|MGMT|UI|AI|DEV)-REQ-[0-9]{3}$"
+        },
+        "status": {
+          "enum": [
+            "registered",
+            "specified",
+            "designed",
+            "implemented",
+            "verified",
+            "operational",
+            "maintained",
+            "retired",
+            "blocked",
+            "condition-not-triggered"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_condition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "condition_evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "feature_state": {
+          "enum": [
+            "enabled",
+            "disabled-by-administrator",
+            "not-runtime-switchable",
+            "condition-not-triggered",
+            "not-configured"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "deviation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "none",
+                "pending-human-amendment",
+                "approved-amendment"
+              ]
+            },
+            "amendment_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "details": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

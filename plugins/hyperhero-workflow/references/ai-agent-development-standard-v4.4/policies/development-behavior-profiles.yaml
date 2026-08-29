@@ -1,0 +1,172 @@
+apiVersion: ai-essd/v4.4
+kind: DevelopmentBehaviorProfilePolicy
+metadata:
+  version: 4.4.0
+spec:
+  principles:
+  - source-practices-regulate-behavior-not-technology-adoption
+  - general-profiles-always-apply
+  - frontend-profile-is-framework-neutral
+  - technology-overlays-may-only-add-not-replace-controls
+  profiles:
+    general-development-behavior:
+      alwaysApply: true
+      profilePath: profiles/GENERAL_DEVELOPMENT_BEHAVIOR_PROFILE.md
+      standardPath: reference/GENERAL_DEVELOPMENT_BEHAVIOR_STANDARD.md
+      requiredReviews:
+      - general-engineering-review
+      requiredScans:
+      - format
+      - lint
+      - type-or-schema-check
+      - build
+      - unit-test
+      hardBlocks:
+      - one-off-code
+      - parallel-duplicate-implementation
+      - builder-self-approval
+      - weakened-test-or-tool
+      - unreviewable-diff
+    general-implementation-quality:
+      alwaysApply: true
+      profilePath: profiles/GENERAL_IMPLEMENTATION_QUALITY_PROFILE.md
+      standardPath: reference/GENERAL_IMPLEMENTATION_QUALITY_STANDARD.md
+      requiredReviews:
+      - implementation-quality-review
+      - security-review-if-boundary
+      requiredScans:
+      - sast
+      - sca
+      - secret
+      - platform-appropriate-analyzers
+      hardBlocks:
+      - unbounded-resource
+      - unsafe-command-construction
+      - missing-server-authz
+      - secret-exposure
+      - uncontrolled-dynamic-code
+    frontend-development:
+      activateOn:
+      - user-interface
+      - browser-client
+      - webview
+      - page
+      - component
+      - form
+      - router
+      - client-state
+      - theme
+      - i18n
+      - accessibility
+      - pwa
+      - frontend-asset
+      profilePath: profiles/FRONTEND_DEVELOPMENT_PROFILE.md
+      standardPath: reference/FRONTEND_DEVELOPMENT_STANDARD.md
+      requiredReviews:
+      - frontend-engineering-review
+      - frontend-security-review
+      - accessibility-i18n-review
+      requiredScans:
+      - frontend-type-or-schema-check
+      - frontend-lint
+      - frontend-sast
+      - frontend-sca
+      - component-test
+      - accessibility-test
+      - e2e-as-applicable
+      - bundle-budget
+      - csp-browser-security
+      requiredEvidence:
+      - component-boundary
+      - state-ownership
+      - server-authoritative-authz
+      - responsive-matrix
+      - accessibility-evidence
+      - browser-storage-inventory
+      - client-bundle-secret-check
+      hardBlocks:
+      - dom-xss
+      - client-only-authorization
+      - long-lived-token-in-insecure-storage
+      - secret-in-client-bundle
+      - unsafe-postmessage
+      - open-redirect
+      - accessibility-keyboard-blocker
+      - missing-ui-required-behavior
+    architecture-system:
+      activateOn:
+      - module-boundary
+      - design-pattern
+      - di-ioc
+      - event-bus
+      - ipc
+      - worker
+      - openapi
+      - exception-contract
+      profilePath: profiles/ARCHITECTURE_SYSTEM_PROFILE.md
+    security-identity:
+      activateOn:
+      - authentication
+      - authorization
+      - tenant
+      - mfa
+      - oauth-oidc
+      - token
+      - cors
+      - privacy
+      - audit
+      profilePath: profiles/SECURITY_IDENTITY_PROFILE.md
+    data-management:
+      activateOn:
+      - database
+      - cache
+      - encryption
+      - backup
+      - export
+      - migration
+      - retention
+      profilePath: profiles/DATA_MANAGEMENT_PROFILE.md
+    test-engineering:
+      activateOn:
+      - test-plan
+      - unit
+      - integration
+      - contract
+      - e2e
+      - load
+      - benchmark
+      - concurrency
+      - security-test
+      profilePath: profiles/TEST_ENGINEERING_PROFILE.md
+    admin-operations:
+      activateOn:
+      - operation-status
+      - sse
+      - scheduler
+      - plugin
+      - resource-dashboard
+      - file-management
+      - permission-management
+      profilePath: profiles/ADMIN_OPERATIONS_PROFILE.md
+    ai-integration:
+      activateOn:
+      - llm-provider
+      - model-catalog
+      - prompt
+      - agent
+      - mcp
+      - skill
+      - plugin
+      - connector
+      - tool-call
+      - embedding
+      - rag
+      profilePath: profiles/AI_INTEGRATION_PROFILE.md
+    collaboration-versioning:
+      activateOn:
+      - commit
+      - pull-request
+      - version
+      - release
+      - promotion
+      profilePath: profiles/COLLABORATION_VERSIONING_PROFILE.md

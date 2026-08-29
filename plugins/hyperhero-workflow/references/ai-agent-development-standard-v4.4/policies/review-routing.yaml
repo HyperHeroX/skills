@@ -1,0 +1,39 @@
+apiVersion: ai-essd/v4.4
+kind: ReviewRoutingPolicy
+metadata:
+  version: 4.4.0
+spec:
+  alwaysRequired:
+  - Requirement Conformance Agent
+  - General Engineering Reviewer
+  - General Code Review Agent
+  routes:
+    implementation-quality:
+    - Implementation Quality/Reliability Reviewer
+    architecture:
+    - Architecture Agent
+    security:
+    - Security Reviewer
+    - Identity/Tenant Specialist
+    data:
+    - Data/Crypto/Backup Specialist
+    test:
+    - Test Design Agent
+    management:
+    - Operations/Reliability Specialist
+    - Security Reviewer
+    frontend:
+    - Frontend Engineering Reviewer
+    - Frontend Security Reviewer
+    - Accessibility/i18n Reviewer
+    ai:
+    - AI Security/MCP Specialist
+    versioning:
+    - Release Assurance/CI Specialist
+  rules:
+  - builder-cannot-approve
+  - same-session-role-switch-not-independent
+  - semantic-deviation-blocks
+  - all-evidence-same-revision-and-baseline
+  - public-source-practices-do-not-impose-technology-adoption
+  - frontend-route-is-framework-neutral

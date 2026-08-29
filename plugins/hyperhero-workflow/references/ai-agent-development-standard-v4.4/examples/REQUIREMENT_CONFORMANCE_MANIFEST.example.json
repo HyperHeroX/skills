@@ -1,0 +1,29 @@
+{
+  "schema_version": "4.4.0",
+  "task_id": "TASK-EXAMPLE",
+  "candidate_revision": "0123456789abcdef",
+  "baseline_digest": "77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f",
+  "reviewer": {
+    "role": "Requirement Conformance Agent",
+    "identity": "req-agent@example.invalid",
+    "independent_from_builder": true
+  },
+  "results": [
+    {
+      "requirement_id": "UI-REQ-005",
+      "status": "pass",
+      "source_preserved": true,
+      "implementation_locations": [
+        "src/components/settings/CriticalSettingCard.vue"
+      ],
+      "test_evidence": [
+        "tests/e2e/settings-save.spec.ts"
+      ],
+      "deviation": null,
+      "notes": "每一張關鍵設定卡片均有儲存按鈕。"
+    }
+  ],
+  "unreviewed_requirement_ids": [],
+  "decision": "pass",
+  "signature_or_digest": null
+}

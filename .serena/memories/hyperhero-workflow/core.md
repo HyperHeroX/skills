@@ -1,0 +1,6 @@
+# hyperhero-workflow plugin
+- Manifest: plugins/hyperhero-workflow/.claude-plugin/plugin.json; it registers the workflow plugin and a Stop hook invoking scripts/devteam-stop-hook.mjs.
+- devteam/SKILL.md: 11 sequential steps—planning roles through backend, frontend, QA, iteration, and CI/CD—plus state persistence under the user's docs/.devteam/, config sync, resume guard, circuit breaker, MCP/Serena-first and pre-commit gates.
+- autodev/SKILL.md: 10-stage generic flow—planning/devteam, OpenSpec development, security review, code review, unit testing, container deployment, browser UI/visual tests, optimization, and final acceptance.
+- Detailed devteam execution is in references/workflow.md; OpenSpec fallback is in references/openspec-integration.md; role and document templates are under references/JobDescription/ and references/FormatSample/.
+- When adding a cross-cutting standard, prefer a versioned directory under plugins/hyperhero-workflow/references/, then add explicit routing/checkpoints to both target SKILL.md files and the workflow references that govern their stages.

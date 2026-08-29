@@ -2,6 +2,20 @@
 
 This document contains the detailed 11-step workflow for the devteam skill.
 
+## AI Agent Engineering Standard v4.4 Gate (MANDATORY)
+
+Before reading or executing any step below, load [the v4.4 integration contract](ai-agent-development-standard-v4.4-integration.md) and the source bundle under [ai-agent-development-standard-v4.4/](ai-agent-development-standard-v4.4/).
+
+The workflow is bound to standard version `4.4.0` and baseline digest `77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f`. All 57 Requirement IDs remain `MUST`. A runtime feature switch, lifecycle maturity change, or missing environment capability cannot delete, weaken, or silently defer a requirement.
+
+Every task and step must carry:
+
+- Task ID, candidate revision, lifecycle／SSDLC stage, risk, direct／indirect Requirement IDs, and source-explicit conditions.
+- Allowed／forbidden paths, trust boundaries, tenant／permission scope, data and secret handling, reusable modules, and pattern decision.
+- Required build／test／review／scan／conformance gates, evidence locations, rollback, monitoring, and stop conditions.
+
+The implementation, tests, docs, Review, Scan, Requirement State, Conformance Manifest, and deployment evidence must use the same candidate revision and baseline digest. Missing evidence, unresolved deviation, unreviewed Requirement ID, Builder self-approval, or Scanner error is `BLOCKED`, never `PASS`.
+
 ---
 
 ## 🚨 Session Resume Guard (MANDATORY — Read FIRST)
@@ -43,12 +57,30 @@ AI agents frequently skip the structured OpenSpec workflow when resuming from co
 
 Before ANY implementation work in a resumed session:
 
-1. ✅ Read `docs/.devteam/status.json` to confirm current step
-2. ✅ Scan `docs/tasks/phase{n}/` for ALL task .md files
-3. ✅ Run `openspec list --json` to check existing changes
-4. ✅ Map each unfinished task .md to an OpenSpec change
-5. ✅ Present execution plan to user for confirmation
-6. ✅ Begin sequential processing: one task → one OpenSpec lifecycle → archive → next
+1. ✅ Load the v4.4 baseline, two Always-on General Profiles, project policy, lifecycle, Task Contract, Security Invariants, and Requirement-ID Profiles
+2. ✅ Read `docs/.devteam/status.json` to confirm current step and requirement contract fields
+3. ✅ Scan `docs/tasks/phase{n}/` for ALL task .md files
+4. ✅ Run `openspec list --json` to check existing changes
+5. ✅ Map each unfinished task .md to an OpenSpec change and its direct／indirect Requirement IDs
+6. ✅ Verify baseline digest, source conditions, required gates, and no forbidden requirement state
+7. ✅ Present execution plan to user for confirmation
+8. ✅ Begin sequential processing: one task → one OpenSpec lifecycle → archive → next
+
+### Requirement Gate by devteam Step
+
+| Step | v4.4 binding |
+|---|---|
+| 1 Requirement Gathering | Register all 57 requirements, source conditions, scope IDs, acceptance evidence, and lifecycle maturity. |
+| 2 Architecture | Design tenant/trust boundaries, DI/IoC, Event Bus, IPC, Worker, OpenAPI, security boundaries, and candidate patterns. |
+| 3 Analysis | Record Pattern Decision and simple-design comparison; map modules, events, permissions, errors, jobs, UI, AI, and tests. |
+| 4 Project Planning | Set lifecycle/SSDLC/risk, reviewers, scanners, test classes, evidence owners, rollback, and monitoring. |
+| 5 Database Design | Cover tenant scope, three-level key wrapping and one-time display, chained validation, cache persistence, backup/restore, retention, and audit. |
+| 6 Task Breakdown | Put Requirement IDs, source conditions, paths, required gates, and evidence in every smallest task and OpenSpec change. |
+| 7 Backend | Enforce server-side RBAC/tenant checks, validation, safe exceptions/logs, Event Bus/SSE states, scheduler adapters, plugins, and OpenAPI. |
+| 8 Frontend | Apply UI/management requirements: RWD, AA, theme/i18n, save behavior, lazy load, live dashboard, notifications, account/version, sidebar, font, and shared components. |
+| 9 Testing | Run unit, collection/integration, stress, benchmark, concurrency, white/gray/shallow-black/black, and automated E2E tests as applicable; retain browser and console evidence. |
+| 10 Iteration | Fail closed on deviations, missing evidence, scanner errors, or bugs; repair through OpenSpec and repeat affected conformance/tests. |
+| 11 Deployment | Bind build/test/review/scan/conformance/runtime evidence to one revision and digest; verify stage behavior and version rule before completion. |
 
 ### Core Rules (Non-Negotiable)
 

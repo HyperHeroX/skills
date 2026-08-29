@@ -1,0 +1,24 @@
+{
+  "schema_version": "4.4.0",
+  "task_id": "TASK-001",
+  "candidate_revision": "0123456789abcdef",
+  "baseline_digest": "77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f",
+  "requirement_ids": [
+    "UI-REQ-005",
+    "SEC-REQ-001"
+  ],
+  "changed_files": [
+    "src/components/settings/CriticalSettingCard.vue"
+  ],
+  "commands": [],
+  "tests": [],
+  "reviews": [
+    "review.json"
+  ],
+  "scans": [
+    "scan.json"
+  ],
+  "conformance": "requirement-conformance.json",
+  "status": "complete",
+  "rollback": "revert commit"
+}

@@ -16,12 +16,17 @@ Resume an interrupted devteam development team simulation.
 
 ## Behavior
 
-1. **🛠️ Config Sync (AUTO — Runs First)**
+1. **📜 AI Agent Standard v4.4 Contract (MANDATORY — Runs First)**
+   - Load `../references/ai-agent-development-standard-v4.4-integration.md`
+   - Read the saved standard version, baseline digest, lifecycle／SSDLC／risk, Requirement IDs, candidate revision, and conformance status
+   - If the contract is missing, the digest differs, or required evidence is unresolved, keep the task `BLOCKED` and do not resume implementation
+
+2. **🛠️ Config Sync (AUTO)**
    - Execute `devteam-config-sync` skill to ensure user's `AGENTS.md` and `copilot-instructions.md` contain mandatory rules
    - Check for `<!-- DEVTEAM-RULES-START -->` marker; inject if missing
    - Read template from `devteam/references/config-injection/agents-md-injection.md`
 
-2. **🚨 Session Resume Guard (MANDATORY — three-tier detection)**
+3. **🚨 Session Resume Guard (MANDATORY — three-tier detection)**
    - Before resuming ANY implementation, perform session resume processing
    - **Tier 1:** If `openspec-session-resume` skill is installed → invoke via Skill tool
    - **Tier 2:** If OpenSpec CLI is installed → run `openspec status` + scan pending tasks manually
@@ -32,19 +37,19 @@ Resume an interrupted devteam development team simulation.
    - AI does NOT stop until ALL tasks are completed (auto-continue loop)
    - Full mechanism: `../references/openspec-integration.md`
 
-3. **Check State**
+4. **Check State**
    - Read `docs/.devteam/status.json`
    - If not found → Report: "No devteam state found. Use /devteam to start."
 
-4. **Check Completion**
+5. **Check Completion**
    - If `exit_signal == true` → Report: "Previous simulation complete. Use /devteam for new one."
 
-5. **Check Circuit Breaker**
+6. **Check Circuit Breaker**
    - Read `docs/.devteam/circuit_breaker.json`
    - If `state == "OPEN"` → Reset to "CLOSED" and continue
    - Report: "Circuit breaker reset. Resuming..."
 
-6. **Resume Execution**
+7. **Resume Execution**
    - Load `current_step` and `current_role` from status
    - Announce: "🔄 Resuming Step {N} as {ROLE}"
    - Continue autonomous execution
@@ -59,7 +64,7 @@ After resuming, the AI follows the standard loop protocol:
 2. Update docs/.devteam/status.json
 3. Check circuit_breaker state
 4. IF step < 11 AND no blocker → AUTO-CONTINUE to next step
-5. IF step = 11 AND tests pass → SET exit_signal = true
+5. IF step = 11 AND tests, reviews, scans, and Requirement Conformance pass → SET exit_signal = true
 ```
 
 ## Circuit Breaker Reset

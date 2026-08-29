@@ -56,7 +56,11 @@ cp -r skills/plugins/hyperhero-tools/.claude-plugin ~/.claude/plugins/cache/hype
 
 ### hyperhero-workflow — 開發流程核心
 
-整合 devteam 團隊模擬、AutoDEV 全流程開發，完整涵蓋規劃到部署。
+整合 devteam 團隊模擬、AutoDEV 全流程開發與 AI Agent Engineering and Secure Development Standard v4.4，完整涵蓋規劃到部署。
+
+#### AI Agent Engineering Standard v4.4
+
+`devteam` 與 `autodev` 共用 `plugins/hyperhero-workflow/references/ai-agent-development-standard-v4.4/` 的 79 檔來源 bundle，以及整合契約。該 bundle 保留 57 項不可變 `MUST` Requirement、Profiles、Policies、Schemas、Lifecycle、Templates 與 Validator；兩個 skill 會以相同 baseline digest、Requirement 對映、Review／Scan／Test／Conformance 與部署證據閘門執行。
 
 #### Slash Commands
 
@@ -177,7 +181,7 @@ skills/
 │   │   │   └── devteam-config-sync/
 │   │   ├── commands/ (4 commands)
 │   │   ├── scripts/devteam-stop-hook.mjs
-│   │   └── references/
+│   │   └── references/             # workflow + v4.4 standard bundle
 │   └── hyperhero-tools/            # 輔助工具
 │       ├── .claude-plugin/plugin.json
 │       ├── skills/ (3 skills)

@@ -1,0 +1,638 @@
+# 複製為 `.ai/system-requirements.yaml` 後，填入專案、Owner、Runtime 狀態與證據。
+# 本範本完整列出 57 項不可變需求；不得刪除任何項目。
+apiVersion: ai-essd/v4.4
+kind: SystemRequirementState
+metadata:
+  project: <project-name>
+  version: 4.4.0
+  baseline_digest: 77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f
+spec:
+  current_stage: L0-MVP
+  requirements:
+  - id: ARCH-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-002
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-003
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 除非該語言特性無法滿足
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-004
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-005
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-006
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-007
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-008
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 如系統需要脫離宿主生命週期的陪伴或監測機制
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: ARCH-REQ-009
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-002
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-003
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-004
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 發生管理者跨租戶特權查探
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-005
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-006
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-007
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-008
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: SEC-REQ-009
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 僅在系統使用上有需要時蒐集帳號以外資訊
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: DATA-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: DATA-REQ-002
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: DATA-REQ-003
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: DATA-REQ-004
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: TEST-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: TEST-REQ-002
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: TEST-REQ-003
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: TEST-REQ-004
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: TEST-REQ-005
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: TEST-REQ-006
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: TEST-REQ-007
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 頁面功能建置且串接完畢後
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: MGMT-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: MGMT-REQ-002
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: MGMT-REQ-003
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 有可插拔模組時完整實作；無特別要求時至少保留相關擴充能力
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: MGMT-REQ-004
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: MGMT-REQ-005
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 系統需要上傳檔案；租戶隔離條件為開啟租戶功能
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: MGMT-REQ-006
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-002
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 除非另有特別要求，預設 AA
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-003
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-004
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-005
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-006
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 該欄位或功能被特別註明為即時儲存
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-007
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 空間不足顯示內容
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-008
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 頁面資料太多；原文強度為可以考慮
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-009
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-010
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-011
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-012
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-013
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-014
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-015
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 介面有側邊欄
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-016
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: UI-REQ-017
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: AI-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: AI-REQ-002
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: AI-REQ-003
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 模型具備可調參數；功能需要細微調整參數
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: AI-REQ-004
+    status: specified
+    owner: <requirement-owner>
+    source_condition: 系統具備可進行工具呼叫的代理人
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null
+  - id: DEV-REQ-001
+    status: specified
+    owner: <requirement-owner>
+    source_condition: null
+    condition_evidence: null
+    feature_state: not-configured
+    evidence: []
+    deviation:
+      status: none
+      amendment_id: null
+      details: null

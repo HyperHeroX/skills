@@ -1,0 +1,55 @@
+{
+  "version": "4.4.0",
+  "validated_at_utc": "2026-08-08T18:05:09.553305+00:00",
+  "root": "/mnt/data/ai_agent_development_standard_v4.4",
+  "checks": {
+    "required_files": {
+      "expected": 50,
+      "missing": []
+    },
+    "legacy_technology_profiles_removed": true,
+    "normative_control_mirror_consistency": {
+      "GDB": true,
+      "GIQ": true,
+      "FED": true
+    },
+    "frontend_ssdlc_gate": true,
+    "frontend_specialist_review_route": true,
+    "technology_neutral_core_profiles": true,
+    "requirements": {
+      "count": 57,
+      "unique": 57,
+      "category_counts": {
+        "ARCH": 9,
+        "SEC": 9,
+        "DATA": 4,
+        "TEST": 7,
+        "MGMT": 6,
+        "UI": 17,
+        "AI": 4,
+        "DEV": 1
+      },
+      "all_strength_must": true
+    },
+    "baseline_digest": "77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f",
+    "lifecycle_stages": [
+      "L0-MVP",
+      "L1-FORMAL-PROJECT",
+      "L2-INTERNAL-TEST",
+      "L3-PILOT",
+      "L4-GENERAL-AVAILABILITY",
+      "L5-MAINTENANCE",
+      "L6-RETIREMENT"
+    ],
+    "general_development_controls": 35,
+    "general_implementation_controls": 50,
+    "frontend_development_controls": 70,
+    "yaml_files": 11,
+    "json_files": 14,
+    "markdown_files": 52,
+    "schema_example_pairs": 8
+  },
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

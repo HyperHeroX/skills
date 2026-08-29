@@ -12,6 +12,19 @@
 
 ---
 
+## AI Agent Standard v4.4 Contract
+
+- **Standard**: `4.4.0`
+- **Baseline digest**: `77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f`
+- **Direct Requirement IDs**: -
+- **Indirect Requirement IDs**: -
+- **Candidate revision**: -
+- **Requirement Conformance**: `NOT_STARTED`
+
+Update this section whenever the requirement scope, revision, lifecycle stage, or conformance evidence changes.
+
+---
+
 ## Phase 1: Planning & Design
 
 ### Step 1: Requirement Gathering (Product Manager)
@@ -20,6 +33,8 @@
 - **Completed**: -
 - **Outputs**:
   - [ ] `docs/plan/requirements.md`
+  - [ ] v4.4 Requirement register and source-condition mapping
+  - [ ] AI Preflight and acceptance-evidence plan
 - **Notes**: -
 
 ### Step 2: System Architecture (System Architect)
@@ -29,6 +44,8 @@
 - **Outputs**:
   - [ ] `docs/plan/architecture.md`
   - [ ] `docs/env.md`
+  - [ ] Tenant/trust-boundary, DI/IoC, Event Bus, IPC, Worker and OpenAPI design
+  - [ ] Pattern decision record or ADR
 - **Notes**: -
 
 ### Step 3: System Analysis (System Analyst)
@@ -37,6 +54,7 @@
 - **Completed**: -
 - **Outputs**:
   - [ ] `docs/plan/system-analysis.md`
+  - [ ] Requirement-to-module/event/permission/error/job/UI/test mapping
 - **Notes**: -
 
 ### Step 4: Project Planning (Project Manager)
@@ -96,6 +114,8 @@
 - **Completed**: -
 - **Outputs**:
   - [ ] `docs/tests/*.md`
+  - [ ] Requirement Conformance evidence for all in-scope IDs
+  - [ ] Unit, collection/integration, stress, benchmark, concurrency, box-level and E2E results as applicable
 - **Notes**: -
 
 ### Step 10: Iteration (Process Check)

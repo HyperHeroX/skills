@@ -7,6 +7,22 @@
 
 ---
 
+## 0. AI Agent Standard v4.4 證據
+
+- **Standard version**: `4.4.0`
+- **Baseline digest**: `77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f`
+- **Lifecycle／SSDLC／Risk**: [填寫]
+- **Candidate revision**: [填寫]
+- **直接 Requirement IDs**: [填寫]
+- **間接 Requirement IDs**: [填寫]
+- **Requirement Conformance Manifest**: [連結]
+- **Build／Test／Review／Scan／Deployment 證據**: [連結]
+- **未核准偏離**: [無／有；有則不得通過]
+
+> 只有在所有 Requirement IDs、來源條件、同一 revision／digest 的實作與證據均由獨立 Conformance Agent 通過時，才可選擇「通過」。
+
+---
+
 ## 1. 韗收概覽
 
 ### 1.1 驗收範圍

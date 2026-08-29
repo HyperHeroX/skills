@@ -6,6 +6,17 @@
 
 ---
 
+## 0. AI Agent Standard v4.4 契約
+
+- [ ] Standard version 為 `4.4.0`
+- [ ] Baseline digest 為 `77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f`
+- [ ] 57 項 Requirement ID 均已登錄、保留來源條件並完成直接／間接對映
+- [ ] Runtime feature switch 沒有被用來取消、降級或延後必備需求
+- [ ] Candidate revision、實作、測試、Review、Scan、Conformance 與部署證據一致
+- [ ] Requirement Conformance 由獨立角色完成；無 Builder 自我核准、未核准偏離或 Scanner error as pass
+
+---
+
 ## 1. 饭能需求符合度
 ### 1.1 核心功能
 - [ ] 所有核心功能需求已實作
@@ -16,11 +27,14 @@
 - [ ] 所有 API 返回正確的狀態碼
 - [ ] 鬧點應用在案
 - [ ] 錯誤處理完整
+- [ ] 租戶、權限、事件／SSE、排程、插件、資源、檔案與備份範圍符合需求
+- [ ] 三層金鑰、一次顯示、快取持久化、鏈式驗證與資料稽核證據完整
 ### 1.3 UI 測試
 - [ ] 所有 UI 頁面可渲染
 - [ ] RWD 響應式測試通過
 - [ ] 表單提交測試通過
 - [ ] 導航功能正常
+- [ ] OpenAPI 互動頁、登入資訊、通知狀態、版本號與管理頁可操作
 
 ---
 ## 2. 代碼品質符合度

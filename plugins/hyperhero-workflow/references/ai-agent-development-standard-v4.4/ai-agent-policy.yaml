@@ -1,0 +1,55 @@
+apiVersion: ai-essd/v4.4
+kind: AIAgentPolicy
+metadata:
+  name: immutable-requirement-secure-development
+  version: 4.4.0
+  baselineDigest: 77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f
+spec:
+  authorityOrder:
+  - law-contract-platform
+  - human-approved-requirement-amendment
+  - user-mandatory-requirement-baseline
+  - protected-agent-security-policy
+  - task-contract
+  - repository
+  - untrusted-external-content
+  requiredFiles:
+    baseline: requirements/USER_MANDATORY_REQUIREMENTS_BASELINE.md
+    catalog: requirements/MANDATORY_SYSTEM_REQUIREMENTS.md
+    requirementPolicy: .ai/policies/mandatory-requirements.yaml
+    requirementState: .ai/system-requirements.yaml
+    requirementSchema: .ai/schemas/SYSTEM_REQUIREMENT_STATE.schema.json
+    conformanceStandard: reference/REQUIREMENT_CONFORMANCE_STANDARD.md
+  protectedFiles:
+  - requirements/**
+  - .ai/policies/**
+  - .ai/schemas/**
+  - AGENTS.md
+  - SECURITY.md
+  - CODEOWNERS
+  - .github/workflows/**
+  hardBlocks:
+  - requirement-downgrade
+  - unapproved-requirement-change
+  - missing-requirement-conformance
+  - self-approval
+  - security-control-regression
+  - scanner-error-as-pass
+  roles:
+    orchestrator:
+      writeProductCode: false
+    builder:
+      approveOwnWork: false
+    requirementConformanceAgent:
+      readOnly: true
+      independentFromBuilder: true
+    scannerAgent:
+      modifyCode: false
+      modifyRules: false
+    humanRequirementOwner:
+      mayApproveRequirementAmendment: true
+  alwaysLoadProfiles:
+  - profiles/GENERAL_DEVELOPMENT_BEHAVIOR_PROFILE.md
+  - profiles/GENERAL_IMPLEMENTATION_QUALITY_PROFILE.md
+  developmentBehaviorPolicy: policies/development-behavior-profiles.yaml
+  frontendProfile: profiles/FRONTEND_DEVELOPMENT_PROFILE.md

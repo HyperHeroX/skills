@@ -64,6 +64,7 @@
     "rule_1": "exit_signal=true requires BOTH completion_indicators >= 2 AND explicit EXIT_SIGNAL",
     "rule_2": "High confidence alone does NOT trigger exit if EXIT_SIGNAL=false",
     "rule_3": "Blocked status prevents exit regardless of other signals",
-    "rule_4": "User 'continue' command overrides exit signals"
+    "rule_4": "User 'continue' command overrides exit signals",
+    "rule_5": "Requirement Conformance and revision/baseline-digest consistency are required before exit"
   }
 }
