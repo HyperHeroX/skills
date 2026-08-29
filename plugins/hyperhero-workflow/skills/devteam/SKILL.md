@@ -1,7 +1,7 @@
 ---
 name: devteam
 description: |
-  Development Team Simulation Skill for end-to-end software development. Use when the user asks to develop, implement, build, or deploy a feature; requests a development-team or dev-team workflow; invokes `/devteam`; or wants a systematic, enterprise-grade process with planning, coding, testing, and verification.
+  Development Team Simulation Skill for end-to-end software development. Use when the user asks to develop, implement, build, or deploy a feature; requests a development-team or dev-team workflow; invokes `/devteam`; or wants a systematic, enterprise-grade process with planning, coding, testing, and verification. Always apply the bundled AI Agent Engineering and Secure Development Standard v4.4 and its 57 immutable mandatory requirements.
 
   Runs an 11-step workflow covering requirements, architecture, analysis, planning, database, task breakdown, backend, frontend, testing, iteration, and deployment. Persists session state in `docs/.devteam/`, applies role-based execution, enforces quality checks, and integrates with available development tools.
 ---
@@ -23,7 +23,21 @@ Simulate a complete software development lifecycle with **autonomous continuous 
 /devteam "My Feature Name"
 ```
 
-## 🛠️ Step 0: Config Sync (AUTO — Runs Before Everything)
+## AI Agent Engineering Standard v4.4 Contract (MANDATORY)
+
+Before any workflow step or write, load and follow [the v4.4 integration contract](../../references/ai-agent-development-standard-v4.4-integration.md). It routes the complete source bundle, including the immutable baseline, 57 Requirement IDs, profiles, policies, schemas, lifecycle guidance, templates, and validator.
+
+Record `standard_version: 4.4.0` and baseline digest `77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f` in the task/preflight and carry them through the same candidate revision. All 57 requirements remain `MUST`; runtime feature switches may change runtime behavior but never remove implementation, testing, documentation, or conformance obligations.
+
+### Step -1: Requirement Contract Preflight
+
+Before Step 0 Config Sync:
+
+1. Load the immutable requirement baseline, the two Always-on general Profiles, the target project's protected instructions/policies, the lifecycle/task/security artifacts, and Requirement-ID-specific Profiles.
+2. Record task ID, lifecycle/SSDLC stage, risk, direct/indirect Requirement IDs, verbatim source conditions, allowed/forbidden paths, trust boundaries, reusable modules, pattern decision, test/review/scan/conformance plan, rollback, monitoring, and stop conditions.
+3. If the digest, source condition, Requirement ID mapping, protected policy, or required evidence cannot be verified, set the task to `blocked` and do not write product code.
+
+## 🛠️ Step 0: Config Sync (AUTO — Runs After Requirement Preflight)
 
 Before ANY workflow step, the AI **MUST** run the `devteam-config-sync` skill to ensure the user's `AGENTS.md` and `copilot-instructions.md` contain the mandatory devteam/OpenSpec rules.
 
@@ -102,6 +116,8 @@ When stagnation detected (same error 3+ times):
 | **Implementation** | 7-8 | Backend → Frontend |
 | **Verification** | 9-11 | QA → Iteration Check → CI/CD |
 
+Every step must preserve Requirement IDs and produce evidence for the current lifecycle stage. Use the stage-by-stage bindings in the integration contract for architecture, security, data, management, interface, AI, testing, and versioning requirements.
+
 For detailed step-by-step instructions, see [references/workflow.md](../../references/workflow.md).
 
 ## 📁 State Management
@@ -113,16 +129,19 @@ For detailed step-by-step instructions, see [references/workflow.md](../../refer
 | `docs/.devteam/session_history.md` | Audit log |
 | `docs/.devteam/progress_tracker.md` | Detailed progress |
 
+The status record must also retain the v4.4 standard version, baseline digest, direct/indirect Requirement IDs, candidate revision, and Requirement Conformance status. Use the source schemas/examples for detailed task, review, scan, lifecycle, and conformance manifests.
+
 State templates available at [references/StateTemplate/](../../references/StateTemplate/).
 
 ## 🚨 Non-Negotiable Directives
 
-1. **Serena MCP First**: Use `mcp_oraios_serena_*` for all code exploration
-2. **MCP-Only Communication**: Report via `mcp_user-web-feed_collect_feedback`
-3. **Strict Formatting**: Follow `../../references/FormatSample/` templates
-4. **UI/UX Standards**: Apply `ui-ux-pro-max` skill for frontend work
-5. **Pre-Commit Checks**: Build + Tests must pass before commit
-6. **Session Recovery**: Always check `docs/.devteam/status.json` on resume
+1. **v4.4 Requirement Contract**: Load the integration contract and preserve the 57 immutable requirements and baseline digest
+2. **Serena MCP First**: Use `mcp_oraios_serena_*` for all code exploration
+3. **MCP-Only Communication**: Report via `mcp_user-web-feed_collect_feedback`
+4. **Strict Formatting**: Follow `../../references/FormatSample/` templates
+5. **UI/UX Standards**: Apply `ui-ux-pro-max` skill for frontend work
+6. **Pre-Commit Checks**: Build + Tests + required reviews/scans/conformance must pass before commit
+7. **Session Recovery**: Always check `docs/.devteam/status.json` and its requirement contract fields on resume
 
 ## ✅ Completion Signal
 
@@ -134,6 +153,8 @@ STATUS: COMPLETE
 STEPS_COMPLETED: 11/11
 TASKS_REMAINING: 0
 TESTS_PASSING: 100%
+REQUIREMENT_BASELINE_DIGEST: 77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f
+REQUIREMENT_CONFORMANCE: PASS
 EXIT_SIGNAL: true
 ---END_devteam_STATUS---
 ```
@@ -167,6 +188,8 @@ For detailed command documentation, see [references/commands.md](../../reference
 - **Document Templates**: [references/FormatSample/](../../references/FormatSample/)
 - **State Templates**: [references/StateTemplate/](../../references/StateTemplate/)
 - **Environment Info**: [references/Environment/](../../references/Environment/)
+- **AI Agent Standard v4.4 Integration**: [ai-agent-development-standard-v4.4-integration.md](../../references/ai-agent-development-standard-v4.4-integration.md)
+- **AI Agent Standard v4.4 Source Bundle**: [ai-agent-development-standard-v4.4/](../../references/ai-agent-development-standard-v4.4/)
 
 ### Plugin (Claude Code Only)
 - **Stop Hook**: [plugin/stop-hook.sh](plugin/stop-hook.sh)

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ai-essd/v4.4/AI_CHANGE_MANIFEST.schema.json",
+  "title": "AI Change Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "candidate_revision",
+    "baseline_digest",
+    "requirement_ids",
+    "changed_files",
+    "commands",
+    "tests",
+    "reviews",
+    "scans",
+    "conformance",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "4.4.0"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "candidate_revision": {
+      "type": "string"
+    },
+    "baseline_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "requirement_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(ARCH|SEC|DATA|TEST|MGMT|UI|AI|DEV)-REQ-[0-9]{3}$"
+      }
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scans": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conformance": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "partial",
+        "blocked",
+        "failed"
+      ]
+    },
+    "rollback": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

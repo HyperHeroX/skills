@@ -1,0 +1,110 @@
+{
+  "name": "AI Agent 工程與安全開發規範",
+  "version": "4.4.0",
+  "edition": "通用開發行為與完整前端開發基準版（不可變需求基線）",
+  "generated_at_utc": "2026-08-08T18:05:10.279498+00:00",
+  "mandatory_requirements": 57,
+  "category_counts": {
+    "ARCH": 9,
+    "SEC": 9,
+    "DATA": 4,
+    "TEST": 7,
+    "MGMT": 6,
+    "UI": 17,
+    "AI": 4,
+    "DEV": 1
+  },
+  "all_requirements_must": true,
+  "baseline_digest": "77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f",
+  "lifecycle_stages": [
+    "L0-MVP",
+    "L1-FORMAL-PROJECT",
+    "L2-INTERNAL-TEST",
+    "L3-PILOT",
+    "L4-GENERAL-AVAILABILITY",
+    "L5-MAINTENANCE",
+    "L6-RETIREMENT"
+  ],
+  "development_baselines": {
+    "chapter_22": {
+      "name": "通用開發行為基準：變更、可讀性與可維護性",
+      "controls": 35,
+      "control_family": "GDB",
+      "always_on": true,
+      "technology_neutral": true
+    },
+    "chapter_23": {
+      "name": "通用程式實作、執行與交付品質基準",
+      "controls": 50,
+      "control_family": "GIQ",
+      "always_on": true,
+      "technology_neutral": true
+    },
+    "chapter_24": {
+      "name": "前端開發基準",
+      "controls": 70,
+      "control_family": "FED",
+      "framework_neutral": true,
+      "specialist_review": true,
+      "ssdlc_gate": true
+    }
+  },
+  "correction_summary": [
+    "第 22、23 章改為所有語言、作業系統、框架與 Runtime 共用的開發行為基準",
+    "Linux Kernel、Microsoft、Google、NASA 等公開實務僅作為行為與治理精神來源，不構成技術採用要求",
+    "移除核心 Linux、.NET/C#、Vue/Nuxt 技術採用 Profile 與舊平台政策",
+    "新增框架中立的完整前端開發基準、前端 Profile、前端 Review、前端測試與前端 SSDLC Gate",
+    "主規範與獨立載入標準的 GDB、GIQ、FED Control ID 與規範文字逐條一致",
+    "保留 57 項不可變需求、來源語意、強度與 Baseline Digest"
+  ],
+  "validation_status": "pass",
+  "validation_report_generated_at_utc": "2026-08-08T18:05:09.553305+00:00",
+  "artifact_file_count": 79,
+  "validation_checks": {
+    "required_files": {
+      "expected": 50,
+      "missing": []
+    },
+    "legacy_technology_profiles_removed": true,
+    "normative_control_mirror_consistency": {
+      "GDB": true,
+      "GIQ": true,
+      "FED": true
+    },
+    "frontend_ssdlc_gate": true,
+    "frontend_specialist_review_route": true,
+    "technology_neutral_core_profiles": true,
+    "requirements": {
+      "count": 57,
+      "unique": 57,
+      "category_counts": {
+        "ARCH": 9,
+        "SEC": 9,
+        "DATA": 4,
+        "TEST": 7,
+        "MGMT": 6,
+        "UI": 17,
+        "AI": 4,
+        "DEV": 1
+      },
+      "all_strength_must": true
+    },
+    "baseline_digest": "77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f",
+    "lifecycle_stages": [
+      "L0-MVP",
+      "L1-FORMAL-PROJECT",
+      "L2-INTERNAL-TEST",
+      "L3-PILOT",
+      "L4-GENERAL-AVAILABILITY",
+      "L5-MAINTENANCE",
+      "L6-RETIREMENT"
+    ],
+    "general_development_controls": 35,
+    "general_implementation_controls": 50,
+    "frontend_development_controls": 70,
+    "yaml_files": 11,
+    "json_files": 14,
+    "markdown_files": 52,
+    "schema_example_pairs": 8
+  }
+}

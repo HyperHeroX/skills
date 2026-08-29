@@ -54,14 +54,18 @@ Before every step, the AI MUST:
 
 ```markdown
 📍 PRE-STEP CHECKLIST (Execute silently)
-1. READ `docs/.devteam/status.json` → Get current_step, current_role
-2. READ `docs/.devteam/circuit_breaker.json` → Check state
-3. IF circuit_breaker.state == "OPEN":
+1. LOAD `references/ai-agent-development-standard-v4.4-integration.md`
+2. READ `docs/.devteam/status.json` → Get current_step, current_role, requirement contract, and candidate revision
+3. READ `docs/.devteam/circuit_breaker.json` → Check state
+4. IF baseline digest, Requirement mapping, or required evidence is invalid:
+   → HALT execution
+   → REPORT a `BLOCKED` requirement-conformance state
+5. IF circuit_breaker.state == "OPEN":
    → HALT execution
    → REPORT via MCP: "🚫 Circuit breaker OPEN - {reason}"
    → AWAIT user command: "continue" / "reset" / "abort"
-4. VALIDATE prerequisites for current step
-5. ANNOUNCE: "🎭 Acting as: {current_role} - Step {current_step}"
+6. VALIDATE prerequisites for current step
+7. ANNOUNCE: "🎭 Acting as: {current_role} - Step {current_step}"
 ```
 
 ### Post-Step Protocol (MANDATORY)
@@ -83,13 +87,14 @@ After every step, the AI MUST:
    - Update current_role (if changing)
    - Update tasks_completed
 4. APPEND to `docs/.devteam/session_history.md`
-5. CHECK continuation condition:
+5. Preserve standard version, baseline digest, Requirement IDs, candidate revision, and conformance evidence in state and step artifacts
+6. CHECK continuation condition:
    - IF current_step <= 11 AND exit_signal == false:
      → IMMEDIATELY CONTINUE to next step (NO user prompt)
-   - IF current_step > 11 AND all_tests_pass:
-     → SET exit_signal = true
-     → OUTPUT completion status
-     → HALT and await user
+   - IF current_step > 11 AND all_tests_pass AND requirement_conformance == PASS AND revision/digest evidence agrees:
+      → SET exit_signal = true
+      → OUTPUT completion status
+      → HALT and await user
    - IF circuit_breaker.state == "OPEN":
      → HALT and report
 ```
@@ -163,6 +168,7 @@ FUNCTION should_exit_gracefully():
     
     # Load exit signals
     signals = READ docs/.devteam/exit_signals.json
+    status = READ docs/.devteam/status.json
     
     # Count recent signals
     test_loops = COUNT(signals.test_only_loops)
@@ -186,8 +192,11 @@ FUNCTION should_exit_gracefully():
     # 4. Strong completion indicators WITH explicit EXIT_SIGNAL
     IF completion_indicators >= 2:
         # Read explicit EXIT_SIGNAL from status
-        status = READ docs/.devteam/status.json
         IF status.exit_signal == true:
+            IF status.requirement_contract.requirement_conformance != "PASS":
+                RETURN "continue"
+            IF status.requirement_contract.candidate_revision is null:
+                RETURN "continue"
             RETURN "project_complete"
         ELSE:
             # High confidence but no explicit signal - CONTINUE
@@ -195,6 +204,10 @@ FUNCTION should_exit_gracefully():
     
     # 5. All steps complete
     IF status.current_step > 11 AND ALL_TASKS_DONE():
+        IF status.requirement_contract.requirement_conformance != "PASS":
+            RETURN "continue"
+        IF status.requirement_contract.candidate_revision is null:
+            RETURN "continue"
         RETURN "workflow_complete"
     
     # Default: continue

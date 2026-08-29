@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ai-essd/v4.4/AI_SCAN_MANIFEST.schema.json",
+  "title": "AI Scan Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "candidate_revision",
+    "baseline_digest",
+    "scanner",
+    "tool_version",
+    "ruleset_digest",
+    "scope",
+    "result",
+    "raw_evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "4.4.0"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "candidate_revision": {
+      "type": "string"
+    },
+    "baseline_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "scanner": {
+      "type": "string"
+    },
+    "tool_version": {
+      "type": "string"
+    },
+    "ruleset_digest": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "result": {
+      "enum": [
+        "pass",
+        "fail",
+        "blocked"
+      ]
+    },
+    "raw_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

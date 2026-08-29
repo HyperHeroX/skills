@@ -1,0 +1,39 @@
+apiVersion: ai-essd/v4.4
+kind: ProductLifecyclePolicy
+metadata:
+  version: 4.4.0
+spec:
+  principle: lifecycle-changes-maturity-not-requirement-existence
+  requiredInputs:
+  - .ai/system-requirements.yaml
+  - .ai/policies/mandatory-requirements.yaml
+  - requirements/USER_MANDATORY_REQUIREMENTS_BASELINE.md
+  stages:
+    L0-MVP:
+      minimumRequirementMaturity: specified
+      profile: lifecycle/L0_MVP.md
+    L1-FORMAL-PROJECT:
+      minimumRequirementMaturity: implemented
+      profile: lifecycle/L1_FORMAL_PROJECT.md
+    L2-INTERNAL-TEST:
+      minimumRequirementMaturity: verified
+      profile: lifecycle/L2_INTERNAL_TEST.md
+    L3-PILOT:
+      minimumRequirementMaturity: operational
+      profile: lifecycle/L3_PILOT.md
+    L4-GENERAL-AVAILABILITY:
+      minimumRequirementMaturity: operational
+      profile: lifecycle/L4_GENERAL_AVAILABILITY.md
+      requirementCoverage: 1.0
+    L5-MAINTENANCE:
+      minimumRequirementMaturity: maintained
+      profile: lifecycle/L5_MAINTENANCE.md
+    L6-RETIREMENT:
+      minimumRequirementMaturity: retired
+      profile: lifecycle/L6_RETIREMENT.md
+  hardBlocks:
+  - requirement-downgraded
+  - unapproved-semantic-deviation
+  - missing-requirement-id
+  - unreviewed-requirement
+  - baseline-digest-mismatch

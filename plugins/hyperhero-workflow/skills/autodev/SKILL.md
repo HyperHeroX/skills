@@ -1,13 +1,14 @@
 ---
 name: autodev
-description: '通用全流程開發技能。指導代理完成完整開發流程：規劃 → 資安 review → code review → 單元測試 → 容器化部署 → 瀏覽器 UI 測試 → 瀏覽器視覺辨識 → 調整優化 → 最終驗收。使用時機：(1) 新專案開發，(2) 功能模組實作，(3) API 端點開發，(4) UI/UX 實作，(5) 測試與部署，(6) 跨專案通用開發流程。強制要求：規劃階段必須使用 devteam skill，所有任務必須通過對應階段的檢查清單。'
+description: '通用全流程開發技能。指導代理完成完整開發流程：規劃 → 資安 review → code review → 單元測試 → 容器化部署 → 瀏覽器 UI 測試 → 瀏覽器視覺辨識 → 調整優化 → 最終驗收。使用時機：(1) 新專案開發，(2) 功能模組實作，(3) API 端點開發，(4) UI/UX 實作，(5) 測試與部署，(6) 跨專案通用開發流程。強制要求：規劃階段必須使用 devteam skill，所有任務必須通過對應階段的檢查清單，並遵循隨附的 AI Agent Engineering and Secure Development Standard v4.4 與 57 項不可變需求。'
 ---
 
 # AutoDEV - 通用全流程開發技能
 
 **適用範圍**: 跨專案通用開發流程  
-**版本**: 1.1 (整合 OpenSpec SDD)
-**最後更新**: 2026-03-19
+**版本**: 1.2 (整合 OpenSpec SDD 與 AI Agent Standard v4.4)
+**標準基線**: AI Agent Engineering and Secure Development Standard `4.4.0` / `77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f`
+**最後更新**: 2026-08-29
 
 ---
 
@@ -16,6 +17,35 @@ description: '通用全流程開發技能。指導代理完成完整開發流程
 本技能定義通用的標準開發流程，確保所有代理在執行開發任務時遵循一致的品質標準。每個功能開發必須依序通過以下十個階段：
 
 **開發流程**: `規劃 → OpenSpec 驅動開發 → 資安 review → code review → 單元測試 → 容器化部署 → 瀏覽器 UI 測試 → 瀏覽器視覺辨識 → 調整優化 → 最終驗收`
+
+---
+
+## AI Agent Engineering Standard v4.4（所有階段強制套用）
+
+開始任何規劃、寫入、程式碼生成、測試、部署或驗收前，先讀取 [v4.4 整合契約](../../references/ai-agent-development-standard-v4.4-integration.md)。完整來源 bundle 位於 [ai-agent-development-standard-v4.4/](../../references/ai-agent-development-standard-v4.4/)，包含需求原文、57 項 Requirement、Profiles、Policies、Schemas、Lifecycle、Templates 與 Validator。
+
+### 強制契約閘門
+
+1. 依整合契約載入不可變需求基線、兩份 Always-on General Profile、專案保護規則、Lifecycle、Task Contract、Security Invariants，以及 Requirement-ID 對應的 Domain／Frontend Profile。
+2. 在 preflight 和每個 OpenSpec change 記錄 `standard_version: 4.4.0`、baseline digest、Task ID、lifecycle／SSDLC／risk、直接與間接 Requirement IDs、來源明示條件、允許／禁止路徑、可重用模組、模式決策、測試／review／scan／conformance 計畫。
+3. 57 項需求全部維持 `MUST`。管理者關閉 runtime feature 不代表需求已取消；`deferred`、`disabled`、`not-applicable`、`optional`、`capability-ready` 不得被當成完成狀態。
+4. Builder 不得核准自己的 Review、Scan 或 Requirement Conformance。Digest、需求對映、證據、Scanner 結果或來源條件無法驗證時，必須 fail closed 為 `BLOCKED`。
+5. 最終完成時，實作、測試、文件、Review、Scan、Requirement State、Conformance Manifest、Artifact 與部署證據必須綁定相同 candidate revision 與 baseline digest。
+
+### 57 項需求路由
+
+| 類別 | Requirement IDs | 主要 Profile |
+|---|---|---|
+| 架構 | `ARCH-REQ-001`–`ARCH-REQ-009` | Architecture／Design Patterns |
+| 資安 | `SEC-REQ-001`–`SEC-REQ-009` | Security／Scanning |
+| 資料 | `DATA-REQ-001`–`DATA-REQ-004` | Data Management |
+| 測試 | `TEST-REQ-001`–`TEST-REQ-007` | Test Engineering／Frontend Testing |
+| 管理 | `MGMT-REQ-001`–`MGMT-REQ-006` | Admin Operations |
+| 介面 | `UI-REQ-001`–`UI-REQ-017` | Frontend Development／Review |
+| AI | `AI-REQ-001`–`AI-REQ-004` | AI Integration |
+| 共同開發 | `DEV-REQ-001` | Collaboration／Versioning |
+
+各 Requirement 的原文、條件與最低證據以整合契約及 v4.4 bundle 為準。
 
 ---
 
@@ -37,6 +67,9 @@ description: '通用全流程開發技能。指導代理完成完整開發流程
 - 架構設計決策
 - 時程估算
 - 風險評估
+- 57 項 v4.4 Requirement 的直接／間接對映、來源條件與最低證據
+- lifecycle／SSDLC stage、Task Contract、Security Invariants、Review／Scan／Conformance 路由
+- 租戶、權限、資料金鑰、事件／SSE、排程、插件、API、UI、AI 與回復／監控邊界
 
 **使用方式**:
 ```typescript
@@ -89,6 +122,8 @@ task(
 - [ ] 任務拆解清單
 - [ ] 架構設計文件
 - [ ] 開發時程表
+- [ ] AI Preflight（standard version、baseline digest、Requirement IDs、風險與證據計畫）
+- [ ] Requirement-to-module/test/evidence 對映表
 
 ---
 
@@ -136,6 +171,8 @@ cd <project-root> && openspec init
 | **循序處理** | 完成一個任務的完整 OpenSpec 生命週期後，才開始下一個任務 |
 | **禁止直接實作** | 未建立對應 OpenSpec change 之前，**禁止修改任何原始碼** |
 | **規格即文件** | OpenSpec 產出的 proposal.md、specs/、design.md、tasks.md 即為任務的完整規格文件 |
+| **需求可追溯** | 每個 change 必須記錄 v4.4 baseline digest、直接／間接 Requirement IDs、來源明示條件、必要 gates 與證據位置 |
+| **Fail closed** | 需求語意偏離、未審查 ID、缺少必要證據、Scanner error 或 Builder 自我核准時，change 不得進入完成狀態 |
 
 ### OpenSpec 任務執行流程 (強制)
 
@@ -182,6 +219,12 @@ cd <project-root> && openspec init
 ```
 
 ### 必做事項
+
+#### 2.0 v4.4 Change Contract
+
+- 在 `proposal.md`、`design.md` 或等價 change metadata 中保留 `standard_version: 4.4.0`、baseline digest、Task ID、lifecycle／SSDLC／risk、Requirement IDs、source conditions、allowed／forbidden paths 與 required gates。
+- 在 `specs/` 將需求行為、租戶／權限／資料／事件／錯誤／管理頁／UI／AI 邊界與驗收證據逐條對映；不要以「之後處理」或 runtime 關閉取代需求。
+- 使用 [v4.4 整合契約](../../references/ai-agent-development-standard-v4.4-integration.md) 的 Domain routing；需求、Review、Scan、Test、Conformance 與 Artifact 必須指向同一 candidate revision。
 
 #### 2.1 編碼規範
 
@@ -362,6 +405,14 @@ FOR EACH 後端任務:
 - [ ] 敏感資料加密
 - [ ] 日誌不包含敏感資訊
 
+#### 3.5 v4.4 Security and Data Controls
+
+- [ ] 每個頁面操作、API、Service、Job、Event、File、Plugin 與 Scheduler 均由同一權威 RBAC／Tenant Permission 在伺服器端驗證
+- [ ] 首次啟動最高管理者初始化、最小權限、防止自行提權與管理者跨租戶查探 Audit 已驗證
+- [ ] Token 為主要鑑權、OAuth 為第二選項；2FA／Authenticator／PassKey／Email Verify Code 與管理者強制繼承行為已驗證
+- [ ] CORS 可由系統管理頁設定；系統／程式 Log 分級；對外例外資訊已遮蔽
+- [ ] 三層金鑰、一次顯示、上層包覆、環境變數根金鑰、快取持久化、鏈式驗證、備份下載政策／範圍／還原與稽核已納入 Review
+
 **詳細檢查清單**: [references/phase-checklists/phase-1-security.md](../../references/phase-checklists/phase-1-security.md)
 
 ### 交付物
@@ -407,6 +458,13 @@ FOR EACH 後端任務:
 - [ ] 快取策略
 - [ ] 前端打包優化
 
+#### 4.5 v4.4 Architecture and Pattern Governance
+
+- [ ] 新模組、核心用例、跨模組整合與重大重構均有 Pattern Decision；至少比較維持簡單設計與候選模式
+- [ ] DI／IoC、Event Bus、模組契約、IPC、Worker、OpenAPI、SSE、排程 Adapter、插件邊界與版本規則已對映到實作與測試
+- [ ] 檢查 Singleton／Cache 的租戶洩漏、Observer 未解除、事件循環、無界責任鏈、God Facade／Mediator、任意反射／動態載入及以 Proxy／UI 作唯一授權邊界
+- [ ] 例外、取消、逾時、重試、冪等、併發、資源釋放、可觀測性與 rollback 行為已審查
+
 **詳細檢查清單**: [references/phase-checklists/phase-2-code-review.md](../../references/phase-checklists/phase-2-code-review.md)
 
 ### 交付物
@@ -439,9 +497,14 @@ FOR EACH 後端任務:
 #### 5.3 測試類型
 
 - [ ] 單元測試 (函數/方法)
-- [ ] 整合測試 (API 端點)
+- [ ] 集合／整合測試 (最小單元順序、資料傳遞、呼叫與完整流向)
+- [ ] 壓力測試 (大量請求吞吐、飽和、錯誤與恢復)
+- [ ] 基準測試 (固定工作負載、環境指紋；環境／硬體變更後重測)
+- [ ] 併發測試 (Race、Deadlock、Ordering、Duplicate、Idempotency、Resource Contention)
+- [ ] 白箱、灰箱、淺黑箱、黑箱測試 (依知情程度建立計畫與報告)
 - [ ] 組件測試 (前端)
-- [ ] E2E 測試 (使用者流程)
+- [ ] E2E 測試 (頁面串接後可在啟動時自動執行)
+- [ ] Requirement Conformance 測試 (每個直接／間接 Requirement ID 的最低證據)
 
 **測試範例**: [references/test-examples.md](../../references/test-examples.md)
 
@@ -487,6 +550,12 @@ FOR EACH 後端任務:
 - [ ] Container 健康檢查配置
 - [ ] 日誌管理
 
+#### 6.5 v4.4 Runtime Readiness
+
+- [ ] Cache、checkpoint、job、SSE 狀態與未完行為可持久化並在重啟後恢復
+- [ ] Tenant／RBAC／Audit、資料庫備份與範圍下載、資源管理、插件／檔案／權限管理頁均有運行時驗證
+- [ ] 版本號、candidate revision、baseline digest、migration、rollback、monitoring 與健康證據可追溯
+
 **部署指南**: [references/deployment-guide.md](../../references/deployment-guide.md)
 
 ### 交付物
@@ -529,6 +598,12 @@ FOR EACH 後端任務:
 - [ ] Tablet
 - [ ] Mobile
 
+#### 7.5 v4.4 管理與資料邊界
+
+- [ ] UI 可執行元件與所有直接請求均通過 RBAC／租戶權限
+- [ ] SSE 狀態、通知已讀／刪除、登入資訊／帳號功能、版本與資源狀態顯示正確
+- [ ] API OpenAPI 互動頁、排程、插件、檔案、備份下載與權限管理頁的資料範圍和 Audit 正確
+
 **測試範例**: [references/test-examples.md](../../references/test-examples.md)
 
 ### 交付物
@@ -565,6 +640,11 @@ FOR EACH 後端任務:
 - [ ] 色彩對比度
 - [ ] 焦點指示器可見性
 - [ ] 螢幕閱讀器相容性
+
+#### 8.4 v4.4 Interface Requirements
+
+- [ ] RWD、AA、可替換 Theme／i18n、關鍵設定儲存按鈕、指定即時儲存、滑桿與懶惰載入
+- [ ] 高對比、即時儀表板、顯示版本、可設定回到最上、通知閱覽／已讀／刪除、登入資訊、側邊欄摺疊、字型大小與共用組件
 
 **視覺檢查項目**: [references/visual-testing.md](../../references/visual-testing.md)
 
@@ -612,6 +692,8 @@ FOR EACH 後端任務:
 - [ ] 提取共用邏輯
 - [ ] 改善命名
 - [ ] 增強型別定義
+- [ ] 保留所有 v4.4 必備能力、Requirement IDs、租戶／權限／稽核／狀態／排程／備份邊界與證據
+- [ ] 未以效能、簡化或框架偏好刪除需求；任何模式或抽象替換都有相容性與回復計畫
 
 **優化清單**: [references/optimization-checklist.md](../../references/optimization-checklist.md)
 
@@ -636,6 +718,8 @@ FOR EACH 後端任務:
 - [ ] 所有功能需求已實作
 - [ ] 所有 API 端點正確
 - [ ] 所有 UI 頁面完整
+- [ ] 57 項 Requirement 均可追溯；所有直接／間接 Requirement IDs 已由獨立 Conformance Agent 審查
+- [ ] 沒有未核准語意偏離、未揭露 Scope Drift、Forbidden state、未審查變更或 Builder 自我核准
 
 #### 10.2 品質標準檢查
 
@@ -654,6 +738,8 @@ FOR EACH 後端任務:
 
 **詳細檢查清單**: [references/acceptance-checklist.md](../../references/acceptance-checklist.md)  
 **報告模板**: [references/acceptance-template.md](../../references/acceptance-template.md)
+
+驗收報告必須包含 standard version、baseline digest、candidate revision、Requirement Conformance Manifest、Build／Test／Review／Scan／部署證據、未核准偏離與 rollback／monitoring 結果。任一必要證據缺失時維持 `BLOCKED`，不得宣告完成。
 
 ### 交付物
 
@@ -792,6 +878,8 @@ task(
 | [references/acceptance-checklist.md](../../references/acceptance-checklist.md) | 最終驗收完整檢查清單 |
 | [references/acceptance-template.md](../../references/acceptance-template.md) | 最終驗收報告模板 |
 | [references/phase-checklists/](../../references/phase-checklists/) | 各階段詳細檢查清單 |
+| [references/ai-agent-development-standard-v4.4-integration.md](../../references/ai-agent-development-standard-v4.4-integration.md) | v4.4 標準載入順序、57 項需求路由、devteam／AutoDEV 閘門與證據契約 |
+| [references/ai-agent-development-standard-v4.4/](../../references/ai-agent-development-standard-v4.4/) | v4.4 完整來源 bundle：需求、Profiles、Policies、Schemas、Templates、Lifecycle、Validator |
 
 ---
 

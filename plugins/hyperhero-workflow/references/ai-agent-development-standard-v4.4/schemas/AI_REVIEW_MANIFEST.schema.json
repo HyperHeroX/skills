@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ai-essd/v4.4/AI_REVIEW_MANIFEST.schema.json",
+  "title": "AI Review Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "candidate_revision",
+    "baseline_digest",
+    "reviewer_role",
+    "independent",
+    "scope",
+    "findings",
+    "decision"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "4.4.0"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "candidate_revision": {
+      "type": "string"
+    },
+    "baseline_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewer_role": {
+      "type": "string"
+    },
+    "independent": {
+      "const": true
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "decision": {
+      "enum": [
+        "approve",
+        "request-changes",
+        "blocked"
+      ]
+    }
+  }
+}

@@ -8,6 +8,18 @@
   "current_phase": "Planning & Design",
   "started_at": "2026-01-31T10:00:00Z",
   "last_updated": "2026-01-31T10:00:00Z",
+
+  "requirement_contract": {
+    "standard_version": "4.4.0",
+    "baseline_digest": "77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f",
+    "lifecycle_stage": null,
+    "ssdlc_activity": null,
+    "risk": null,
+    "direct_requirement_ids": [],
+    "indirect_requirement_ids": [],
+    "candidate_revision": null,
+    "requirement_conformance": "NOT_STARTED"
+  },
   
   "tasks_completed": [],
   "pending_tasks": ["Step 1: Requirement Gathering"],

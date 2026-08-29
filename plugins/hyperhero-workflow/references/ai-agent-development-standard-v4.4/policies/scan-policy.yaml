@@ -1,0 +1,63 @@
+apiVersion: ai-essd/v4.4
+kind: SecurityScanPolicy
+metadata:
+  version: 4.4.0
+spec:
+  scannerAgentCannotModifyCodeOrRules: true
+  requiredByStage:
+    L0-MVP:
+    - format
+    - lint
+    - type-check
+    - build
+    - secret-diff
+    - fast-sast
+    - sca
+    L1-FORMAL-PROJECT:
+    - full-sast
+    - sca
+    - secret
+    - license
+    - platform-analyzers
+    - unit
+    - integration
+    L2-INTERNAL-TEST:
+    - dast
+    - api-security
+    - fuzz
+    - container
+    - iac
+    - e2e
+    - accessibility
+    - performance
+    - concurrency
+    L3-PILOT:
+    - artifact-rescan
+    - runtime-config
+    - csp-report
+    - observability
+    - backup-restore
+    L4-GENERAL-AVAILABILITY:
+    - release-sast
+    - sca
+    - secret
+    - dast
+    - sbom
+    - provenance
+    - signature
+    L5-MAINTENANCE:
+    - cve
+    - dependency
+    - image
+    - configuration-drift
+    - requirement-drift
+    L6-RETIREMENT:
+    - retirement-script-scan
+    - secret-revocation
+    - data-disposal-verification
+  hardBlocks:
+  - scanner-error-or-timeout
+  - critical-or-high-unapproved
+  - secret-found
+  - requirement-conformance-failed
+  - baseline-digest-mismatch

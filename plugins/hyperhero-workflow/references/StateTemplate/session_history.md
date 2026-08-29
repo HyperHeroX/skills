@@ -7,6 +7,7 @@
 - **時間戳記**: ISO-8601 格式
 - **轉換類型**: `INIT` | `STEP_CHANGE` | `ROLE_CHANGE` | `BLOCKED` | `RESUMED` | `COMPLETED`
 - **詳細資訊**: 轉換說明
+- **需求追蹤**: Standard version、baseline digest、直接／間接 Requirement IDs、candidate revision、conformance 狀態
 
 ---
 

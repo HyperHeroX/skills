@@ -1,0 +1,179 @@
+apiVersion: ai-essd/v4.4
+kind: SSDLCGatePolicy
+metadata:
+  version: 4.4.0
+spec:
+  principle: all-user-mandatory-requirements-persist-through-all-stages
+  stages:
+    S0-GOVERNANCE:
+      required:
+      - baseline-digest
+      - requirement-owner
+      - protected-requirement-files
+      - agent-role-separation
+    S1-INTAKE:
+      required:
+      - task-contract
+      - direct-and-indirect-requirement-ids
+      - stage
+      - risk
+      - scope
+    S2-REQUIREMENTS:
+      required:
+      - source-text
+      - source-conditions
+      - acceptance-criteria
+      - negative-cases
+      - traceability
+    S3-ARCHITECTURE:
+      required:
+      - architecture
+      - data-flow
+      - trust-boundaries
+      - threat-model
+      - pattern-decision
+    S4-PLANNING:
+      required:
+      - implementation-slices
+      - review-routing
+      - scan-routing
+      - test-plan
+      - rollback
+    S5-SOURCE-PROTECTION:
+      required:
+      - branch-protection
+      - codeowners
+      - pinned-toolchain
+      - protected-policies
+    S6-IMPLEMENTATION:
+      required:
+      - candidate-patch
+      - docs
+      - tests
+      - telemetry
+      - no-one-off-code
+    S7-AUTOMATED-VERIFICATION:
+      required:
+      - build
+      - unit
+      - integration
+      - sast
+      - sca
+      - secret
+      - platform-analyzers
+    S8-INDEPENDENT-REVIEW:
+      required:
+      - general-review
+      - requirement-conformance
+      - domain-and-security-review
+    S9-SYSTEM-VALIDATION:
+      required:
+      - e2e
+      - security-testing
+      - stress
+      - benchmark
+      - concurrency
+      - white-gray-shallow-black-black
+    S10-RELEASE-ASSURANCE:
+      required:
+      - same-revision-evidence
+      - requirement-coverage
+      - artifact
+      - sbom
+      - provenance
+      - rollback
+    S11-DEPLOYMENT:
+      required:
+      - controlled-deployment
+      - r3-approval
+      - canary
+      - audit
+      - rollback-trigger
+    S12-OPERATIONS:
+      required:
+      - monitoring
+      - resource-page
+      - state-page
+      - backup
+      - restore
+      - cve-and-drift
+    S13-VULNERABILITY-INCIDENT:
+      required:
+      - containment
+      - patch
+      - regression
+      - conformance
+      - root-cause
+    S14-RETIREMENT:
+      required:
+      - data-key-credential-job-plugin-ui-disposal
+      - evidence-retention
+  hardBlocks:
+  - requirement-downgrade
+  - source-condition-invented
+  - unreviewed-requirement
+  - baseline-digest-mismatch
+  - builder-self-approval
+  - scanner-error-as-pass
+  conditionalGates:
+    frontend-change:
+      activateOn:
+      - user-interface
+      - browser-client
+      - webview
+      - page
+      - component
+      - form
+      - router
+      - client-state
+      - theme
+      - i18n
+      - accessibility
+      - pwa
+      - frontend-asset
+      requiredByActivity:
+        S2-REQUIREMENTS:
+        - ui-requirement-ids
+        - responsive-acceptance
+        - accessibility-acceptance
+        - browser-security-acceptance
+        S3-ARCHITECTURE:
+        - frontend-component-boundaries
+        - state-ownership
+        - api-client-contract
+        - design-system-theme-i18n-boundaries
+        S6-IMPLEMENTATION:
+        - frontend-development-profile
+        - server-authoritative-authz
+        - required-ui-behaviors
+        - no-client-secret
+        S7-AUTOMATED-VERIFICATION:
+        - frontend-type-or-schema-check
+        - frontend-lint
+        - component-test
+        - frontend-sast
+        - frontend-sca
+        - client-bundle-secret-check
+        S8-INDEPENDENT-REVIEW:
+        - frontend-engineering-review
+        - frontend-security-review
+        - accessibility-i18n-review
+        S9-SYSTEM-VALIDATION:
+        - frontend-e2e
+        - responsive-browser-matrix
+        - accessibility-validation
+        - visual-regression
+        - frontend-performance-budget
+        - browser-security-negative-tests
+        S10-RELEASE-ASSURANCE:
+        - frontend-requirement-conformance
+        - release-asset-integrity
+        - source-map-governance
+        - service-worker-cache-rollback
+      hardBlocks:
+      - frontend-profile-not-loaded
+      - missing-required-ui-behavior
+      - client-only-authorization
+      - dom-xss
+      - secret-in-client-bundle
+      - keyboard-blocking-accessibility-defect

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ai-essd/v4.4/REQUIREMENT_CONFORMANCE_MANIFEST.schema.json",
+  "title": "Requirement Conformance Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "candidate_revision",
+    "baseline_digest",
+    "reviewer",
+    "results",
+    "unreviewed_requirement_ids",
+    "decision"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "4.4.0"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidate_revision": {
+      "type": "string",
+      "minLength": 7
+    },
+    "baseline_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "identity",
+        "independent_from_builder"
+      ],
+      "properties": {
+        "role": {
+          "const": "Requirement Conformance Agent"
+        },
+        "identity": {
+          "type": "string"
+        },
+        "independent_from_builder": {
+          "const": true
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirement_id",
+          "status",
+          "source_preserved",
+          "implementation_locations",
+          "test_evidence",
+          "deviation"
+        ],
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^(ARCH|SEC|DATA|TEST|MGMT|UI|AI|DEV)-REQ-[0-9]{3}$"
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "fail",
+              "blocked",
+              "condition-not-triggered"
+            ]
+          },
+          "source_preserved": {
+            "type": "boolean"
+          },
+          "implementation_locations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "test_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "deviation": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "unreviewed_requirement_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decision": {
+      "enum": [
+        "pass",
+        "fail",
+        "blocked"
+      ]
+    },
+    "signature_or_digest": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

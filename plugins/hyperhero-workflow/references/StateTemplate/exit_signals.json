@@ -22,7 +22,9 @@
     "all_tasks_done": false,
     "all_tests_pass": false,
     "no_bug_tasks": false,
-    "deployment_verified": false
+    "deployment_verified": false,
+    "requirement_conformance_pass": false,
+    "revision_and_digest_consistent": false
   },
   
   "thresholds": {
@@ -32,7 +34,7 @@
   },
   
   "notes": {
-    "exit_rule": "Exit requires BOTH completion_indicators >= 2 AND explicit exit_signal == true",
+    "exit_rule": "Exit requires completion_indicators >= 2, explicit exit_signal == true, all required gates including Requirement Conformance, and consistent revision/digest evidence",
     "test_saturation": "Exit if test_only_loops array length >= 3 consecutive loops",
     "completion_signals": "Exit if done_signals array length >= 2",
     "rolling_window": "Arrays maintain last 5 entries only (rolling window)"

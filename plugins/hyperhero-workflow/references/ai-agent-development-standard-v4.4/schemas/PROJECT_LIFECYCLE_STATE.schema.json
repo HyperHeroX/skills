@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ai-essd/v4.4/PROJECT_LIFECYCLE_STATE.schema.json",
+  "title": "Project Lifecycle State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "const": "ai-essd/v4.4"
+    },
+    "kind": {
+      "const": "ProjectLifecycleState"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "current_stage",
+        "requirement_baseline_digest"
+      ],
+      "properties": {
+        "current_stage": {
+          "enum": [
+            "L0-MVP",
+            "L1-FORMAL-PROJECT",
+            "L2-INTERNAL-TEST",
+            "L3-PILOT",
+            "L4-GENERAL-AVAILABILITY",
+            "L5-MAINTENANCE",
+            "L6-RETIREMENT"
+          ]
+        },
+        "requirement_baseline_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

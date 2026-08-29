@@ -20,12 +20,13 @@
 
 ### Initialization Sequence
 ```
-1. READ docs/.devteam/status.json
-2. IF exists AND exit_signal == false:
+1. LOAD references/ai-agent-development-standard-v4.4-integration.md
+2. READ docs/.devteam/status.json and verify standard_version, baseline_digest, Requirement IDs, candidate_revision, and requirement_conformance
+3. IF exists AND exit_signal == false:
      RESUME from current_step with current_role
-3. ELSE:
+4. ELSE:
      CREATE docs/.devteam/ directory
-     INITIALIZE status.json with step=1, role="Product Manager"
+     INITIALIZE status.json with step=1, role="Product Manager", and the v4.4 requirement_contract
      BEGIN Step 1
 ```
 
@@ -37,7 +38,7 @@
 4. CREATE/UPDATE output documents
 5. UPDATE docs/.devteam/status.json
 6. IF milestone OR blocker:
-     REPORT via mcp_user-feedback_collect_feedback
+     REPORT via mcp_user-web-feed_collect_feedback
 7. IF user responds "continue":
      PROCEED to next step
 8. ELSE IF user provides specific instruction:
@@ -50,10 +51,12 @@
 2. VERIFY all tasks in docs/tasks marked done
 3. VERIFY all tests in docs/tests marked PASS
 4. VERIFY no BUG tasks remain
-5. OUTPUT devteam_STATUS block with EXIT_SIGNAL: true
-6. UPDATE status.json with exit_signal: true
-7. ARCHIVE via /opsx:archive
-8. FINAL REPORT via MCP
+5. VERIFY all direct/indirect Requirement IDs have independent Conformance PASS
+6. VERIFY reviews, scans, evidence, candidate revision, and baseline digest are consistent
+7. OUTPUT devteam_STATUS block with EXIT_SIGNAL: true
+8. UPDATE status.json with exit_signal: true
+9. ARCHIVE via /opsx:archive
+10. FINAL REPORT via MCP
 ```
 
 ---
@@ -71,6 +74,9 @@ CURRENT_PHASE: Planning & Design | Implementation & Iteration | Verification & D
 TASKS_COMPLETED_THIS_SESSION: <number>
 FILES_MODIFIED: <number>
 TESTS_STATUS: PASSING | FAILING | NOT_RUN
+STANDARD_VERSION: 4.4.0
+REQUIREMENT_BASELINE_DIGEST: 77478e2a918e6dc7984f79534abcd5415cdbb07bb2c7de2346aceb03e5484f4f
+REQUIREMENT_CONFORMANCE: PASS | FAIL | NOT_RUN
 EXIT_SIGNAL: false | true
 BLOCKED_REASON: <reason if blocked, else null>
 RECOMMENDATION: <one line summary>
@@ -86,6 +92,9 @@ RECOMMENDATION: <one line summary>
 - [ ] All `docs/tasks` marked done
 - [ ] All `docs/tests` marked PASS
 - [ ] No BUG tasks in `docs/tasks`
+- [ ] All 57 Requirement IDs are registered and traceable to evidence
+- [ ] No requirement downgrade, forbidden state, unapproved deviation, or Builder self-approval
+- [ ] Standard version, baseline digest, candidate revision, Review, Scan, Test, Conformance, and deployment evidence agree
 - [ ] E2E tests passed on Stage
 - [ ] `docs/CHANGELOG.md` updated
 - [ ] `/opsx:archive` executed
