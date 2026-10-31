@@ -4,19 +4,19 @@
     "name": "HyperHeroX"
   },
   "metadata": {
-    "description": "HyperHeroX 開發團隊模擬與全流程開發技能套件",
-    "version": "2.0.0"
+    "description": "HyperHeroX 開發團隊模擬、全流程開發、企業簡報與輔助工具技能套件",
+    "version": "2.1.0"
   },
   "plugins": [
     {
       "name": "hyperhero-workflow",
       "source": "./plugins/hyperhero-workflow",
-      "description": "開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程開發 + AI Agent Engineering and Secure Development Standard v4.4 + LLM CoWorker 雙模型協作 + TWAA 無障礙驗證"
+      "description": "開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程開發 + AI Agent Engineering and Secure Development Standard v4.4 + LLM CoWorker 雙模型協作 + TWAA 無障礙驗證 + CoWork 企業高階簡報 + Stage-Gate 研發與教學規劃評估"
     },
     {
       "name": "hyperhero-tools",
       "source": "./plugins/hyperhero-tools",
-      "description": "輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發"
+      "description": "輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發、網路排障知識庫、影片字幕生成、AI 新聞摘要"
     }
   ]
 }
