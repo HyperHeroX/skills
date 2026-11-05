@@ -86,6 +86,7 @@ cp -r skills/plugins/hyperhero-tools/.claude-plugin ~/.claude/plugins/cache/hype
 | **llm-coworker** | 雙模型實作者與驗證者協同工作流（Implementer / Validator） | 跨模型審查、複雜重構驗證、雙重把關 |
 | **pgvector-rag-blueprint** | PostgreSQL + pgvector 企業級向量檢索與 RAG 藍圖 | 規劃或建置 RAG、pgvector 向量資料庫 |
 | **twaa** | 台灣無障礙標章 TWAA (A/AA/AAA) 自動化檢驗與修正指引 | 提及無障礙、TWAA、A11y、無障礙檢測 |
+| **software-contract-spec** | 軟體開發委託合約與驗收規格工程方法論（三階段付款、除不盡尾數規則、責任上限、AI/商業庫免責、附件一6欄位標準、附件二客觀驗收矩陣） | 擬定軟體合約、系統需求附件一、驗收標準附件二、分期付款、合約防衛條款 |
 | **devteam-config-sync** | 自動注入 devteam 規則到專案設定 | 專案初始化時 |
 
 #### dotnet-enterprise Skill 詳細說明
