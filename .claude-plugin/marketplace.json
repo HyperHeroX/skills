@@ -4,14 +4,14 @@
     "name": "HyperHeroX"
   },
   "metadata": {
-    "description": "HyperHeroX 開發團隊模擬、全流程開發、企業簡報與輔助工具技能套件",
-    "version": "2.1.0"
+    "description": "HyperHeroX 開發團隊模擬、全流程開發、企業簡報、合約規格工程與輔助工具技能套件",
+    "version": "2.1.1"
   },
   "plugins": [
     {
       "name": "hyperhero-workflow",
       "source": "./plugins/hyperhero-workflow",
-      "description": "開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程開發 + AI Agent Engineering and Secure Development Standard v4.4 + LLM CoWorker 雙模型協作 + TWAA 無障礙驗證 + CoWork 企業高階簡報 + Stage-Gate 研發與教學規劃評估"
+      "description": "開發流程核心 — devteam 團隊模擬 + AutoDEV 全流程開發 + AI Agent Engineering and Secure Development Standard v4.4 + LLM CoWorker 雙模型協作 + TWAA 無障礙驗證 + CoWork 企業高階簡報 + Stage-Gate 研發與教學規劃評估 + 軟體委託開發合約與驗收規格工程"
     },
     {
       "name": "hyperhero-tools",
