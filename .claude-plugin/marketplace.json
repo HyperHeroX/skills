@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "HyperHeroX 開發團隊模擬、全流程開發、企業簡報、合約規格工程與輔助工具技能套件",
-    "version": "2.1.1"
+    "version": "2.2.0"
   },
   "plugins": [
     {
@@ -16,7 +16,7 @@
     {
       "name": "hyperhero-tools",
       "source": "./plugins/hyperhero-tools",
-      "description": "輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發、網路排障知識庫、影片字幕生成、AI 新聞摘要"
+      "description": "輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發、網路排障知識庫、影片字幕生成、AI 新聞摘要、PPT 簡報 SVG 配圖"
     }
   ]
 }

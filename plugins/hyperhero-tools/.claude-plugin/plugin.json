@@ -1,11 +1,11 @@
 {
   "name": "hyperhero-tools",
-  "description": "HyperHeroX 輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發、網路排障知識庫、影片字幕生成、AI 新聞摘要",
-  "version": "1.1.0",
+  "description": "HyperHeroX 輔助工具 — E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代開發、網路排障知識庫、影片字幕生成、AI 新聞摘要、PPT 簡報 SVG 配圖",
+  "version": "1.2.0",
   "author": {
     "name": "HyperHeroX"
   },
-  "keywords": ["testing", "e2e", "documentation", "ralph-loop", "iteration", "network-troubleshooting", "video-subtitle", "whisper", "ai-news-digest"],
+  "keywords": ["testing", "e2e", "documentation", "ralph-loop", "iteration", "network-troubleshooting", "video-subtitle", "whisper", "ai-news-digest", "pptx", "svg", "diagram"],
   "license": "MIT",
   "commands": [
     "./commands/"
