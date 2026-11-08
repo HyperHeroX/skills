@@ -136,7 +136,7 @@ E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代、網路排�
 | **network-troubleshooting** | 資深網管實戰排障知識庫與 SOP（L1~L7 排查、回滾命令、案例庫沉澱） | 網路斷線、延遲、ping 不通、DNS/防火牆/路由設定 |
 | **video-subtitle** | faster-whisper GPU 語音辨識與繁體中文修復字幕產生器 | 影片或音訊轉字幕、產生 .srt、語音轉文字 |
 | **ai-news-digest** | 每日焦點 AI 新聞搜尋、事實查核與繁體中文摘要 | 詢問今日 AI 新聞、科技焦點、新聞摘要 |
-| **pptx-svg-diagrams** | 依原始影片／投影片的圖形結構重繪 PowerPoint 相容 SVG 配圖（統一色票、字級，PNG 備援修正與視覺 QA） | 重畫或統一簡報配圖、SVG 放進 PPT 後線框或底色消失、從課程錄影整理筆記投影片 |
+| **pptx-svg-diagrams** | 依投影片內容的關係結構設計 PowerPoint 相容 SVG 配圖（統一色票、字級，PNG 備援修正與視覺 QA） | 重畫或統一簡報配圖、SVG 放進 PPT 後線框或底色消失、從課程錄影整理筆記投影片 |
 
 ## 典型工作流程
 

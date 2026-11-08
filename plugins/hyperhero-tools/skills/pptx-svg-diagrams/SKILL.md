@@ -2,17 +2,17 @@
 name: pptx-svg-diagrams
 description: |
   為 PowerPoint 簡報（尤其是由教學影片、課程錄影、原投影片整理出的筆記簡報）量身繪製配圖：
-  依原始畫面的圖形結構逐張重繪成 PowerPoint 相容 SVG，統一配色與字級，嵌入 PPTX 並做 PNG 備援修正與視覺 QA。
+  依每張投影片內容的關係結構（順序、層級、包含、比較、循環、互動…）逐張設計 PowerPoint 相容 SVG，統一配色與字級，嵌入 PPTX 並做 PNG 備援修正與視覺 QA。
   **在以下情況使用：**
   - 使用者要「重畫配圖」「統一配圖風格」「流程圖／架構圖放進 PPT」「配圖用 SVG 做再放進 PPT」
   - 使用者抱怨 PPT 裡的 SVG「線框不見」「沒有底色」「箭頭消失」「顏色對比太低」
-  - 使用者說配圖「結構都一樣」「要對應原始影片／原投影片的圖」
+  - 使用者說配圖「結構都一樣」「看不出重點」「不容易理解」
   - 從影片或文件整理重點筆記投影片，且需要圖解
 ---
 
 # PPTX SVG 配圖技能
 
-把「看得懂、和原圖結構一致、在 PowerPoint 裡不會壞掉」的配圖放進簡報。
+把「看得懂、形式貼合內容、在 PowerPoint 裡不會壞掉」的配圖放進簡報。
 本技能來自一份 39 堂課、366 頁的 CISSP 錄影筆記簡報實作（128 張客製配圖），踩過的坑都寫在規則裡。
 
 ## 搭配的技能
@@ -29,13 +29,13 @@ description: |
 | `scripts/svgkit.py` | 繪圖元件（box、circle、arrow、elbow、curve_arrow、arc、icon、badge、pill、label/text、knockout、wrap/fit、svg、save）與色票常數。單檔、只用標準庫 |
 | `scripts/icons.json` | 50 個 Lucide 線條圖示（ISC 授權，見 ICONS_LICENSE.txt），`icon()`/`badge()` 使用 |
 | `scripts/check_svg.py` | 檢查禁用語法、最小字級、畫布尺寸、文字出界，並輸出 PNG 預覽 |
-| `scripts/extract_frames.py` | 從影片擷取某時間範圍的畫面（去重＋聯絡表），找原圖用 |
+| `scripts/extract_frames.py` | 從影片擷取某時間範圍的畫面（去重＋聯絡表），內容不清楚時回頭查證用 |
 | `scripts/embed_pptx.js` | pptxgenjs 參考實作：side／full 版位、`**重點**` 螢光標示、caption、講者備註 |
 | `scripts/fix_png_fallback.py` | **必跑**：用 SVG 重算 PNG 備援，並修 pptxgenjs 多 run 段落掉項目符號的 bug |
 | `scripts/render_qa.sh` | PPTX → PDF → 頁面圖 → 聯絡表，供目視 QA |
 | `references/ppt-safe-svg.md` | PowerPoint 相容 SVG 規則（禁用清單與替代做法） |
 | `references/design-tokens.md` | 色票、字級、版面尺寸、重點標示規則 |
-| `references/form-catalog.md` | 原圖形式 → 重繪形式對照表 |
+| `references/form-catalog.md` | 內容關係 → 圖形形式對照表 |
 | `references/agent-brief-template.md` | 大量配圖時，交給平行繪圖代理的任務說明範本 |
 | `examples/*.py` | 三張完整範例：同心弧城堡模型（side）、六站生命週期時間軸（full）、決策流程＋長條（side） |
 
@@ -46,11 +46,14 @@ description: |
 存成 `tasks.json`。條列在左、圖在右的版面用 `side`（寬 1048 px），橫向長流程用 `full`（寬 1747 px）；
 依投影片剩餘空間算出每張的高度上限（1 in = 144 px）。
 
-### 2. 看原圖，決定形式
-- 影片：`python3 scripts/extract_frames.py <影片> <t0> <t1>`，用 Read 看 `sheet.jpg`。
-- 文件：把對應頁轉成圖片再看。
-- 依 `references/form-catalog.md` **沿用原圖結構**（同心圓 → 同心圓、握手 → 時序生命線、OSI → 疊層…）。
-  原圖只有文字時才自行選形式；沒有關係結構就不畫，不要硬做一排卡片。
+### 2. 看內容，決定形式
+- 讀這張投影片的標題、lead 與條列，先用一句話說出**內容是什麼關係**：先後順序？由外而內的層次？
+  包含或交集？兩者比較？循環？雙方往返互動？上下層級？程度光譜？公式？
+- 依 `references/form-catalog.md` 把關係對應到圖形形式（層層包圍 → 同心圓、雙方往返 → 時序生命線、
+  上下疊加 → 疊層、有判斷分支 → 流程圖…）。形式由內容決定，不由既有圖片或模板決定。
+- 內容沒有關係結構（只是並列的幾個要點）就不畫，改用條列版面；不要硬做一排卡片。
+- 內容有疑問時才回頭查來源（影片：`python3 scripts/extract_frames.py <影片> <t0> <t1>` 後用 Read 看 `sheet.jpg`；
+  文件：轉成圖片看對應頁），用來確認事實與講者強調的重點，不是拿來照抄構圖。
 - 內容以筆記為準，不加入筆記沒有的事實；術語保留英文。
 
 ### 3. 畫圖（每張一個 Python 檔）
@@ -101,7 +104,7 @@ SOFFICE="python3 <pptx skill>/scripts/office/soffice.py" bash scripts/render_qa.
 | LibreOffice／縮圖顯示空白圖 | pptxgenjs 在 Node 下的 PNG 備援是壞的 | `fix_png_fallback.py` |
 | 含 **重點** 的條列沒有項目符號 | pptxgenjs 在段落中第 2 個 run 前多寫 `<a:pPr><a:buNone/>` | `fix_png_fallback.py` 會移除；段落屬性只放第一個 run |
 | 顏色對比太低、色盲分不出 | 憑感覺挑色 | 用 dataviz 驗證器；預設色票已通過 |
-| 每張圖長得都一樣 | 用同一個模板產生 | 逐張看原圖，依 form-catalog 選形式，每張一個繪圖腳本 |
+| 每張圖長得都一樣 | 用同一個模板產生 | 逐張判斷內容關係，依 form-catalog 選形式，每張一個繪圖腳本 |
 | 文字被弧線或連線穿過 | 標籤放在線上 | `knockout()` 白底，或把標籤移到兩線之間 |
 | 字太小看不清 | 圖被縮小放入 | 畫布直接用投影片尺寸（1 in = 144 px）、放入時不縮放、字級 ≥ 22 px |
 
