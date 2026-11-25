@@ -7,7 +7,7 @@ This document defines the **Autonomous Operation System** for the devteam skill,
 | Mode | Mechanism | IDE Support |
 |------|-----------|-------------|
 | **Universal** | Directive-Based Protocol (embedded in SKILL.md) | ✅ All IDEs |
-| **Advanced** | Stop Hook (Claude Code Plugin) | Claude Code only |
+| **Advanced** | Stop Hook (Node.js plugin hook) | Claude Code and Codex |
 
 ---
 
@@ -101,47 +101,11 @@ After every step, the AI MUST:
 
 ---
 
-## Advanced Mode: Stop Hook (Claude Code Only)
+## Advanced Mode: Stop Hook
 
-For Claude Code users, an optional Stop Hook provides **automated enforcement** of the loop protocol.
+The `hyperhero-workflow` plugin registers `scripts/devteam-stop-hook.mjs` through `hooks/hooks.json`. Claude Code and Codex load the same registration. Node.js must be available on PATH.
 
-### How It Works
-
-1. **Stop Hook Location**: `devteam/hooks/stop-hook.sh`
-2. **Registration**: `devteam/hooks/hooks.json`
-3. **Trigger**: When Claude attempts to exit/stop
-
-### Stop Hook Logic
-
-```bash
-# Pseudocode
-if no_state_file:
-    exit 0  # Allow exit
-    
-if max_iterations_reached:
-    exit 0  # Allow exit
-    
-if completion_signal_detected:
-    exit 0  # Allow exit
-    
-# Not complete - block exit and feed prompt back
-echo '{"decision": "block", "reason": "$PROMPT", "systemMessage": "..."}'
-```
-
-### Hook Registration (`hooks.json`)
-
-```json
-{
-  "name": "devteam",
-  "hooks": [
-    {
-      "type": "Stop",
-      "matcher": ".*",
-      "hookPath": "./stop-hook.sh"
-    }
-  ]
-}
-```
+The hook reads `.claude/devtem-loop.local.md` in the working directory supplied by the agent. It continues an active loop until the iteration limit or completion promise is reached. Completion checks use the assistant message supplied by the agent when available, with the transcript as a fallback. The repository README describes installation and hook review.
 
 ---
 

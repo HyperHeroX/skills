@@ -35,12 +35,12 @@ cp -r skills/plugins/hyperhero-tools ~/.claude/plugins/marketplaces/hyperhero-sk
 cp skills/.claude-plugin/marketplace.json ~/.claude/plugins/marketplaces/hyperhero-skills/
 
 # 3. 建立 cache 目錄
-mkdir -p ~/.claude/plugins/cache/hyperhero-skills/hyperhero-workflow/1.3.0
-mkdir -p ~/.claude/plugins/cache/hyperhero-skills/hyperhero-tools/1.2.0
-cp -r skills/plugins/hyperhero-workflow/* ~/.claude/plugins/cache/hyperhero-skills/hyperhero-workflow/1.3.0/
-cp -r skills/plugins/hyperhero-workflow/.claude-plugin ~/.claude/plugins/cache/hyperhero-skills/hyperhero-workflow/1.3.0/
-cp -r skills/plugins/hyperhero-tools/* ~/.claude/plugins/cache/hyperhero-skills/hyperhero-tools/1.2.0/
-cp -r skills/plugins/hyperhero-tools/.claude-plugin ~/.claude/plugins/cache/hyperhero-skills/hyperhero-tools/1.2.0/
+mkdir -p ~/.claude/plugins/cache/hyperhero-skills/hyperhero-workflow/1.3.2
+mkdir -p ~/.claude/plugins/cache/hyperhero-skills/hyperhero-tools/1.2.1
+cp -r skills/plugins/hyperhero-workflow/* ~/.claude/plugins/cache/hyperhero-skills/hyperhero-workflow/1.3.2/
+cp -r skills/plugins/hyperhero-workflow/.claude-plugin ~/.claude/plugins/cache/hyperhero-skills/hyperhero-workflow/1.3.2/
+cp -r skills/plugins/hyperhero-tools/* ~/.claude/plugins/cache/hyperhero-skills/hyperhero-tools/1.2.1/
+cp -r skills/plugins/hyperhero-tools/.claude-plugin ~/.claude/plugins/cache/hyperhero-skills/hyperhero-tools/1.2.1/
 
 # 4. 在 ~/.claude/settings.json 的 enabledPlugins 加入：
 #    "hyperhero-workflow@hyperhero-skills": true,
@@ -184,7 +184,17 @@ E2E 瀏覽器測試、使用手冊生成、Ralph Loop 自動迭代、網路排�
 
 ## 跨平台支援
 
-所有 hook scripts 已從 bash 改寫為 Node.js（`.mjs`），支援 Windows、Linux、macOS。
+Ralph 與 DevTeam 的 `Stop` hook 由兩個插件的 `hooks/hooks.json` 註冊，使用 PATH 上的 Node.js，支援 Windows 與 Linux。插件路徑可包含空白，狀態檔接受 LF、CRLF 與 UTF-8 BOM。
+
+Claude Code 安裝或更新插件後，執行 `/reload-plugins`。Codex CLI 可從本機儲存庫根目錄安裝：
+
+```bash
+codex plugin marketplace add .
+codex plugin add hyperhero-tools@hyperhero-skills
+codex plugin add hyperhero-workflow@hyperhero-skills
+```
+
+開啟新的 Codex 工作階段，在 `/hooks` 檢視並信任這兩筆 `Stop` hook。Windows 與 Linux 都可執行 `node --test test/stop-hooks.test.mjs` 驗證。
 
 ## 目錄結構
 
