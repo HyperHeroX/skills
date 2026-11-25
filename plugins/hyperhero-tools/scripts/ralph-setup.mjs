@@ -116,7 +116,7 @@ if (!prompt) {
 mkdirSync('.claude', { recursive: true });
 
 const promiseYaml = completionPromise ? `"${completionPromise}"` : 'null';
-const sessionId = process.env.CLAUDE_CODE_SESSION_ID || '';
+const sessionId = process.env.CLAUDE_CODE_SESSION_ID || process.env.CODEX_THREAD_ID || '';
 const startedAt = new Date().toISOString();
 
 const stateContent = `---

@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"import(require('node:url').pathToFileURL(process.env.CLAUDE_PLUGIN_ROOT + '/scripts/ralph-stop-hook.mjs'))\""
+          }
+        ]
+      }
+    ]
+  }
+}

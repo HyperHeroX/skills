@@ -1,167 +1,122 @@
 #!/usr/bin/env node
 
-/**
- * Ralph Loop Stop Hook (Node.js cross-platform)
- * Prevents session exit when a ralph-loop is active.
- * Feeds Claude's output back as input to continue the loop.
- *
- * Ported from stop-hook.sh for Windows/Linux/macOS compatibility.
- */
+import { readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { isAbsolute, join, resolve } from 'node:path';
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+const stateName = 'ralph-loop.local.md';
+const loopName = 'Ralph';
 
-const STATE_FILE = join('.claude', 'ralph-loop.local.md');
-
-// Read hook input from stdin
-let hookInput = '';
-try {
-  hookInput = readFileSync(0, 'utf-8');
-} catch {
-  // No stdin available
-}
-
-// No active loop — allow exit
-if (!existsSync(STATE_FILE)) {
-  process.exit(0);
-}
-
-const stateContent = readFileSync(STATE_FILE, 'utf-8');
-
-// Parse YAML frontmatter (between --- markers)
-const fmMatch = stateContent.match(/^---\n([\s\S]*?)\n---/);
-if (!fmMatch) {
-  console.error('⚠️  Ralph loop: State file has no frontmatter');
-  unlinkSync(STATE_FILE);
-  process.exit(0);
-}
-
-const frontmatter = fmMatch[1];
-function getField(name) {
-  const m = frontmatter.match(new RegExp(`^${name}:\\s*(.*)$`, 'm'));
-  return m ? m[1].replace(/^["']|["']$/g, '').trim() : null;
-}
-
-let iteration = parseInt(getField('iteration'), 10);
-const maxIterations = parseInt(getField('max_iterations'), 10) || 0;
-let completionPromise = getField('completion_promise');
-if (completionPromise === 'null') completionPromise = null;
-
-// Session isolation
-const stateSession = getField('session_id') || '';
-let hookSession = '';
-try {
-  const parsed = JSON.parse(hookInput);
-  hookSession = parsed.session_id || '';
-} catch { /* ignore */ }
-
-if (stateSession && stateSession !== hookSession) {
-  process.exit(0);
-}
-
-// Validate iteration
-if (isNaN(iteration)) {
-  console.error('⚠️  Ralph loop: State file corrupted (invalid iteration)');
-  unlinkSync(STATE_FILE);
-  process.exit(0);
-}
-
-// Check max iterations
-if (maxIterations > 0 && iteration >= maxIterations) {
-  console.log(`🛑 Ralph loop: Max iterations (${maxIterations}) reached.`);
-  unlinkSync(STATE_FILE);
-  process.exit(0);
-}
-
-// Get transcript path from hook input
-let transcriptPath = '';
-try {
-  const parsed = JSON.parse(hookInput);
-  transcriptPath = parsed.transcript_path || '';
-} catch { /* ignore */ }
-
-if (!transcriptPath || !existsSync(transcriptPath)) {
-  console.error('⚠️  Ralph loop: Transcript file not found');
-  unlinkSync(STATE_FILE);
-  process.exit(0);
-}
-
-// Read last assistant message from transcript (JSONL format)
-const transcriptContent = readFileSync(transcriptPath, 'utf-8');
-const lines = transcriptContent.split('\n').filter(l => l.includes('"role":"assistant"'));
-
-if (lines.length === 0) {
-  console.error('⚠️  Ralph loop: No assistant messages found in transcript');
-  unlinkSync(STATE_FILE);
-  process.exit(0);
-}
-
-// Extract the last text block from recent assistant lines
-let lastOutput = '';
-try {
-  const recentLines = lines.slice(-100);
-  for (const line of recentLines) {
-    const parsed = JSON.parse(line);
-    const contents = parsed?.message?.content || [];
-    for (const block of contents) {
-      if (block.type === 'text' && block.text) {
-        lastOutput = block.text;
-      }
-    }
-  }
-} catch (e) {
-  console.error(`⚠️  Ralph loop: Failed to parse transcript JSON: ${e.message}`);
-  unlinkSync(STATE_FILE);
-  process.exit(0);
-}
-
-// Check for completion promise
-if (completionPromise) {
-  const promiseMatch = lastOutput.match(/<promise>([\s\S]*?)<\/promise>/);
-  if (promiseMatch) {
-    const promiseText = promiseMatch[1].trim().replace(/\s+/g, ' ');
-    if (promiseText === completionPromise) {
-      console.log(`✅ Ralph loop: Detected <promise>${completionPromise}</promise>`);
-      unlinkSync(STATE_FILE);
-      process.exit(0);
-    }
+function readOptionalFile(file) {
+  try {
+    return readFileSync(file, 'utf8');
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
   }
 }
 
-// Not complete — continue loop with SAME PROMPT
-const nextIteration = iteration + 1;
+function lastAssistantMessage(input, cwd) {
+  if (typeof input.last_assistant_message === 'string') {
+    return input.last_assistant_message;
+  }
+  if (typeof input.transcript_path !== 'string' || !input.transcript_path) return null;
 
-// Extract prompt (everything after the closing ---)
-const afterFrontmatter = stateContent.replace(/^---\n[\s\S]*?\n---\n?/, '');
-const promptText = afterFrontmatter.trim();
+  const transcript = readOptionalFile(resolve(cwd, input.transcript_path));
+  if (!transcript) return null;
 
-if (!promptText) {
-  console.error('⚠️  Ralph loop: No prompt text found in state file');
-  unlinkSync(STATE_FILE);
-  process.exit(0);
+  for (const line of transcript.split(/\r?\n/).reverse()) {
+    let record;
+    try {
+      record = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    const message = record?.type === 'response_item' ? record.payload : record?.message;
+    if ((message?.role ?? record?.role) !== 'assistant' || !Array.isArray(message?.content)) continue;
+
+    const text = message.content
+      .filter(block => (block?.type === 'text' || block?.type === 'output_text') && typeof block.text === 'string')
+      .map(block => block.text);
+    if (text.length) return text.join('\n');
+  }
+  return null;
 }
 
-// Update iteration in state file
-const updatedState = stateContent.replace(
-  /^iteration:\s*\d+/m,
-  `iteration: ${nextIteration}`
-);
-writeFileSync(STATE_FILE, updatedState, 'utf-8');
-
-// Build system message
-let systemMsg;
-if (completionPromise) {
-  systemMsg = `🔄 Ralph iteration ${nextIteration} | To stop: output <promise>${completionPromise}</promise> (ONLY when statement is TRUE - do not lie to exit!)`;
-} else {
-  systemMsg = `🔄 Ralph iteration ${nextIteration} | No completion promise set - loop runs infinitely`;
+function stopLoop(stateFile, systemMessage) {
+  rmSync(stateFile, { force: true });
+  process.stdout.write(JSON.stringify({ systemMessage }));
 }
 
-// Output JSON to block the stop and feed prompt back
-const output = JSON.stringify({
-  decision: 'block',
-  reason: promptText,
-  systemMessage: systemMsg,
-});
+function run() {
+  let input;
+  try {
+    input = JSON.parse(readFileSync(0, 'utf8'));
+  } catch {
+    return;
+  }
+  if (!input || typeof input !== 'object') return;
 
-process.stdout.write(output);
-process.exit(0);
+  const cwd = typeof input.cwd === 'string' && isAbsolute(input.cwd) ? input.cwd : process.cwd();
+  const stateFile = join(cwd, '.claude', stateName);
+  const state = readOptionalFile(stateFile);
+  if (state === null) return;
+
+  const header = /^\uFEFF?---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(state);
+  if (!header) {
+    stopLoop(stateFile, loopName + ' loop: State file has no frontmatter');
+    return;
+  }
+
+  function getField(name) {
+    const match = header[1].match(new RegExp('^' + name + ':[ \t]*([^\r\n]*)', 'm'));
+    return match?.[1].trim().replace(/^["']|["']$/g, '') ?? '';
+  }
+
+  const session = getField('session_id');
+  if (session && session !== input.session_id) return;
+
+  const iteration = Number.parseInt(getField('iteration'), 10);
+  const maxIterations = Number.parseInt(getField('max_iterations'), 10) || 0;
+  if (Number.isNaN(iteration)) {
+    stopLoop(stateFile, loopName + ' loop: State file corrupted (invalid iteration)');
+    return;
+  }
+  if (maxIterations > 0 && iteration >= maxIterations) {
+    stopLoop(stateFile, loopName + ' loop: Max iterations (' + maxIterations + ') reached.');
+    return;
+  }
+
+  const completionPromise = getField('completion_promise');
+  const hasPromise = completionPromise !== '' && completionPromise !== 'null';
+  if (hasPromise) {
+    const output = lastAssistantMessage(input, cwd);
+    if (output === null) return;
+
+    const promise = output.match(/<promise>([\s\S]*?)<\/promise>/)?.[1];
+    if (promise?.trim().replace(/\s+/g, ' ') === completionPromise) {
+      stopLoop(stateFile, loopName + ' loop: Detected <promise>' + completionPromise + '</promise>');
+      return;
+    }
+  }
+
+  const body = state.slice(header[0].length);
+  if (!body.trim()) {
+    stopLoop(stateFile, loopName + ' loop: No prompt text found in state file');
+    return;
+  }
+
+  const nextIteration = iteration + 1;
+  const updatedHeader = header[0].replace(/^iteration:[ \t]*\d+/m, 'iteration: ' + nextIteration);
+  writeFileSync(stateFile, updatedHeader + body, 'utf8');
+
+  const hint = hasPromise
+    ? 'To stop: output <promise>' + completionPromise + '</promise> only when true'
+    : 'No completion promise set';
+  process.stdout.write(JSON.stringify({
+    decision: 'block',
+    reason: body.trim(),
+    systemMessage: loopName + ' iteration ' + nextIteration + ' | ' + hint,
+  }));
+}
+
+run();
