@@ -244,7 +244,7 @@ Use these as visual reference when requesting UI restructuring with the "UI Repl
 
 ## Example File Reference Guide
 
-The `assets/examples/` directory contains 114 working HTML files organized by category. Use these as code-level references when generating presentations.
+The `assets/examples/` directory contains working HTML files organized by category. Use these as code-level references when generating presentations.
 
 ### By Topic — Which Example to Read
 
@@ -286,7 +286,7 @@ The `assets/examples/` directory contains 114 working HTML files organized by ca
 | BG/ | 7 | Background effect templates |
 | DHCP/ | 7 | Step-by-step protocol flows |
 | PPT Template/ | 5 | Slide presentation structures |
-| Pirated websites/ | ~50 | UI accuracy/replication reference |
+| Pirated websites/ | 28 | UI accuracy/replication reference |
 | catch the packet/ | 1 | Interactive simulation |
 | geometry/ | 4 | Geometry/math visualization |
 | nice try/ | 5 | Progressive iteration examples |

@@ -95,11 +95,9 @@ Optimize DOM structure while maintaining functionality.
 Target 95%+ visual similarity with template.
 ```
 
-This is not a suggestion — it's a hard requirement in every restructuring prompt.
-
 ### 6. Emoji Prohibition
 
-**Never use emoji in generated presentations.** This is the single most consistent rule across all prompts.
+Use flat UI library icons instead of emoji in generated presentations, because emoji render inconsistently across platforms.
 
 Replace all emoji with flat UI library icons (Font Awesome, Material Icons, Lucide, etc.):
 - Font Awesome: `<i class="fas fa-network-wired"></i>`

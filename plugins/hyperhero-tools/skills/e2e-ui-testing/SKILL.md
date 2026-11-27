@@ -2,10 +2,9 @@
 name: e2e-ui-testing
 description: >-
   Comprehensive E2E UI testing, visual regression, and layout verification
-  using browser automation tools. Use when asked to "test UI", "E2E test",
-  "browser test", "visual test", "layout verification", "verify pages",
-  "test all pages", "UI regression", or when performing post-deployment
-  validation of web applications.
+  using browser automation tools. Use when asked to test, verify, or
+  regression-check a web application's pages, flows, or visual layout in a
+  browser, including post-deployment validation.
 ---
 
 # E2E UI Testing & Visual Verification

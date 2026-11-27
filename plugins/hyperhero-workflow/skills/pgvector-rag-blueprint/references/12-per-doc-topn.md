@@ -19,7 +19,7 @@ Bot with 20 files, topN=10:
 ## Opt-in
 
 bot.settings.perDocTopNMode = true (default false).
-Pair with Gemini 2.5 Pro/Flash (1M window) when enabling broadly.
+Pair with a model whose context window can hold the expanded pool (~1M tokens) when enabling broadly.
 
 ## Interop
 

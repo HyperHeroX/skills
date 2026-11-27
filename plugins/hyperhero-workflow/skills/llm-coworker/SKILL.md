@@ -3,14 +3,10 @@ name: llm-coworker
 description: >-
   讓「兩個 Claude 模型實例」分別扮演實作者 (implementer) 與驗證者 (validator)
   透過共享中繼檔自動協作，免去使用者手動在多個 LLM session 間搬訊息。
-  使用時機：當使用者提到「多模型協作」、「兩個 Claude 一起做」、「一個寫一個驗」、
-  「coworker」、「pair LLM」、「implementer / validator 分工」、
-  「讓另一個 Claude 同時驗證我這邊在寫的東西」、「parallel claude sessions」、
-  「多開 session 分工」、或描述出由一個 session 寫程式、另一個 session 跑測試/驗收
-  的工作模式時，**必須**使用本 skill。即使使用者沒有明說「coworker」，只要意圖是
-  「兩個或以上的 LLM session 同時針對同一專案分工 → 透過檔案傳遞狀態 → 自動輪詢
-  等對方完成」，就應該啟動本 skill。本 skill 會強制呼叫 e2e-ui-testing 等子 skill
-  完成 UI 自動化測試。
+  使用時機：兩個或以上的 LLM session 針對同一專案分工（一端實作、另一端測試／驗收），
+  需透過檔案傳遞狀態並自動輪詢等待對方時，**必須**使用本 skill（包含使用者提到
+  coworker 或 implementer／validator 分工）。驗證端的 UI 自動化測試會呼叫
+  e2e-ui-testing skill。
 ---
 
 # LLM Model CoWorker

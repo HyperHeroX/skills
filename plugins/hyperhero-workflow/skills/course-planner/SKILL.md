@@ -1,7 +1,7 @@
 ---
 name: course-planner
 description: |
-  教學課程一條龍規劃技能。當使用者提到「我要準備一堂課」、「幫我規劃 X 課程」、「設計教材」、「備課」、「教學大綱」、「講稿」、「課程簡報」、「實作教材」、「教學工作坊」、「training」、「workshop」、「curriculum」、「lesson plan」時，**務必觸發此技能**。即使使用者只說「我下週要教 AI」這種一句話，也應觸發。本技能會帶領講師從「釐清需求 → 蒐集資料 → 課綱 → 課程介紹頁 → 痛點對齊 → 講稿 → 簡報 → 實作 → 一致性檢核」一條龍完成備課。所有產出使用繁體中文。
+  教學課程一條龍規劃技能。當使用者要準備、規劃或設計一堂課程、工作坊或培訓（含課綱、講稿、課程簡報、實作教材等備課產出，中英文表述皆然）時，**務必觸發此技能**；即使只是一句話的備課意圖（如「我下週要教 AI」）也應觸發。本技能會帶領講師從「釐清需求 → 蒐集資料 → 課綱 → 課程介紹頁 → 痛點對齊 → 講稿 → 簡報 → 實作 → 一致性檢核」一條龍完成備課。所有產出使用繁體中文。
 type: workflow
 ---
 
@@ -146,7 +146,7 @@ type: workflow
   ```powershell
   (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
   ```
-- 確認 mount 路徑（教學專案目錄在 Linux 沙盒中對應的 Windows 路徑），用 `mount` 指令查 `/sessions/great-serene-edison/mnt/教學` 對應的 `C:\…` 真實位置
+- 確認 mount 路徑（教學專案目錄在 Linux 沙盒中對應的 Windows 路徑），用 `mount` 指令查沙盒內教學專案目錄對應的 Windows 真實位置
 
 **標準步驟（每張圖重複）：**
 
@@ -166,9 +166,9 @@ type: workflow
    `find` query: `"下載原尺寸圖片"` → 多次生成會回多個 ref，**最後一個 ref 才是最新那張**；`left_click` 該 ref
 7. **PowerShell 移動並重新命名**（從使用者下載夾搬到課程 `images/`）
    ```powershell
-   Get-ChildItem F:\000-Download\Gemini_Generated_*.png |
+   Get-ChildItem "<前置確認查得的下載資料夾>\Gemini_Generated_*.png" |
      Sort-Object LastWriteTime -Descending | Select-Object -First 1 |
-     ForEach-Object { Move-Item $_.FullName "C:\Users\Hiro\Desktop\教學\{課程名}\images\s01_pN_{semantic}.png" -Force }
+     ForEach-Object { Move-Item $_.FullName "<工作目錄>\{課程名}\images\s01_pN_{semantic}.png" -Force }
    ```
    檔名規則：`s{節次:02}_p{頁碼}_{語意}.png`，例：`s01_p1_hero.png`、`s01_p7_three_industries.png`
 

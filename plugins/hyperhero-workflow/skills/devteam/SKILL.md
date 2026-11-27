@@ -51,9 +51,9 @@ Before ANY workflow step, the AI **MUST** run the `devteam-config-sync` skill to
 
 See `devteam-config-sync` skill for full details.
 
-## 🚨 Session Resume Guard (MANDATORY)
+## Session Resume Guard
 
-When resuming from a conversation summary or when pending tasks exist, the AI **MUST** perform session resume processing BEFORE any implementation work. This is a non-negotiable gate.
+When resuming from a conversation summary or when pending tasks exist, complete session resume processing before any implementation work.
 
 **Detection (three-tier — see `../../references/openspec-integration.md`):**
 1. **Tier 1** — If `openspec-session-resume` skill is installed → invoke via Skill tool
@@ -80,23 +80,13 @@ This skill implements an **Autonomous Loop Protocol** that works across all IDEs
 | **Universal** | Core | State Files + Directive Protocol | ✅All IDEs |
 | **Advanced** | Plugin | Stop Hook (optional) | Claude Code only |
 
-### Continuation Protocol (CRITICAL)
+### Continuation Protocol
 
-**After EVERY step completion, the AI MUST:**
+After each step completes:
 
-```
-📍 STEP COMPLETION CHECK (Mandatory Protocol)
-1. READ `docs/.devteam/status.json`
-2. IF current_step <= 11 AND exit_signal == false:
-   →INCREMENT current_step
-   →SAVE state
-   →IMMEDIATELY CONTINUE to next step
-   →DO NOT wait for user input
-3. IF current_step > 11 AND all_tests_pass:
-   →SET exit_signal = true
-   →OUTPUT completion status
-   →HALT and await user
-```
+1. Read `docs/.devteam/status.json`.
+2. If `current_step <= 11` and `exit_signal == false`: increment `current_step`, save state, and continue to the next step without waiting for user input.
+3. If `current_step > 11` and all tests pass: set `exit_signal = true`, output the completion status, and stop to await the user.
 
 ### Circuit Breaker Protection
 
@@ -192,5 +182,5 @@ For detailed command documentation, see [references/commands.md](../../reference
 - **AI Agent Standard v4.4 Source Bundle**: [ai-agent-development-standard-v4.4/](../../references/ai-agent-development-standard-v4.4/)
 
 ### Plugin (Claude Code Only)
-- **Stop Hook**: [plugin/stop-hook.sh](plugin/stop-hook.sh)
-- **Hook Config**: [plugin/hooks.json](plugin/hooks.json)
+- **Stop Hook**: [scripts/devteam-stop-hook.mjs](../../scripts/devteam-stop-hook.mjs)
+- **Hook Config**: `hooks.Stop` in [.claude-plugin/plugin.json](../../.claude-plugin/plugin.json)

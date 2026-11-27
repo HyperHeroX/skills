@@ -140,10 +140,10 @@ Product Name
 
 ### Phase 4: DOCX Export
 
-To convert the Markdown guide to DOCX, run the bundled conversion script:
+To convert the Markdown guide to DOCX, run the bundled conversion script (path relative to this skill's directory):
 
 ```bash
-python {skill-dir}/scripts/md2docx.py <input.md> <output.docx> <screenshots-dir>
+python ../../scripts/md2docx.py <input.md> <output.docx> <screenshots-dir>
 ```
 
 The script handles:

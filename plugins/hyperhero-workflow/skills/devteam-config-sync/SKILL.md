@@ -60,7 +60,7 @@ If a file does NOT exist → **create it** with the injection content as the ini
 
 Read the injection template from:
 ```
-devteam/references/config-injection/agents-md-injection.md
+../../references/config-injection/agents-md-injection.md
 ```
 
 This template contains the standardized rules block wrapped in markers:

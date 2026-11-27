@@ -1,6 +1,6 @@
 ---
 name: interactive-presentation
-description: "This skill should be used when the user asks to \"create a presentation\", \"generate slides\", \"make an interactive demo\", \"create HTML animation\", \"generate PPT\", \"build a slideshow\", \"create a visual explainer\", or wants to convert text content into animated HTML presentations. Supports three-step workflow: base HTML generation, PPT-style template restructuring, and optional flowchart-style layout."
+description: "This skill should be used when the user wants text content turned into an animated, single-file HTML presentation — slides, PPT-style decks, interactive demos, or visual explainers. Supports three-step workflow: base HTML generation, PPT-style template restructuring, and optional flowchart-style layout."
 ---
 
 # Interactive Presentation: AI-Driven HTML Presentation Generator
@@ -26,8 +26,8 @@ These principles govern ALL prompt composition and generation in this skill. Con
 3. **Large Text, Few Words, Many Graphics** — Reduce text per slide, increase font size (24px+ body, 48px+ headings), replace paragraphs with diagrams and icons.
 4. **Animation Sequencing Discipline** — Animations follow strict hierarchy: page transition → parent module → child elements ease-in one by one → persistent emphasis. Total per page: 3-5 seconds.
 5. **Template-Driven 95% Fidelity** — When restructuring, read the template file first. Target 95%+ visual similarity. Precisely replicate layout, spacing, typography, icons.
-6. **Emoji Prohibition** — Never use emoji. Always replace with flat UI library icons (Font Awesome, Material Icons, inline SVG). This instruction is mandatory in every restructuring prompt.
-7. **Single-File Zero-Dependency** — One HTML file, no external CSS/JS/images. Inline everything. 1000+ lines ensures visual richness. Icon font CDN links are the only acceptable external resource.
+6. **Icons, not emoji** — Use flat UI library icons (Font Awesome, Material Icons, inline SVG) instead of emoji, because emoji render inconsistently across platforms. Include this in every restructuring prompt.
+7. **Single-File Zero-Dependency** — One HTML file, no external CSS/JS/images. Inline everything. Icon font CDN links are the only acceptable external resource.
 8. **Dark Theme + Accent** — Default: dark background (#0a0a0f) + cyan/purple/pink accent. Alternative: warm (white + color accents) when user requests.
 
 ---
@@ -57,7 +57,6 @@ Before generating, gather key information from the user. Ask naturally, not as a
 Combine user answers into a compound prompt. Quantify everything:
 - Font size: "minimum 24px body, 48px headings" (not "large text")
 - Animation timing: "5 seconds total per page" (not "add animations")
-- Code volume: "1000+ lines" (not "detailed")
 - Fidelity: "95%+ visual similarity" (not "make it match")
 - Constraints: "only demonstration needed, other details can be ignored" (prevents boilerplate)
 
@@ -80,7 +79,7 @@ with PPT-style slide carousel for intuitive graphical visualization.
 - Rich graphical visualization: diagrams, flow charts, icon-based layouts
 - Reduce text per slide — focus on visual demonstration for video
 - Replace all emoji with flat UI library icons
-- Single HTML file, 1000+ lines, no external dependencies
+- Single HTML file, no external dependencies
 - Keyboard arrow keys and mouse wheel for page navigation
 - Each slide: full viewport (100vw x 100vh)
 Only demonstration effects needed — other webpage details can be ignored.
@@ -90,7 +89,6 @@ Output to: [path]
 **Key requirements for generation:**
 - Single HTML file, no external dependencies
 - Dark or themed color scheme with accent colors
-- Minimum 1000 lines of code for rich visual effects
 - Keyboard arrow keys and mouse wheel for page navigation
 - Each slide occupies full viewport (100vw x 100vh)
 
@@ -116,8 +114,6 @@ Reduce text per slide, increase font size, enhance graphical display,
 use rich graphics alongside text for video presentation.
 Replace all emoji icons with flat UI library icons.
 ```
-
-**Mandatory:** Always include the instruction to replace emoji with flat UI icons.
 
 ### Step 3 (Optional): Flowchart Style
 
@@ -210,7 +206,7 @@ User provides content + output path
 
 ---
 
-## Bundled Example Library (114 files)
+## Bundled Example Library
 
 The skill includes a complete library of working HTML animation examples in `assets/examples/`. Read these files as reference when generating new presentations to replicate proven visual patterns and code structures.
 
@@ -329,7 +325,7 @@ Open example HTML files in browser to verify generated output matches quality st
 - **`templates/RNN-Template/`** — 6 flowchart-style HTML layout templates
 
 ### Asset Files
-- **`assets/examples/`** — 114 working HTML animation examples across 10+ categories
+- **`assets/examples/`** — working HTML animation examples, grouped by category
 - **`assets/ui-designs/`** — 7 UI design reference images
 
 ---

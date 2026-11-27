@@ -15,7 +15,7 @@ description: |
 
 # TWAA 全等級無障礙檢測技能
 
-## 🚨 五項不可違背的核心原則（任何情況下均不可跳過）
+## 五項核心原則（每次檢測皆適用）
 
 ### 原則一：一個頁面必須滿足全部 300+ 條檢查項目才算通過
 
@@ -53,8 +53,8 @@ scripts/e_code_runner.js         # 主控器：動態 import 所有 E 碼並逐�
 scripts/gen_e_code_tests.py      # 產生器：從官方 md 文件自動產生 JS 測試程式碼
 
 # 執行方式
-node scripts/e_code_runner.js <url> --level AA      # 執行全部 AA 等級 E 碼
-node scripts/e_code_runner.js <url> --category GN   # 只執行 GN 類（通用）
+node scripts/e_code_runner.js <url> --level=AA      # 執行全部 AA 等級 E 碼
+node scripts/e_code_runner.js <url> --category=GN   # 只執行 GN 類（通用）
 node scripts/e_code_runner.js --list                 # 列出所有已實作的 E 碼
 
 # 整合執行（axe-core + E 碼 + 基礎規則）
@@ -133,7 +133,7 @@ scripts/
 ├── e_code_tests/<CODE>.js              # 209 個 E 碼（瀏覽器自動化）
 ├── e_code_runner.js                    # 動態載入 E 碼
 └── twaa/
-    ├── c_code_tests/<CODE>.py          # 29 個官方 C 碼（HM/CS/ME 前綴）
+    ├── c_code_tests/<CODE>.py          # C 碼模組（HM/CS/ME 前綴）
     ├── c_code_runner.py                # 動態載入 C 碼
     ├── supplementary_tests/<RULE>.py   # 10 個補充 informal WCAG 檢查
     └── supplementary_runner.py         # 動態載入補充規則
@@ -154,7 +154,7 @@ scripts/
 ```bash
 # 列出所有實作
 node   scripts/e_code_runner.js  --list
-python -m twaa.c_code_runner --list           # 29 官方 C 碼
+python -m twaa.c_code_runner --list           # 列出所有 C 碼模組
 python -m twaa.supplementary_runner --list    # 10 補充規則
 
 # 對單檔執行
@@ -167,7 +167,7 @@ python -m twaa.check_file Foo.vue --level AA
 
 **為什麼必須這樣做：**
 1. **可追溯**：報告中每條失敗都能直接對應到一個原始碼檔案，便於審查與測試
-2. **可獨立啟用**：可只跑指定碼（如 `--code CS2140401C` 或 `--category HM`）
+2. **可獨立啟用**：每碼為獨立模組，可個別執行或移除（E 碼 runner 支援 `--category=GN`）
 3. **無中央維護負擔**：新增檢查碼只需丟一個檔進目錄，runner 自動發現
 4. **可獨立替換實作**：當某條檢查邏輯改進時，只動該檔不影響其他碼
 
@@ -321,9 +321,6 @@ node scripts/run_axe.js <url> --json > <audit>/axe-<page>.json
 ### Phase 4 — 報告產出
 
 ```bash
-# 產分層報告
-python -m twaa.render_reports --state <audit>/state.json --out-dir <audit>
-
 # 互動儀表板
 python -m twaa.render_dashboard --state <audit>/state.json --project-name "<name>" --out <audit>/dashboard/index.html
 
@@ -352,10 +349,6 @@ python -m twaa.merge_reports --audit-dir <audit> --project-name "<name>" \
 - Phase 3 自動跳過 → 對應 cells 標 `needs_human`
 - 報告產出時 Phase 3 條目顯示 ⚠ 而非 ✅/❌
 - 在 summary.md 開頭明確標注「本次未做運行期檢測」
-
-## 與舊技能的關係
-
-本技能取代 `~/.claude/skills/twaa-aa/`。舊技能驗收通過後可刪除；checklist-AA.md 已移植其全部內容並擴充。
 
 ## 範例觸發
 

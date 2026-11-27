@@ -30,8 +30,8 @@
    請開另一個 Claude session、cd 到同一個專案、跟它說『你是 validator』。」
    把 state path 給使用者，方便他確認另一邊 hash 對齊。
 
-5. **建立 work item**：用 `node "$COWORKER" claim-implementer --session-label "<自選>"`
-   登記自己（記錄目前 model id + session 標籤），然後 `set-status implementing`。
+5. **建立 work item**：用 `node "$COWORKER" claim-implementer --session-label "<自選>" --model-label "<你的 model id>"`
+   登記自己（未帶 `--model-label` 時 model id 會記為 null），然後 `set-status implementing`。
 
 ## 主循環
 
