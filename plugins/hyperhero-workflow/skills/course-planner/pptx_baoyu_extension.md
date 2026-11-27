@@ -8,7 +8,7 @@
 
 ## 核心理念
 
-簡報優先為「**閱讀與分享**」而設計，而非僅為現場口述。每一頁都要能獨立被看懂、具備社群分享力，並以 **AI 生成視覺為主角**，而非文字條列。此理念與本專案 `CLAUDE.md` 中簡報五大準則（明顯、可遠距閱覽、充滿圖表、可互動、現代化）完全相容，並補足「圖像生成工作流」的細節。
+簡報優先為「**閱讀與分享**」而設計，而非僅為現場口述。每一頁都要能獨立被看懂、具備社群分享力，並以 **AI 生成視覺為主角**，而非文字條列。此理念與 `SKILL.md` Step 5 簡報設計準則（明顯、可遠距閱覽、充滿圖表、可互動、現代化）完全相容，並補足「圖像生成工作流」的細節。
 
 ---
 
@@ -21,7 +21,7 @@
 4. **Review Outline**（條件式）— 核對每頁標題與版型
 5. **Generate Prompts** — 為每一頁撰寫 AI 圖像生成 prompt，存 `prompts/`
 6. **Review Prompts**（條件式）— 使用者確認圖像描述
-7. **Generate Images** — 批次生成 PNG（參考 `CLAUDE.md` Step 5 的圖像生成優先順序）
+7. **Generate Images** — 批次生成 PNG（參考 `SKILL.md` Step 5 的圖像生成優先順序）
 8. **Merge** — 組合為 `.pptx`（或單檔 `.html`）與 `.pdf`
 9. **Output Summary** — 交付並附 `computer://` 預覽連結
 
@@ -54,7 +54,7 @@
 | 科研 / data-heavy | `scientific`、`editorial-infographic` |
 | 故事 / 創意 | `watercolor`、`fantasy-animation`、`vintage` |
 | 科技感 / 暗黑 | `dark-atmospheric`、`intuition-machine`、`pixel-art` |
-| AI 教學課程（本專案預設） | `dark-atmospheric` + neon 強調色（對齊 CLAUDE.md 2026 趨勢） |
+| AI 教學課程（本專案預設） | `dark-atmospheric` + neon 強調色（對齊 SKILL.md Step 5 現代化準則） |
 
 ---
 
@@ -87,9 +87,9 @@
 
 ---
 
-## 與本專案 `CLAUDE.md` 的對齊表
+## 與 `SKILL.md` Step 5 的對齊表
 
-| CLAUDE.md Step 5 準則 | Baoyu 對應機制 |
+| SKILL.md Step 5 準則 | Baoyu 對應機制 |
 |----------------------|----------------|
 | 充滿圖表 / 每頁至少一視覺 | 圖像優先 + Step 5 Generate Prompts |
 | 必須含呼應主題的生成圖片 | Step 5–7 的 prompt→image 工作流 |

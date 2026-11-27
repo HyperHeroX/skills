@@ -14,7 +14,7 @@ Source: appapi/server/utils/rag/pinnedContent.ts
 ## Budget
 
 DEFAULT_PINNED_TOKEN_BUDGET = 800_000 (tuned for Gemini 1M window, 20 percent reserved).
-For Claude 200k: override to 120k. For GPT-4o 128k: override to 72k via bot.settings.pinnedTokenBudget.
+For other models, set bot.settings.pinnedTokenBudget with the same headroom: at least 20 percent of the model's current context window reserved for prompt and reply.
 
 ## Exclusion Strategy
 

@@ -35,8 +35,8 @@ Do NOT use this skill for:
 - **PostgreSQL 15+ with pgvector** (hard requirement)
 - Async runtime; reference code is TypeScript/Drizzle — port concepts,
   not syntax
-- Streaming-capable LLM provider; Gemini 2.5 Pro/Flash recommended for the
-  800k pinned budget, Claude/GPT workable with smaller budgets
+- Streaming-capable LLM provider; the default 800k pinned budget assumes a
+  ~1M-token context window — size `pinnedTokenBudget` to the chosen model's window
 - Pluggable reranker: none / Cohere / bge-reranker-base / embedding-cosine
 
 ## Architecture: 4 Layers

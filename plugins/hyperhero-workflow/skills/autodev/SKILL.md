@@ -59,7 +59,7 @@ description: '通用全流程開發技能。指導代理完成完整開發流程
 
 #### 1.1 啟動 devteam 規劃
 
-**強制要求**: 所有開發任務在開始前必須使用 devteam skill 進行規劃。
+所有開發任務開始前，先以 devteam skill 完成規劃。
 
 **規劃內容**:
 - 任務拆解與分配
@@ -95,25 +95,12 @@ task(
 
 #### 1.2 確認技術棧
 
-**前端技術棧** (根據專案選擇):
-- **React 生態**: React 18+ / Next.js 14+ / TypeScript / Tailwind CSS / Zustand
-- **Vue 生態**: Vue 3.5+ / Nuxt 4 / TypeScript / UnoCSS / Pinia
-- **其他**: 根據專案需求確認
+以目標專案既有的鎖定版本為準；新專案選用目前仍受官方支援的 LTS／穩定版本，並在技術棧確認文件記錄版本與確認日期。
 
-**後端技術棧** (根據專案選擇):
-- **Node.js**: Node.js 20 LTS / Express 4.18+ / TypeScript / Prisma 5.10+
-- **Python**: Python 3.11+ / FastAPI / SQLAlchemy
-- **Go**: Go 1.21+ / Gin / GORM
-- **其他**: 根據專案需求確認
-
-**資料庫** (根據專案選擇):
-- PostgreSQL 15+
-- MySQL 8.0+
-- MongoDB 6.0+
-- SQLite (開發環境)
-
-**容器化**:
-- Podman 4.8+ / Docker 24+
+- **前端** (根據專案選擇): React／Next.js 或 Vue／Nuxt，搭配 TypeScript 與專案指定的 CSS 方案、狀態管理
+- **後端** (根據專案選擇): Node.js (TypeScript)、Python (FastAPI)、Go 或專案指定技術
+- **資料庫** (根據專案選擇): PostgreSQL、MySQL、MongoDB；開發環境可用 SQLite
+- **容器化**: Podman 或 Docker
 
 ### 交付物
 
@@ -211,10 +198,6 @@ cd <project-root> && openspec init
 │                                                              │
 │  7. 標記任務為 ✅ 完成                                        │
 │  8. 立即開始下一個任務                                       │
-│                                                              │
-│  ⚠️ 禁止跳過任何生命週期步驟                                 │
-│  ⚠️ 禁止未建立 OpenSpec change 就修改原始碼                   │
-│  ⚠️ 禁止同時進行多個 OpenSpec change                         │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -880,11 +863,3 @@ task(
 | [references/phase-checklists/](../../references/phase-checklists/) | 各階段詳細檢查清單 |
 | [references/ai-agent-development-standard-v4.4-integration.md](../../references/ai-agent-development-standard-v4.4-integration.md) | v4.4 標準載入順序、57 項需求路由、devteam／AutoDEV 閘門與證據契約 |
 | [references/ai-agent-development-standard-v4.4/](../../references/ai-agent-development-standard-v4.4/) | v4.4 完整來源 bundle：需求、Profiles、Policies、Schemas、Templates、Lifecycle、Validator |
-
----
-
-## 技能維護
-
-本技能應隨開發實踐演進持續更新。
-
-**最後更新**: 2026-03-19

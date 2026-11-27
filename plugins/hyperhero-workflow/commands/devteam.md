@@ -18,14 +18,14 @@ Start a complete development team simulation that autonomously executes all 11 s
 ## What Happens
 
 1. **AI Agent Standard v4.4 Contract (Step -1 — MANDATORY)**
-   - Loads `references/ai-agent-development-standard-v4.4-integration.md`
+   - Loads `../references/ai-agent-development-standard-v4.4-integration.md`
    - Records standard version `4.4.0`, baseline digest, lifecycle／SSDLC／risk, direct／indirect Requirement IDs, source conditions, and required evidence
    - Blocks product-code writes when the baseline, policy, Requirement mapping, or required gate cannot be verified
 
 2. **Config Sync (Step 0 — AUTO)**
    - Runs `devteam-config-sync` to inject mandatory rules into user's `AGENTS.md` and `copilot-instructions.md`
    - Checks for `<!-- DEVTEAM-RULES-START -->` marker; injects if missing
-   - Reads template from `devteam/references/config-injection/agents-md-injection.md`
+   - Reads template from `../references/config-injection/agents-md-injection.md`
 
 3. **Initialization**
    - Creates `docs/.devteam/status.json` (workflow state)
@@ -98,7 +98,7 @@ REQUIREMENT_CONFORMANCE: PASS
 ## Example
 
 ```bash
-/devteam-loop "User Authentication Feature" --max-iterations 50
+/devteam "User Authentication Feature"
 ```
 
 Claude will:
@@ -115,10 +115,6 @@ Claude will:
 - Act as CI/CD Engineer → deploy
 - Output completion promise when done
 
-## Cancel Loop
+## Stop or Reset
 
-To cancel an active devteam loop:
-
-```bash
-/cancel-devteam
-```
+Say `pause` to save state and stop, or run `/devteam-reset` to clear state and start fresh.

@@ -31,12 +31,12 @@
   "current_iteration": 1,
 
   "implementer": {
-    "model_label": "claude-opus-4-7",       // 由模型自行宣告，best-effort
+    "model_label": "<model id>",             // claim 時以 --model-label 自行宣告；未帶則為 null
     "session_label": "session-A",            // 使用者自己取的標籤
     "last_heartbeat": "2026-05-18T02:06:00.000Z"
   },
   "validator": {
-    "model_label": "claude-sonnet-4-6",
+    "model_label": "<model id>",
     "session_label": "validator-A",
     "last_heartbeat": "2026-05-18T02:06:12.000Z"
   },

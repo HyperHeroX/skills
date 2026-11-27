@@ -19,7 +19,7 @@
 2. **登記自己**：
 
    ```bash
-   node "$COWORKER" claim-validator --session-label "<自選，例如 validator-A>"
+   node "$COWORKER" claim-validator --session-label "<自選，例如 validator-A>" --model-label "<你的 model id>"
    ```
 
    此指令會檢查：若已有另一個 validator 心跳在 5 分鐘內，會拒絕並回 exit 2，

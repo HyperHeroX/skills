@@ -2,7 +2,7 @@
 name: video-subtitle
 description: |
   **Video Subtitle Generator**: Generate Traditional Chinese (繁體中文) SRT subtitle files from video/audio using faster-whisper speech recognition with GPU acceleration.
-  - MANDATORY TRIGGERS: subtitle, subtitles, 字幕, .srt, transcribe video, transcribe audio, speech to text, 語音辨識, 語音轉文字, 影片字幕, video transcription, whisper
+  - Trigger when the user wants subtitles/字幕 (.srt) or a speech-to-text transcript (語音轉文字) from video or audio, including Whisper-based transcription.
   - Also trigger when: user mentions adding captions to a video, wants to convert speech in a video to text, or needs to create subtitle files from any media file (.mp4, .mkv, .avi, .wav, .mp3, etc.)
 ---
 
@@ -193,7 +193,7 @@ These are the most common errors. Whisper picks characters that sound similar bu
 
 ### Category 2: Proper Noun Garbling (專有名詞)
 
-Whisper struggles with organization names and technical terms in Chinese:
+Whisper struggles with organization names and technical terms in Chinese. The rows below are examples from one lecture, not a global replacement list — apply a name correction only when the surrounding context confirms it:
 
 | Error | Correction | What it is |
 |-------|-----------|------------|

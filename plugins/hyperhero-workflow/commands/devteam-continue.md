@@ -24,7 +24,7 @@ Resume an interrupted devteam development team simulation.
 2. **🛠️ Config Sync (AUTO)**
    - Execute `devteam-config-sync` skill to ensure user's `AGENTS.md` and `copilot-instructions.md` contain mandatory rules
    - Check for `<!-- DEVTEAM-RULES-START -->` marker; inject if missing
-   - Read template from `devteam/references/config-injection/agents-md-injection.md`
+   - Read template from `../references/config-injection/agents-md-injection.md`
 
 3. **🚨 Session Resume Guard (MANDATORY — three-tier detection)**
    - Before resuming ANY implementation, perform session resume processing
